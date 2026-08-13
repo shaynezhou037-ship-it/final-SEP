@@ -1,0 +1,51 @@
+﻿Date: 2026-08-02
+Color resolution: 640 x 400
+Chessboard inner corners: 8 x 6
+Measured square size: 25.0 mm
+Board coordinate extent: 175 x 125 mm
+
+Overhead:
+SN: HK100QB5311M2B242
+DeviceIndex at capture: 0
+Role: overhead
+
+Side:
+SN: HK100QB6513M2B479
+DeviceIndex at capture: 1
+Role: side
+
+Runtime mapping:
+raw pixel
+-> cv2.undistortPoints(pixel, K, D, P=K)
+-> H_undistorted_pixel_to_board
+-> board coordinate in mm
+
+Do not mix with legacy 20 mm calibration files.
+Moving either camera invalidates Homography, but not intrinsic K/D.
+
+Side-camera common-frame alignment:
+x_common = 175.0 - x_side
+y_common = 125.0 - y_side
+Reason: 180-degree checkerboard corner-order ambiguity.
+
+One-point dual-camera validation:
+Target board coordinate: (175, 25) mm
+
+Overhead B242:
+Predicted: (175.232, 26.517) mm
+Euclidean error: 1.535 mm
+
+Side B479 after common-board 180-degree alignment:
+Predicted: (175.280, 26.158) mm
+Euclidean error: 1.191 mm
+
+Dual-camera disagreement:
+0.363 mm
+
+Conclusion:
+Color intrinsic calibration, undistortion, homography mapping,
+25 mm scale, camera identity, and common board coordinate alignment passed
+the one-point functional validation.
+
+Limitation:
+This is a one-point sanity check, not a full-plane accuracy characterization.

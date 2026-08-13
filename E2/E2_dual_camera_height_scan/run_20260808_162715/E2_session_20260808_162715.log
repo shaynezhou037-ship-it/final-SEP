@@ -1,0 +1,481 @@
+================================================================
+E2 — DUAL-CAMERA INTERACTIVE HEIGHT SCAN
+================================================================
+run_id             : 20260808_162715
+output             : /mnt/c/Users/ASUS/Desktop/paper/E2/E2_dual_camera_height_scan/run_20260808_162715
+dictionary         : DICT_4X4_50
+marker outer size  : 50.0 mm
+A4 board geometry  : 210.0 x 297.0 mm
+placements / height: 1
+frames / placement : 3
+pair sync gate     : <= 50.0 ms
+height unit        : mm
+
+Waiting for both color streams + CameraInfo ...
+ihawk1: color=/ihawk1/color/color_raw | camera_info=/ihawk1/color/camera_info | depth=/ihawk1/depth/depth_raw
+ihawk2: color=/ihawk2/color/color_raw | camera_info=/ihawk2/color/camera_info | depth=/ihawk2/depth/depth_raw
+
+Discovering the five common board markers ...
+ihawk1 IDs: [0, 1, 2, 3, 4]
+ihawk2 IDs: [0, 1, 2, 3, 4]
+Common board IDs selected automatically: [0, 1, 2, 3, 4]
+
+NOTE: TL/TR/BL/BR are established from ihawk1 image geometry for this run and then tied permanently to marker IDs.
+
+Ready.
+For each Z layer: enter the measured height in mm, then complete exactly 1 board-center XY placements.
+XY input is the A4 CENTER / center-marker coordinate in mm. Convention: +X right, +Y up. Translate only; do NOT rotate.
+Type q only at the Height prompt to finish the run.
+
+
+================================================================
+[HEIGHT 001] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=36.3 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 02/3] pair Δt=32.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=6.3 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 14/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 002] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=31.9 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 02/3] pair Δt=32.7 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 03/3] pair Δt=32.7 ms | markers ihawk1=4, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 12/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 003] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=2.2 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 02/3] pair Δt=7.4 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 03/3] pair Δt=8.0 ms | markers ihawk1=4, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 12/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+Invalid height. Enter a number in mm, or q.
+
+================================================================
+[HEIGHT 004] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=31.5 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=32.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=29.4 ms | markers ihawk1=4, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 14/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+Invalid height. Enter a number in mm, or q.
+
+================================================================
+[HEIGHT 005] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=32.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=2.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=11.5 ms | markers ihawk1=4, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 14/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 006] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=40.0 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=28.4 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 03/3] pair Δt=22.8 ms | markers ihawk1=4, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 13/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 007] Z = 0.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=0.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=24.8 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=8.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=8.8 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=0.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 008] Z = 5.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=5.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=0.0 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=1.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=7.8 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=5.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 009] Z = 10.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=10.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=37.2 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=41.7 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=25.7 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=10.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 010] Z = 15.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=15.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=7.6 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 02/3] pair Δt=8.7 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 03/3] pair Δt=5.2 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 13/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=15.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 011] Z = 15.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=15.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=0.9 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=8.1 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=3.5 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=15.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 012] Z = 20.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=20.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=33.4 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=27.4 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=44.3 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=20.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 013] Z = 25.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=25.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=30.0 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=7.6 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=6.2 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=25.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 014] Z = 30.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=30.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=0.6 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=0.5 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=1.0 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=30.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 015] Z = 35.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=35.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=33.8 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=31.8 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=30.5 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=35.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 016] Z = 40.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=40.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=36.6 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=40.6 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=34.8 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=40.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 017] Z = 45.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=45.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=5.8 ms | markers ihawk1=5, ihawk2=4
+  [CAPTURE 02/3] pair Δt=8.0 ms | markers ihawk1=5, ihawk2=4
+  [CAPTURE 03/3] pair Δt=0.1 ms | markers ihawk1=5, ihawk2=4
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 12/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=45.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 018] Z = 45.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=45.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=29.8 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=29.5 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=29.6 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=45.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 019] Z = 50.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=50.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=24.5 ms | markers ihawk1=4, ihawk2=5
+  [CAPTURE 02/3] pair Δt=38.5 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=29.5 ms | markers ihawk1=4, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 13/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=50.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+
+================================================================
+[HEIGHT 020] Z = 50.000 mm
+This Z layer requires exactly 1 XY placements.
+For each placement enter the A4 CENTER coordinate as "X Y" in mm. Example: 5 0
+Board rotation must remain 0 deg.
+================================================================
+
+[PLACEMENT 1/1] Z=50.000 mm | board center XY=(0.000, 0.000) mm
+Waiting 1.0s for board settling ...
+  [CAPTURE 01/3] pair Δt=35.3 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 02/3] pair Δt=35.5 ms | markers ihawk1=5, ihawk2=5
+  [CAPTURE 03/3] pair Δt=35.3 ms | markers ihawk1=5, ihawk2=5
+[PLACEMENT PASS] 1/1 | XY=(0.000, 0.000) mm | ihawk1 15/15 | ihawk2 15/15
+
+------------------------------------------------------------
+[HEIGHT PASS] Z=50.000 mm | 1/1 placements complete
+Recorded board-center XY values:
+  P01: (0.000, 0.000) mm
+Now set the next physical Z and enter the next height.
+------------------------------------------------------------
+
+User requested end of run.
+================================================================
+[PASS] E2 HEIGHT SCAN RUN COMPLETE
+================================================================
+Raw CSV : /mnt/c/Users/ASUS/Desktop/paper/E2/E2_dual_camera_height_scan/run_20260808_162715/raw/E2_dual_height_raw_20260808_162715.csv
+Metadata: /mnt/c/Users/ASUS/Desktop/paper/E2/E2_dual_camera_height_scan/run_20260808_162715/metadata/E2_run_metadata_20260808_162715.json
+Summary : /mnt/c/Users/ASUS/Desktop/paper/E2/E2_dual_camera_height_scan/run_20260808_162715/results/E2_capture_summary_20260808_162715.json
+Frames  : /mnt/c/Users/ASUS/Desktop/paper/E2/E2_dual_camera_height_scan/run_20260808_162715/raw/frames
+
+Recorded 20 height step(s): [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.0, 10.0, 15.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 45.0, 50.0, 50.0]

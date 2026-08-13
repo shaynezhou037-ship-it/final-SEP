@@ -1,0 +1,92 @@
+{
+  "classification": {
+    "experiment_id": "E0-B",
+    "name": "Robot endpoint deviation / physical-feedback cross-check",
+    "protocol_note": "The acquisition protocol used varied high joint-space starts before returning to the same frozen Cartesian target.",
+    "causal_interpretation": "No causal attribution is made here. The dataset is classified by what was directly measured: endpoint deviation and agreement between physical observation and T105 feedback."
+  },
+  "n_total_arrivals": 20,
+  "n_comparison_arrivals": 19,
+  "n_measurable_physical_rows_used_for_continuous_analysis": 18,
+  "candidate_axis_mapping": {
+    "physical_x": "+robot_feedback_delta_y",
+    "physical_y": "-robot_feedback_delta_x",
+    "physical_z": "+robot_feedback_delta_z",
+    "note": "This mapping is strongly suggested by the observed data and should be physically verified before being treated as a formal coordinate-frame definition."
+  },
+  "correlation_matrix_physical_vs_raw_robot_feedback": {
+    "physical_x": {
+      "robot_dx": -0.9011108548521326,
+      "robot_dy": 0.9987772457902185,
+      "robot_dz": 0.10351236633935891
+    },
+    "physical_y": {
+      "robot_dx": -0.8038863961804108,
+      "robot_dy": 0.7938184955566823,
+      "robot_dz": -0.009046021761731636
+    },
+    "physical_z": {
+      "robot_dx": null,
+      "robot_dy": null,
+      "robot_dz": null
+    }
+  },
+  "mapped_axis_agreement": {
+    "physical_x_vs_mapped_robot_x": {
+      "n": 18,
+      "pearson_r": 0.9987772457902185,
+      "mae_mm": 1.169864544055556,
+      "rmse_mm": 1.3138509729922396,
+      "bias_actual_minus_feedback_mm": 1.169864544055556,
+      "max_abs_error_mm": 2.6344455000000018
+    },
+    "physical_y_vs_mapped_robot_y": {
+      "n": 18,
+      "pearson_r": 0.8038863961804108,
+      "mae_mm": 0.4346582833333375,
+      "rmse_mm": 0.5081090425617707,
+      "bias_actual_minus_feedback_mm": 0.14872205000000982,
+      "max_abs_error_mm": 1.1414389000000256
+    },
+    "physical_z_vs_mapped_robot_z": {
+      "n": 18,
+      "pearson_r": null,
+      "mae_mm": 0.7161118077777786,
+      "rmse_mm": 0.820867677303751,
+      "bias_actual_minus_feedback_mm": -0.7161118077777786,
+      "max_abs_error_mm": 1.2321818199999939
+    },
+    "note_z": "Physical/manual Z is constant at 0 in the measurable rows, so Pearson correlation for Z is undefined. The Z error metrics only indicate that robot-feedback Z deviations remained small relative to the ~1 mm manual resolution."
+  },
+  "xy_radial_agreement": {
+    "n": 18,
+    "pearson_r": 0.964080604119351,
+    "mae_mm": 1.1801384407537927,
+    "rmse_mm": 1.3250827651625645,
+    "bias_actual_minus_feedback_mm": 0.289173243031425,
+    "max_abs_error_mm": 2.661184543893885
+  },
+  "mapped_3d_residual": {
+    "mean_residual_norm_mm": 1.5209207482240124,
+    "rms_residual_norm_mm": 1.6303996203408995,
+    "max_residual_norm_mm": 2.818876028951049,
+    "caution": "The 3-D residual includes threshold-limited manual Y/Z readings and should not be interpreted as sub-mm ground-truth accuracy."
+  },
+  "diagnostic_linear_fit": {
+    "physical_x_from_robot_dy": {
+      "slope": 1.040382029874013,
+      "intercept_mm": 1.1385854353782436,
+      "r_squared": 0.9975559867082948,
+      "residual_mae_mm": 0.3257251162253646,
+      "residual_rmse_mm": 0.470581785326235
+    },
+    "physical_y_from_minus_robot_dx": {
+      "slope": 0.9782929866830262,
+      "intercept_mm": 0.14549373848013178,
+      "r_squared": 0.6462333379639285,
+      "residual_mae_mm": 0.3981441404039939,
+      "residual_rmse_mm": 0.48563817946839916
+    },
+    "note": "Linear fits are diagnostic only; do not use them to redefine the ground-truth measurement."
+  }
+}

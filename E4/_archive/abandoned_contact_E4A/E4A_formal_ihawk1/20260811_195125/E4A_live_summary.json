@@ -1,0 +1,22 @@
+{
+  "planned_trials": 108,
+  "executed_rows_saved": 0,
+  "measured_trials": 0,
+  "remaining_unexecuted": 108,
+  "remaining_without_physical_measurement": 108,
+  "complete": false,
+  "by_method": {
+    "Oracle": {
+      "n": 0
+    },
+    "Affine": {
+      "n": 0
+    },
+    "Homography": {
+      "n": 0
+    },
+    "PnP_IPPE": {
+      "n": 0
+    }
+  }
+}

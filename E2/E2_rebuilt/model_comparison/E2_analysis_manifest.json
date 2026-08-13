@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-08-08T16:46:37",
+  "input": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/E2_all_5runs_REBUILT_clean.csv",
+  "formal_runs": [
+    "20260808_131913",
+    "20260808_141232",
+    "20260808_145501",
+    "20260808_151001",
+    "20260808_162715"
+  ],
+  "models": [
+    "Affine",
+    "Homography",
+    "PnP"
+  ],
+  "calibration": "Each camera in each independent rebuild is calibrated only from its Z=0 data. The resulting model is frozen and applied to Z=5...50 mm.",
+  "frame_handling": "Three frames belonging to one physical condition are averaged before prediction and are not treated as independent repeats.",
+  "statistical_unit": "independent physical rebuild",
+  "n_independent_rebuilds": 5,
+  "primary_metric": "XY RMSE in millimetres",
+  "important_note": "Z=0 is the calibration condition, not a held-out independent validation condition.",
+  "outputs": {
+    "predictions": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/model_comparison/E2_predictions.csv",
+    "run_height_metrics": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/model_comparison/E2_run_height_metrics.csv",
+    "height_summary": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/model_comparison/E2_height_summary.csv",
+    "pnp_rebuild_audit": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/model_comparison/E2_PnP_rebuild_audit.csv",
+    "calibration_models": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/model_comparison/E2_calibration_models.json"
+  }
+}

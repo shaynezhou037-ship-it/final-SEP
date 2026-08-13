@@ -1,0 +1,58 @@
+{
+  "ihawk2": {
+    "detected_aruco_markers": 12,
+    "detected_charuco_corners": 9,
+    "projected_outer_board_pixels": {
+      "B00 (0,0)": [
+        244.51015247060138,
+        362.2556094485379
+      ],
+      "BX (+X)": [
+        448.3535154561751,
+        355.9125246083207
+      ],
+      "BXY": [
+        409.8867941062309,
+        263.86725578725816
+      ],
+      "BY (+Y)": [
+        258.2666221990833,
+        265.9285580016487
+      ],
+      "CENTER": [
+        340.77278428446704,
+        304.9855997930288
+      ]
+    },
+    "raw_image": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_orientation_check/20260811_185442/ihawk2_raw.png",
+    "annotated_image": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_orientation_check/20260811_185442/ihawk2_orientation_annotated.png"
+  },
+  "ihawk1": {
+    "detected_aruco_markers": 8,
+    "detected_charuco_corners": 8,
+    "projected_outer_board_pixels": {
+      "B00 (0,0)": [
+        228.99912066292032,
+        244.67266200758687
+      ],
+      "BX (+X)": [
+        321.63451201906037,
+        337.1799256680398
+      ],
+      "BXY": [
+        422.48957250050404,
+        278.25716666487693
+      ],
+      "BY (+Y)": [
+        320.34055943676043,
+        207.00036517183105
+      ],
+      "CENTER": [
+        320.8735201129805,
+        260.61947574910573
+      ]
+    },
+    "raw_image": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_orientation_check/20260811_185442/ihawk1_raw.png",
+    "annotated_image": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_orientation_check/20260811_185442/ihawk1_orientation_annotated.png"
+  }
+}

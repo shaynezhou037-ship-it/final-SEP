@@ -1,0 +1,46 @@
+{
+  "experiment": "E0-B Robot Repeatability",
+  "method": "Yunkai Task10 Final target scan once; fixed target; manual signed XYZ offsets relative to Trial 1",
+  "run_id": "20260807_202808",
+  "trials_requested": 20,
+  "random_seed": 20260807,
+  "serial_port": "/dev/ttyUSB0",
+  "baud": 115200,
+  "yunkai_core_file": "/mnt/c/Users/ASUS/Desktop/FURP-2026-YUNKAI-CHOU-Mobile_Manipulator/tools/dual_berxel_roarm/task10_guarded_approach.py",
+  "scan_target_mm": {
+    "x": 282.8347729456003,
+    "y": 20.64191452638058,
+    "z": -76.12121315260143
+  },
+  "fixed_final_target_mm": {
+    "x": 282.8347729456003,
+    "y": 20.64191452638058,
+    "z": -66.12121315260143
+  },
+  "clearance_mm": 10.0,
+  "max_tracking_error_mm": 45.0,
+  "measurement_resolution_mm": 1.0,
+  "measurement_protocol": "Threshold/censored manual needle-paper measurement: below-resolution observations are stored without numeric XYZ.",
+  "baseline_definition": "Trial 1 physical endpoint; baseline only. Comparison statistics exclude Trial 1.",
+  "successful_motion_arrivals": 4,
+  "comparison_trials_excluding_baseline": 3,
+  "threshold_result": {
+    "measurement_resolution_mm_approx": 1.0,
+    "below_resolution_count": 2,
+    "measurable_exceedance_count": 1,
+    "unclassified_count": 0,
+    "exceedance_rate": 0.3333333333333333,
+    "measurable_exceedance_events": [
+      {
+        "trial_index": 4,
+        "dx_mm": -32.0,
+        "dy_mm": -2.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 32.0624390837628,
+        "3d_offset_mm": 32.0624390837628,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      }
+    ]
+  },
+  "statistics_note": "Sub-resolution observations are censored and are NOT converted to exact zeros. Therefore no continuous repeatability SD is reported from the manual needle-paper measurements. The primary result is the count/rate of arrivals with a clearly resolvable displacement above the practical measurement threshold."
+}

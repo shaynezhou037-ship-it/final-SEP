@@ -1,0 +1,54 @@
+{
+  "experiment_id": "E0-B2",
+  "experiment_name": "Varied-start / configuration-path-dependence endpoint test",
+  "status": "completed",
+  "important_classification": {
+    "is_pure_robot_repeatability": false,
+    "reason": "Each comparison trial starts from a different constrained random high joint configuration before executing the same three-waypoint Cartesian approach."
+  },
+  "protocol": {
+    "total_arrivals": 20,
+    "baseline_arrivals": 1,
+    "comparison_arrivals": 19,
+    "target": "single frozen fused robot-corrected target",
+    "approach": "same Yunkai Task10 three-waypoint T104 approach",
+    "start_condition": "different constrained random high joint configuration",
+    "manual_measurement_resolution_mm_approx": 1.0
+  },
+  "threshold_measurement_result": {
+    "below_resolution_count": 1,
+    "measurable_exceedance_count": 18,
+    "exceedance_rate": 0.9473684210526315
+  },
+  "robot_feedback_relative_to_trial1": {
+    "delta_x_range_mm": [
+      -1.3573610999999914,
+      1.2254025999999953
+    ],
+    "delta_y_range_mm": [
+      -7.773822369,
+      20.27863915
+    ],
+    "delta_z_range_mm": [
+      0.0,
+      1.2321818199999939
+    ]
+  },
+  "diagnostic_relationships": {
+    "pearson_manual_paper_x_vs_robot_feedback_y": 0.9987772457902185,
+    "pearson_random_base_joint_vs_robot_feedback_y": 0.8937399306734781
+  },
+  "interpretation": [
+    "Endpoint variation is strongly dominated by the robot-feedback Y direction; X and Z changes are much smaller.",
+    "Manual needle-paper displacement agrees extremely strongly with robot-feedback Y displacement, so the large offsets cannot be explained by the ~1 mm manual measurement resolution.",
+    "The paper axis recorded as manual X appears to correspond approximately to the RoArm base-frame Y direction. Axis naming must be physically verified before subsequent experiments.",
+    "Random starting base-joint angle is strongly associated with final Y displacement. This is evidence of configuration/path dependence, but does not by itself identify the physical cause.",
+    "Possible mechanisms to investigate include IK/configuration dependence, backlash/history effects, Cartesian-controller coupling, or other start-state-dependent execution effects.",
+    "This dataset must NOT be reported as pure same-start robot repeatability."
+  ],
+  "next_experiment": {
+    "id": "E0-B1",
+    "name": "Same-start robot repeatability",
+    "design": "Return to the same official HOME before every identical three-waypoint approach; do not randomize the joint start."
+  }
+}

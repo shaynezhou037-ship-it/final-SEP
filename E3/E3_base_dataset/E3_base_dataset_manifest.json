@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-08-08T17:27:43",
+  "experiment": "E3 calibration-point design sensitivity",
+  "source": "/mnt/c/Users/ASUS/Desktop/paper/E1/E1_planar_model_comparison/raw/E1_ihawk1_planar_raw_20260807_212655.csv",
+  "source_rows": 2400,
+  "source_frames": 50,
+  "physical_points": 48,
+  "board_columns": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "board_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "frame_aggregation": "For each of the 48 physical chessboard corners, 50 repeated image observations were aggregated. The median undistorted pixel coordinate is used as the formal E3 image observation.",
+  "purpose": "The aggregation removes repeated-frame sampling from the calibration-design experiment so that E3 primarily measures sensitivity to calibration point quantity and spatial distribution.",
+  "important_statistical_note": "The 50 frames are repeated visual observations of one physical setup and are not treated as 50 independent physical experiments.",
+  "formal_points_csv": "/mnt/c/Users/ASUS/Desktop/paper/E3/E3_base_dataset/E3_48point_aggregated.csv",
+  "repeatability_qc_csv": "/mnt/c/Users/ASUS/Desktop/paper/E3/E3_base_dataset/E3_corner_repeatability_QC.csv"
+}

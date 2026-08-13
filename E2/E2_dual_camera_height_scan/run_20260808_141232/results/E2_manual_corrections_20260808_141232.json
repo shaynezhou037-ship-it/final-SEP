@@ -1,0 +1,21 @@
+{
+  "run_id": "20260808_141232",
+  "height_label_correction": {
+    "height_step_index": 14,
+    "original_entered_height_mm": 30.0,
+    "actual_physical_height_mm": 35.0,
+    "reason": "Operator confirmed that the physical stack remained at 35 mm. Only the terminal height entry was incorrect."
+  },
+  "ruler_contamination_at_10mm": {
+    "invalid_steps": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "clean_step": 8,
+    "reason": "Ruler was unintentionally left in the scene during steps 3-7. It was removed before step 8."
+  },
+  "important_note": "Original acquisition log and raw frame filenames are preserved unchanged as provenance."
+}

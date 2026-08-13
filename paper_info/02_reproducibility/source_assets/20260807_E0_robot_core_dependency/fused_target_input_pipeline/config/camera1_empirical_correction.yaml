@@ -1,0 +1,34 @@
+status: validated
+description: >
+  Empirical correction mapping Camera 1 base points into
+  the Camera 2 base-point coordinate result.
+
+source_frame: base_link
+reference_camera: ihawk2
+corrected_camera: ihawk1
+
+rotation:
+  - [0.99847761, 0.00555582, 0.05487792]
+  - [-0.00447147, 0.99979272, -0.01986240]
+  - [-0.05497689, 0.01958677, 0.99829550]
+
+translation_m:
+  x: -0.01463351
+  y: 0.00049722
+  z: 0.00335271
+
+training_positions: 3
+training_rmse_mm: 2.7681
+training_max_error_mm: 3.6184
+
+independent_validation:
+  position: 4
+  raw_error_mm: 21.4978
+  corrected_error_mm: 4.8263
+
+notes:
+  - Apply only to ihawk1 target_point_base.
+  - Do not apply the correction twice.
+  - Recalibrate if either camera moves.
+  - This correction improves camera agreement, not absolute robot accuracy.
+

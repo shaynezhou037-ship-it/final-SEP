@@ -1,0 +1,84 @@
+{
+  "run_id": "20260811_162729",
+  "trials": 10,
+  "configuration": {
+    "base_pid_p": 16,
+    "base_pid_i": 8,
+    "t104_spd": 0.05,
+    "t101_speed": 0,
+    "t101_acc": 10,
+    "ik_base_target_rad": 0.5120438298092209,
+    "h1_target_mm": [
+      134.247166,
+      74.50156,
+      -79.402225
+    ],
+    "h1_tit_rad": 1.5
+  },
+  "base_residual_deg_signed": {
+    "mean": 0.19329963025165975,
+    "sd": 0.3682560077570811,
+    "min": -0.3340441239129504,
+    "max": 0.5448621330280665
+  },
+  "base_residual_deg_absolute": {
+    "mean": 0.3409917223074749,
+    "sd": 0.2189384258884863,
+    "min": 0.0175183674042995,
+    "max": 0.5448621330280665
+  },
+  "xy_error_mm": {
+    "mean": 4.6179211800494295,
+    "sd": 0.8884087923777452,
+    "min": 3.0956535848595914,
+    "max": 6.25683002105912
+  },
+  "error_3d_mm": {
+    "mean": 5.48516279434046,
+    "sd": 1.1131821155096644,
+    "min": 3.7000243700908526,
+    "max": 7.306768272484407
+  },
+  "z_error_mm": {
+    "mean": -2.9429853229999976,
+    "sd": 0.7494932064025125,
+    "min": -4.287839570000003,
+    "max": -2.0266004100000004
+  },
+  "base_creep_abs_deg_3s": {
+    "mean": 0.49218750503288516,
+    "sd": 0.6134180857253942,
+    "min": 0.0,
+    "max": 1.8457031510352924
+  },
+  "base_trials_under_1deg": 10,
+  "acceptance_gates": {
+    "base_good_count": {
+      "value": 10,
+      "required_at_least": 8,
+      "pass": true
+    },
+    "base_max_deg": {
+      "value": 0.5448621330280665,
+      "required_less_than": 1.5,
+      "pass": true
+    },
+    "xy_mean_mm": {
+      "value": 4.6179211800494295,
+      "required_less_than": 3.0,
+      "pass": false
+    },
+    "xy_max_mm": {
+      "value": 6.25683002105912,
+      "required_less_than": 5.0,
+      "pass": false
+    },
+    "creep_max_deg": {
+      "value": 1.8457031510352924,
+      "required_less_than": 0.3,
+      "pass": false
+    }
+  },
+  "overall_pass": false,
+  "csv": "/mnt/c/Users/ASUS/Desktop/paper/E4/E0B_PID_validation/20260811_162729/h1_pid16_i8_repeatability.csv"
+}

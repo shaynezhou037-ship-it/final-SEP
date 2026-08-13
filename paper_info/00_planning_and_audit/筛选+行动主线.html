@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="机械臂+双深度相机五个研究方向的横向对比、实验SOP、假设风险与论文质量审计页面" />
+  <title>机械臂 + 双深度相机：五个研究方向决策面板</title>
+  <style>
+    :root {
+      --bg: #eef3f8;
+      --paper: #ffffff;
+      --paper-2: #f7f9fc;
+      --ink: #152033;
+      --muted: #617087;
+      --line: #d8e0ea;
+      --navy: #17365d;
+      --blue: #2e5f91;
+      --cyan: #2b8293;
+      --green: #26835e;
+      --amber: #b47212;
+      --red: #b23a48;
+      --violet: #6c5aa6;
+      --shadow: 0 10px 30px rgba(20, 43, 71, 0.08);
+      --radius: 16px;
+      --sidebar: 246px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 24px 18px;
+      background: linear-gradient(180deg, #102b4a 0%, #17365d 60%, #1d4c70 100%);
+      color: #fff;
+      overflow-y: auto;
+      z-index: 20;
+    }
+
+    .brand {
+      padding: 4px 8px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      margin-bottom: 16px;
+    }
+
+    .brand small {
+      display: block;
+      color: #bcd0e5;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .nav-group-title {
+      margin: 18px 8px 8px;
+      font-size: 12px;
+      color: #9eb9d3;
+      letter-spacing: .08em;
+    }
+
+    .side-nav a {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      text-decoration: none;
+      padding: 10px 11px;
+      border-radius: 10px;
+      color: #dce8f4;
+      font-size: 14px;
+      margin: 3px 0;
+      transition: .2s ease;
+    }
+
+    .side-nav a:hover,
+    .side-nav a.active {
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      transform: translateX(2px);
+    }
+
+    .nav-code {
+      display: inline-grid;
+      place-items: center;
+      min-width: 34px;
+      height: 25px;
+      border-radius: 7px;
+      background: rgba(255,255,255,.12);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .sidebar-actions {
+      margin-top: 24px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .side-button {
+      border: 1px solid rgba(255,255,255,.22);
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      border-radius: 9px;
+      padding: 9px 10px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .side-button:hover { background: rgba(255,255,255,.15); }
+
+    main {
+      min-width: 0;
+      padding: 30px clamp(18px, 3vw, 46px) 70px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ffffff 0%, #f5f9fd 66%, #e5eef8 100%);
+      border: 1px solid #d6e0eb;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: clamp(25px, 4vw, 46px);
+      margin-bottom: 22px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -70px;
+      top: -90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,95,145,.20), rgba(46,95,145,0));
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      color: var(--blue);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 8px 0 12px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.16;
+      letter-spacing: -.03em;
+      color: #102d4d;
+    }
+
+    .hero p {
+      max-width: 940px;
+      margin: 0;
+      color: #52657c;
+      font-size: 16px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 11px;
+      background: #edf4fb;
+      color: #2b567d;
+      border: 1px solid #d8e7f4;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section {
+      scroll-margin-top: 18px;
+      margin-top: 24px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin: 0 0 12px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: #183858;
+      font-size: clamp(22px, 2.5vw, 30px);
+      letter-spacing: -.02em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      max-width: 660px;
+      text-align: right;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(300px, .8fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .matrix-panel { overflow: hidden; }
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper-2);
+    }
+
+    .panel-header h3 { margin: 0; color: #1e4164; }
+    .panel-header small { color: var(--muted); }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+    }
+
+    th, td {
+      padding: 13px 12px;
+      text-align: center;
+      border-bottom: 1px solid #e4eaf1;
+      vertical-align: middle;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #f4f7fb;
+      color: #455c73;
+      font-size: 12px;
+      letter-spacing: .03em;
+      z-index: 2;
+    }
+
+    td:first-child, th:first-child { text-align: left; }
+    tbody tr { transition: .18s ease; }
+    tbody tr:hover { background: #f8fbfe; }
+    tbody tr.top-ranked { background: #f0f7f4; }
+
+    .direction-title { font-weight: 800; color: #153a5d; }
+    .direction-sub { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+    .rank-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-weight: 800;
+      background: #eaf0f7;
+      color: #355979;
+    }
+    .rank-badge.first { background: #dcefe6; color: #176641; }
+
+    .stars { color: #b87916; letter-spacing: 1px; white-space: nowrap; font-size: 15px; }
+    .stars .empty { color: #d7dee7; }
+
+    .meter {
+      width: 88px;
+      height: 8px;
+      margin: 4px auto 0;
+      border-radius: 999px;
+      background: #e6ebf1;
+      overflow: hidden;
+    }
+    .meter span { display: block; height: 100%; border-radius: inherit; background: var(--blue); }
+
+    .risk-pill, .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 62px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid transparent;
+    }
+    .risk-low { background: #e8f5ef; color: #176b47; border-color: #cde8da; }
+    .risk-mid { background: #fff5df; color: #8b5c0e; border-color: #f1dfb6; }
+    .risk-high { background: #fdebec; color: #9c2d3b; border-color: #f3cfd3; }
+
+    .score-large {
+      font-size: 21px;
+      font-weight: 900;
+      color: #193d61;
+    }
+    .score-large small { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+    .controls-panel { padding: 20px; }
+    .controls-panel h3 { margin: 0 0 4px; color: #204666; }
+    .controls-panel > p { margin: 0 0 15px; color: var(--muted); font-size: 13px; }
+
+    .weight-control { margin: 14px 0; }
+    .weight-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #35516b;
+    }
+    input[type="range"] { width: 100%; accent-color: var(--blue); }
+    .weight-total {
+      margin-top: 12px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #f3f6fa;
+      font-size: 13px;
+      color: #4f6276;
+    }
+    .weight-total.warn { background: #fff0f1; color: #9e3440; }
+
+    .recommendation-box {
+      margin-top: 18px;
+      border-left: 4px solid var(--green);
+      background: #eff8f4;
+      border-radius: 10px;
+      padding: 13px 14px;
+      color: #2e5143;
+    }
+    .recommendation-box b { color: #176443; }
+
+    .strategy-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .strategy-item {
+      padding: 15px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      box-shadow: 0 5px 18px rgba(31,55,80,.05);
+    }
+    .strategy-item small { color: var(--muted); }
+    .strategy-item strong { display: block; margin-top: 4px; color: #1d4163; }
+
+    .direction-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      margin: 14px 0;
+      overflow: hidden;
+      scroll-margin-top: 18px;
+    }
+
+    .direction-card summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 15px;
+      padding: 19px 20px;
+      background: linear-gradient(90deg, #f8fafc, #fff);
+    }
+    .direction-card summary::-webkit-details-marker { display: none; }
+    .direction-card summary:hover { background: #f6f9fc; }
+
+    .code-box {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      color: #fff;
+      background: var(--blue);
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+
+    .summary-title h3 { margin: 0; color: #17395a; font-size: 19px; }
+    .summary-title p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .summary-metrics { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+
+    .chevron {
+      width: 24px;
+      height: 24px;
+      border-right: 2px solid #59718a;
+      border-bottom: 2px solid #59718a;
+      transform: rotate(45deg);
+      margin: -7px 5px 0 10px;
+      transition: .2s ease;
+    }
+    details[open] .chevron { transform: rotate(225deg); margin-top: 7px; }
+
+    .card-body { padding: 5px 20px 24px; }
+    .story {
+      background: #eff5fb;
+      border-left: 4px solid var(--blue);
+      padding: 15px 16px;
+      border-radius: 10px;
+      color: #284863;
+      margin: 12px 0 18px;
+    }
+    .story b { color: #143d63; }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .detail-box {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 16px;
+      background: #fff;
+    }
+    .detail-box.full { grid-column: 1 / -1; }
+    .detail-box h4 {
+      margin: 0 0 10px;
+      color: #224766;
+      font-size: 16px;
+    }
+    .detail-box p { margin: 7px 0; color: #536579; }
+    .detail-box ul { margin: 8px 0 0; padding-left: 21px; color: #4f6173; }
+    .detail-box li { margin: 5px 0; }
+
+    .literature-table {
+      min-width: 700px;
+      font-size: 13px;
+    }
+    .literature-table th, .literature-table td { text-align: left; vertical-align: top; }
+
+    .overlap {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .overlap.high { background: #fdebec; color: #9a3040; }
+    .overlap.mid { background: #fff3d8; color: #87570b; }
+    .overlap.low { background: #e9f4ef; color: #236a4b; }
+
+    .sop {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(130px, 1fr));
+      gap: 10px;
+      position: relative;
+      margin-top: 12px;
+    }
+    .sop-step {
+      min-height: 126px;
+      border-radius: 12px;
+      border: 1px solid #d6e1eb;
+      background: #f8fafc;
+      padding: 13px;
+      position: relative;
+    }
+    .sop-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -17px;
+      top: 42%;
+      color: #8ca0b3;
+      font-weight: 900;
+      z-index: 2;
+    }
+    .step-no {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .sop-step strong { display: block; margin: 7px 0 4px; color: #204562; }
+    .sop-step span { color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px 12px;
+    }
+    .check-item {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 7px 9px;
+      border-radius: 8px;
+      background: #f7f9fb;
+      color: #4d6174;
+      font-size: 13px;
+    }
+    .check-item input { margin-top: 3px; accent-color: var(--green); }
+
+    .risk-analysis {
+      border: 1px solid #efc9ce;
+      background: #fff7f7;
+    }
+    .risk-analysis h4 { color: #8d3040; }
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .risk-stat {
+      background: #fff;
+      border: 1px solid #efd8dc;
+      border-radius: 10px;
+      padding: 11px;
+    }
+    .risk-stat small { color: #8a6269; display: block; }
+    .risk-stat strong { color: #903342; font-size: 19px; }
+
+    .fallback {
+      border-left: 4px solid var(--amber);
+      background: #fff8e8;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: #6d5321;
+      margin-top: 10px;
+    }
+
+    .audit-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(270px, .6fr);
+      gap: 18px;
+    }
+    .audit-list { padding: 18px 20px; }
+    .audit-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px solid #e6ebf0;
+    }
+    .audit-row:last-child { border-bottom: none; }
+    .audit-row input { margin-top: 4px; accent-color: var(--green); transform: scale(1.08); }
+    .audit-row strong { display: block; color: #294a68; }
+    .audit-row span { color: var(--muted); font-size: 12px; }
+    .audit-points { font-weight: 900; color: #55718b; white-space: nowrap; }
+
+    .audit-score-panel {
+      padding: 22px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+    .score-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--green) 0deg, var(--green) var(--audit-angle, 0deg), #e8edf2 var(--audit-angle, 0deg));
+      position: relative;
+    }
+    .score-ring::after {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .score-ring > div { position: relative; z-index: 2; }
+    .score-ring strong { display: block; font-size: 34px; color: #1b4d3b; }
+    .score-ring small { color: var(--muted); }
+    .reset-button {
+      border: 1px solid #ccd8e3;
+      background: #fff;
+      color: #385873;
+      border-radius: 9px;
+      padding: 8px 12px;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+
+    .radar-layout {
+      display: grid;
+      grid-template-columns: minmax(360px, .9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      align-items: center;
+      padding: 20px;
+    }
+    .radar-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+    }
+    canvas { max-width: 100%; height: auto; }
+    .legend {
+      display: grid;
+      gap: 8px;
+    }
+    .legend label {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 11px;
+      border-radius: 9px;
+      background: #f6f8fb;
+      color: #3e5870;
+      cursor: pointer;
+    }
+    .legend-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .legend input { accent-color: var(--blue); }
+    .decision-callout {
+      border-radius: 13px;
+      padding: 15px;
+      margin-top: 15px;
+      background: #eef5fb;
+      border: 1px solid #d7e5f1;
+      color: #405c73;
+    }
+    .decision-callout strong { color: #193f63; }
+
+    .system-map {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .layer-box {
+      border-radius: 12px;
+      padding: 14px;
+      background: #f7f9fc;
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+    .layer-box small { display: block; color: var(--muted); }
+    .layer-box strong { color: #264c6b; }
+
+    .note {
+      font-size: 12px;
+      color: #718095;
+      margin-top: 12px;
+    }
+
+    .floating-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(17,42,71,.24);
+      cursor: pointer;
+      display: none;
+      z-index: 50;
+    }
+
+
+
+    /* 48-hour reconnaissance module */
+    .scout-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      background: linear-gradient(135deg, #163a5e 0%, #245c83 63%, #2b8293 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .scout-banner::after {
+      content: "48H";
+      position: absolute;
+      right: 20px;
+      top: -22px;
+      font-size: 112px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      color: rgba(255,255,255,.07);
+      pointer-events: none;
+    }
+    .scout-banner h3 { margin: 0 0 6px; font-size: 23px; }
+    .scout-banner p { max-width: 900px; margin: 0; color: #dceaf5; }
+    .scout-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.1);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .scout-status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #9ce4c4;
+      box-shadow: 0 0 0 4px rgba(156,228,196,.12);
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .role-card {
+      position: relative;
+      min-height: 128px;
+      padding: 16px;
+      border-radius: 13px;
+      border: 1px solid #d7e1eb;
+      background: #fff;
+      box-shadow: 0 5px 18px rgba(31,55,80,.05);
+    }
+    .role-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 4px;
+      border-radius: 0 4px 4px 0;
+      background: var(--role-color, var(--blue));
+    }
+    .role-card small { display: block; color: var(--muted); font-weight: 700; }
+    .role-card strong { display: block; margin: 5px 0; color: #1d4163; font-size: 16px; }
+    .role-card p { margin: 0; color: #68788b; font-size: 12px; line-height: 1.5; }
+
+    .recon-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .recon-phase {
+      position: relative;
+      padding: 16px 16px 17px 48px;
+      min-height: 116px;
+      border-right: 1px solid var(--line);
+    }
+    .recon-phase:last-child { border-right: none; }
+    .recon-phase::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 15px;
+      top: 17px;
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .recon-phase strong { display: block; color: #204562; }
+    .recon-phase span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .scout-block {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 5px 18px rgba(31,55,80,.04);
+      overflow: hidden;
+    }
+    .scout-block > summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      background: #f7f9fc;
+      color: #1e4164;
+      font-weight: 800;
+    }
+    .scout-block > summary::-webkit-details-marker { display: none; }
+    .scout-block > summary::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #e8eff6;
+      color: #315b7d;
+      font-size: 18px;
+      transition: .18s ease;
+    }
+    .scout-block[open] > summary::after { content: "−"; background: #dce9f4; }
+    .scout-block > summary span:first-child {
+      display: grid;
+      place-items: center;
+      min-width: 38px;
+      height: 30px;
+      padding: 0 8px;
+      border-radius: 8px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 12px;
+    }
+    .scout-block-body { padding: 18px; }
+
+    .freeze-grid,
+    .day-task-grid,
+    .decision-rule-grid,
+    .full-plan-grid,
+    .checklist-columns,
+    .score-rule-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .freeze-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .day-task-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .decision-rule-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .full-plan-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .checklist-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .score-rule-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .freeze-card,
+    .day-task,
+    .decision-rule,
+    .full-plan,
+    .score-rule,
+    .checklist-column {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 15px;
+      background: #fff;
+    }
+    .freeze-card h4,
+    .day-task h4,
+    .decision-rule h4,
+    .full-plan h4,
+    .score-rule h4,
+    .checklist-column h4 {
+      margin: 0 0 9px;
+      color: #214766;
+    }
+    .freeze-card ul,
+    .day-task ul,
+    .decision-rule ul,
+    .full-plan ul {
+      margin: 7px 0 0;
+      padding-left: 20px;
+      color: #536579;
+    }
+    .freeze-card li,
+    .day-task li,
+    .decision-rule li,
+    .full-plan li { margin: 5px 0; }
+
+    .frame-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .frame-chip {
+      padding: 4px 8px;
+      border: 1px solid #d7e3ee;
+      border-radius: 7px;
+      background: #f1f6fa;
+      color: #315b7d;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .schema-box {
+      position: relative;
+      margin-top: 13px;
+      border-radius: 12px;
+      background: #102b4a;
+      color: #dce9f5;
+      overflow: hidden;
+    }
+    .schema-box pre {
+      margin: 0;
+      padding: 42px 16px 16px;
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.65;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .copy-schema {
+      position: absolute;
+      top: 9px;
+      right: 10px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      border-radius: 7px;
+      padding: 5px 9px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .copy-schema:hover { background: rgba(255,255,255,.18); }
+
+    .task-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #edf4fb;
+      color: #2c5c84;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .day-task p { margin: 5px 0; color: #5e7083; font-size: 13px; }
+    .threshold-box {
+      margin-top: 11px;
+      border-left: 4px solid var(--green);
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: #eef8f4;
+      color: #315c4d;
+      font-size: 12px;
+    }
+    .threshold-box.warn {
+      border-left-color: var(--amber);
+      background: #fff8e8;
+      color: #6c5425;
+    }
+    .threshold-box.danger {
+      border-left-color: var(--red);
+      background: #fff0f1;
+      color: #8f3540;
+    }
+    .scout-card-letter {
+      display: inline-grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 9px;
+      background: var(--accent, var(--blue));
+      color: #fff;
+      font-weight: 900;
+      margin-right: 7px;
+    }
+    .measurement-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    .measurement-tag {
+      border: 1px solid #dbe5ee;
+      background: #f7f9fb;
+      border-radius: 999px;
+      padding: 4px 8px;
+      color: #536a80;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .continue-box {
+      margin-top: 12px;
+      border: 1px solid #cfe2d8;
+      background: #f2faf6;
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+    .continue-box strong { color: #21674a; }
+    .continue-box ul { margin: 6px 0 0; padding-left: 19px; color: #446759; }
+    .fallback-inline {
+      margin-top: 9px;
+      padding: 9px 11px;
+      border-radius: 9px;
+      background: #fff7e8;
+      color: #725521;
+      font-size: 12px;
+    }
+
+    .scout-score-panel { overflow: hidden; }
+    .scout-score-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #f7f9fc;
+    }
+    .evidence-weight {
+      min-width: 280px;
+      display: grid;
+      grid-template-columns: auto minmax(120px, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      color: #4c6277;
+      font-size: 12px;
+    }
+    .scout-score-table select {
+      min-width: 66px;
+      border: 1px solid #cbd8e4;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px 7px;
+      color: #274a68;
+    }
+    .score-placeholder { color: #9aa8b5; font-weight: 700; }
+    .post-score {
+      font-size: 18px;
+      font-weight: 900;
+      color: #1d4468;
+    }
+    .scout-result {
+      margin: 14px 18px 18px;
+      border-radius: 11px;
+      border-left: 4px solid var(--cyan);
+      background: #eef7f8;
+      color: #315c65;
+      padding: 12px 14px;
+    }
+    .scout-result b { color: #1e5662; }
+    .score-rule { background: #f9fbfd; }
+    .score-rule h4 { font-size: 14px; }
+    .score-rule p { margin: 0; color: #68798b; font-size: 12px; }
+    .score-scale {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      margin-top: 10px;
+    }
+    .score-scale span {
+      display: grid;
+      place-items: center;
+      min-height: 26px;
+      border-radius: 6px;
+      background: #e9eff5;
+      color: #50667b;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .score-scale span:last-child { background: #dff1e8; color: #236247; }
+
+    .decision-rule { position: relative; overflow: hidden; }
+    .decision-rule::after {
+      content: attr(data-code);
+      position: absolute;
+      right: 8px;
+      bottom: -16px;
+      font-size: 70px;
+      font-weight: 900;
+      color: rgba(34,71,102,.055);
+      pointer-events: none;
+    }
+    .paper-title {
+      margin-top: 12px;
+      border-radius: 9px;
+      background: #132f4d;
+      color: #e7f0f8;
+      padding: 10px 11px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .decision-rule.system-only { border-color: #e3d6bb; background: #fffaf0; }
+    .full-plan small { color: var(--muted); }
+    .full-plan .plan-stat {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+      margin: 10px 0;
+    }
+    .plan-stat span {
+      padding: 7px;
+      border-radius: 8px;
+      background: #f3f6f9;
+      color: #536a80;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .checklist-board {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .checklist-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 18px;
+      background: #f7f9fc;
+      border-bottom: 1px solid var(--line);
+    }
+    .checklist-head h3 { margin: 0; color: #214766; }
+    .progress-wrap { min-width: 230px; }
+    .progress-label { display: flex; justify-content: space-between; color: #5c7185; font-size: 12px; }
+    .progress-track { height: 8px; margin-top: 5px; background: #dfe7ee; border-radius: 999px; overflow: hidden; }
+    .progress-track span { display: block; width: 0; height: 100%; background: var(--green); transition: width .25s ease; }
+    .checklist-columns { padding: 16px; }
+    .checklist-column { background: #f9fbfd; }
+    .action-check {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      align-items: start;
+      padding: 8px 0;
+      border-bottom: 1px dashed #dce4eb;
+      color: #506579;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .action-check:last-child { border-bottom: none; }
+    .action-check input { margin-top: 4px; accent-color: var(--green); }
+    .action-check:has(input:checked) span { text-decoration: line-through; color: #83909c; }
+    .mini-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .mini-button {
+      border: 1px solid #ccd8e3;
+      background: #fff;
+      color: #385873;
+      border-radius: 8px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .mini-button:hover { background: #f1f5f8; }
+
+    @media (max-width: 1100px) {
+      :root { --sidebar: 210px; }
+      .overview-grid, .audit-layout, .radar-layout { grid-template-columns: 1fr; }
+      .strategy-strip, .system-map, .role-grid, .recon-timeline, .day-task-grid, .full-plan-grid, .score-rule-grid { grid-template-columns: repeat(2, 1fr); }
+      .freeze-grid, .decision-rule-grid, .checklist-columns { grid-template-columns: 1fr; }
+      .recon-phase:nth-child(2) { border-right: none; }
+      .recon-phase { border-bottom: 1px solid var(--line); }
+      .recon-phase:nth-child(3), .recon-phase:nth-child(4) { border-bottom: none; }
+      .sop { grid-template-columns: 1fr; }
+      .sop-step { min-height: auto; }
+      .sop-step:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -20px; }
+      .risk-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .layout { display: block; }
+      .sidebar {
+        position: relative;
+        height: auto;
+        padding: 15px;
+      }
+      .side-nav { display: flex; overflow-x: auto; gap: 5px; padding-bottom: 4px; }
+      .side-nav a { white-space: nowrap; }
+      .nav-group-title, .sidebar-actions { display: none; }
+      main { padding: 18px 12px 55px; }
+      .hero { padding: 24px 20px; }
+      .section-heading { display: block; }
+      .section-heading p { text-align: left; margin-top: 5px; }
+      .strategy-strip, .detail-grid, .check-grid, .risk-grid, .system-map, .role-grid, .recon-timeline, .freeze-grid, .day-task-grid, .decision-rule-grid, .full-plan-grid, .checklist-columns, .score-rule-grid { grid-template-columns: 1fr; }
+      .recon-phase { border-right: none; border-bottom: 1px solid var(--line); }
+      .recon-phase:last-child { border-bottom: none; }
+      .evidence-weight { min-width: 0; grid-template-columns: 1fr; }
+      .checklist-head { grid-template-columns: 1fr; }
+      .progress-wrap { min-width: 0; }
+      .direction-card summary { grid-template-columns: auto 1fr; }
+      .summary-metrics { grid-column: 1 / -1; justify-content: flex-start; }
+      .chevron { display: none; }
+      .radar-layout { padding: 10px; }
+      .radar-wrap { min-height: 330px; }
+      .floating-top { display: block; }
+    }
+
+    @media print {
+      :root { --bg: #fff; }
+      body { background: #fff; font-size: 10.5pt; }
+      .layout { display: block; }
+      .sidebar, .floating-top, .controls-panel, .reset-button, .legend input, .copy-schema, .mini-actions { display: none !important; }
+      .scout-block:not([open]) .scout-block-body { display: block; }
+      .scout-block > summary::after { display: none; }
+      main { padding: 0; }
+      .hero, .panel, .direction-card { box-shadow: none; break-inside: avoid; }
+      .direction-card { margin: 10px 0; }
+      .direction-card[open] .card-body { display: block; }
+      .direction-card:not([open]) .card-body { display: block; }
+      .direction-card summary { cursor: default; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; font-size: 8.5pt; }
+      .sop { grid-template-columns: repeat(5, 1fr); }
+      .sop-step { min-height: 110px; }
+      .sop-step:not(:last-child)::after { content: "→"; right: -14px; left: auto; top: 42%; bottom: auto; }
+      .section { page-break-before: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <small>Research Decision Dashboard</small>
+        <strong>机械臂 + 双深度相机<br />五方向研究决策面板</strong>
+      </div>
+      <div class="nav-group-title">快速导航</div>
+      <nav class="side-nav" id="sideNav">
+        <a href="#overview"><span class="nav-code">总览</span>推荐矩阵</a>
+        <a href="#scout"><span class="nav-code">48H</span>侦察与定题</a>
+        <a href="#A4"><span class="nav-code">A4</span>质量门控抓取</a>
+        <a href="#A5"><span class="nav-code">A5</span>相机放置优化</a>
+        <a href="#B2"><span class="nav-code">B2</span>标定模型比较</a>
+        <a href="#B5"><span class="nav-code">B5</span>基线夹角研究</a>
+        <a href="#C1"><span class="nav-code">C1</span>ROS2 系统架构</a>
+        <a href="#audit"><span class="nav-code">审计</span>论文质量清单</a>
+        <a href="#decision"><span class="nav-code">决策</span>雷达图与结论</a>
+      </nav>
+      <div class="sidebar-actions">
+        <button class="side-button" id="expandAll">展开全部方向</button>
+        <button class="side-button" id="collapseAll">折叠全部方向</button>
+        <button class="side-button" onclick="window.print()">打印 / 导出 PDF</button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="hero" id="top">
+        <div class="eyebrow">Dual RGB-D · Low-cost Manipulation · Research SOP</div>
+        <h1>从五个候选方向中，选出<br />两周内最值得做的一篇论文</h1>
+        <p>本页面将文献重叠、实验工作量、两周可行性、发表把握和关键假设风险放在同一个决策模型中。当前排名只用于安排 48 小时侦察，不代表正式定题；两天后应以系统准备度、实验区分度、风险可控性和可验证性重新排序。</p>
+        <div class="hero-tags">
+          <span class="tag">当前阶段：48 小时侦察</span>
+          <span class="tag">临时主线：B2 标定模型比较</span>
+          <span class="tag">冲刺：A4 质量门控闭环抓取</span>
+          <span class="tag">整合：A5 + B5 相机布局</span>
+          <span class="tag">底座：C1 ROS2 架构</span>
+        </div>
+      </header>
+
+      <section class="section" id="overview">
+        <div class="section-heading">
+          <h2>总览面板</h2>
+          <p>滑动权重后，排名会实时重算。假设风险已内嵌在“抗风险能力”中，并额外对高崩塌风险方向施加扣分。</p>
+        </div>
+
+        <div class="overview-grid">
+          <div class="panel matrix-panel">
+            <div class="panel-header">
+              <div>
+                <h3>五方向对比矩阵</h3>
+                <small>评分范围 1–5；实验难度数值越高表示越难</small>
+              </div>
+              <span class="status-pill risk-low" id="topDirectionBadge">预侦察首选：B2</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>排名 / 方向</th>
+                    <th>独特性</th>
+                    <th>实验难度</th>
+                    <th>两周可行性</th>
+                    <th>发表把握</th>
+                    <th>假设风险</th>
+                    <th>预估审计分</th>
+                    <th>加权推荐分</th>
+                  </tr>
+                </thead>
+                <tbody id="overviewBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <aside class="panel controls-panel">
+            <h3>推荐模型权重</h3>
+            <p>权重总和建议保持 100%。风险惩罚独立计算，不会被关闭。</p>
+            <div class="weight-control">
+              <div class="weight-label"><span>创新性</span><b id="wInnovationLabel">30%</b></div>
+              <input id="wInnovation" type="range" min="0" max="60" value="30" />
+            </div>
+            <div class="weight-control">
+              <div class="weight-label"><span>实验可行性</span><b id="wFeasibilityLabel">25%</b></div>
+              <input id="wFeasibility" type="range" min="0" max="60" value="25" />
+            </div>
+            <div class="weight-control">
+              <div class="weight-label"><span>发表概率</span><b id="wPublishLabel">30%</b></div>
+              <input id="wPublish" type="range" min="0" max="60" value="30" />
+            </div>
+            <div class="weight-control">
+              <div class="weight-label"><span>抗风险能力</span><b id="wRobustLabel">15%</b></div>
+              <input id="wRobust" type="range" min="0" max="60" value="15" />
+            </div>
+            <div class="weight-total" id="weightTotal">当前总权重：100%</div>
+            <div class="recommendation-box" id="dynamicRecommendation"></div>
+          </aside>
+        </div>
+
+        <div class="strategy-strip">
+          <div class="strategy-item"><small>侦察前临时主线</small><strong>B2：不同标定模型比较</strong></div>
+          <div class="strategy-item"><small>48H 冲刺候选</small><strong>A4：质量门控双视角闭环</strong></div>
+          <div class="strategy-item"><small>实验扩展候选</small><strong>A5 框架 + B5 实验主体</strong></div>
+          <div class="strategy-item"><small>公共底座与保底</small><strong>C1：ROS2 可追溯架构</strong></div>
+        </div>
+      </section>
+
+
+
+      <section class="section" id="scout">
+        <div class="section-heading">
+          <h2>48 小时侦察：先用数据选题</h2>
+          <p>不是同时推进四篇论文，而是让同一批公共数据快速暴露：系统是否稳定、方向是否有区分度、关键假设是否真的存在。</p>
+        </div>
+
+        <div class="scout-banner">
+          <span class="scout-status">当前状态：暂不正式定题</span>
+          <h3>两天的目标不是“做出论文”，而是排除不值得继续的方向</h3>
+          <p>临时以 B2 为主线安排数据，以 A4 为冲刺候选，以 A5+B5 为布局扩展，以 C1 为公共底座。所有方向共享相机编号、标定版本、工作区真值、日志字段和失败分类，避免每换一个题目就重新搭系统。</p>
+        </div>
+
+        <div class="role-grid" aria-label="暂时项目结构">
+          <div class="role-card" style="--role-color:#26835e"><small>临时主线</small><strong>B2 不同标定模型比较</strong><p>优先确保同一数据可公平运行仿射、单应性和 PnP。</p></div>
+          <div class="role-card" style="--role-color:#2e5f91"><small>冲刺候选</small><strong>A4 遮挡感知双视角抓取</strong><p>只验证质量指标是否真的携带误差信号，暂不搭复杂打分器。</p></div>
+          <div class="role-card" style="--role-color:#6c5aa6"><small>实验扩展候选</small><strong>A5 + B5 相机布局研究</strong><p>先测两个明显不同的布局，判断支架与重标定工时是否可控。</p></div>
+          <div class="role-card" style="--role-color:#546579"><small>公共底座与保底</small><strong>C1 ROS2 双相机系统架构</strong><p>统一 TF、标定 ID、时间戳、日志和故障恢复，支撑全部侦察。</p></div>
+        </div>
+
+        <div class="recon-timeline" aria-label="48小时侦察流程">
+          <div class="recon-phase" data-step="0"><strong>冻结公共条件</strong><span>硬件、坐标系、验证点、成功标准、日志字段全部固定。</span></div>
+          <div class="recon-phase" data-step="1"><strong>Day 1 系统体检</strong><span>视觉重复性、机械重复性、20 次端到端连续运行。</span></div>
+          <div class="recon-phase" data-step="2"><strong>Day 2 三条侦察</strong><span>B2 模型差异、A4 质量信号、A5+B5 布局可操作性。</span></div>
+          <div class="recon-phase" data-step="3"><strong>更新评分并定题</strong><span>按四项实测分更新排名，选一个正式主线和一个降级方向。</span></div>
+        </div>
+
+        <details class="scout-block" open>
+          <summary><span>0</span><div>侦察前冻结公共实验条件</div></summary>
+          <div class="scout-block-body">
+            <div class="freeze-grid">
+              <div class="freeze-card">
+                <h4>1. 硬件与坐标状态</h4>
+                <ul>
+                  <li>固定机械臂底座、桌面工作区、棋盘格或坐标纸。</li>
+                  <li>两个相机先固定在可用位置，不追求“最优”；线缆必须卸力固定。</li>
+                  <li>夹爪保持垂直桌面；记录两个相机序列号、照片和安装状态。</li>
+                </ul>
+                <div class="frame-chips">
+                  <span class="frame-chip">cam_main</span><span class="frame-chip">cam_aux</span>
+                  <span class="frame-chip">base_link</span><span class="frame-chip">table_frame</span>
+                  <span class="frame-chip">target_frame</span><span class="frame-chip">gripper_center</span>
+                </div>
+              </div>
+              <div class="freeze-card">
+                <h4>2. 标定点与独立验证点</h4>
+                <ul>
+                  <li>验证区覆盖：中心 4 点、边缘 4 点、近机械臂 2 点、远机械臂 2 点。</li>
+                  <li><b>9 个点用于标定；另选 12 个不同位置用于验证。</b></li>
+                  <li>标定点与验证点不能混用；每个点保留编号、桌面坐标和实物标记。</li>
+                </ul>
+                <div class="threshold-box warn">关键审计：不能用参与拟合的点证明模型泛化，也不能在更换布局后沿用旧 calibration_id。</div>
+              </div>
+              <div class="freeze-card">
+                <h4>3. 成功与失败标准</h4>
+                <p><b>定位成功：</b>至少一个相机检测到目标；输出坐标无异常；定位误差进入预设容忍区间。</p>
+                <p><b>抓取成功：</b>夹爪闭合后物体离桌，移动到指定区域，保持至少 3 秒且中途不掉落。</p>
+                <div class="threshold-box">在采数据前写死判定规则，避免看见结果后再改变“成功”的定义。</div>
+              </div>
+              <div class="freeze-card">
+                <h4>4. 标定与布局可追溯</h4>
+                <ul>
+                  <li>每次实验必须绑定 <b>calibration_id</b> 与 <b>camera_layout_id</b>。</li>
+                  <li>标定文件同时记录相机序列号、日期、安装照片和独立验证误差。</li>
+                  <li>严禁出现“这一组数据不确定用了哪个外参”的不可审计状态。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="schema-box">
+              <button class="copy-schema" id="copySchema">复制 CSV 表头</button>
+              <pre id="logSchema">experiment_id,date_time,direction_candidate,camera_layout_id,camera_id,calibration_id,calibration_method,target_id,target_true_x_mm,target_true_y_mm,target_true_z_mm,estimated_x_mm,estimated_y_mm,estimated_z_mm,position_error_mm,depth_valid_ratio,detection_confidence,occlusion_level,robot_command_x_mm,robot_command_y_mm,robot_command_z_mm,robot_feedback_x_mm,robot_feedback_y_mm,robot_feedback_z_mm,grasp_success,failure_type,notes</pre>
+            </div>
+          </div>
+        </details>
+
+        <details class="scout-block" open>
+          <summary><span>D1</span><div>第一天：先判断系统是否值得做论文</div></summary>
+          <div class="scout-block-body">
+            <div class="day-task-grid">
+              <article class="day-task">
+                <span class="task-kicker">任务 1 · 感知层</span>
+                <h4>静态视觉重复性</h4>
+                <p><b>目的：</b>判断两台相机自身观测噪声是否已经大到遮蔽方法差异。</p>
+                <ul>
+                  <li>固定 ArUco 或棋盘角点，机械臂不动。</li>
+                  <li>主相机、辅助相机各连续采 30 帧。</li>
+                  <li>记录每帧 x/y/z 和深度有效率。</li>
+                  <li>计算均值、标准差、最大—最小范围。</li>
+                </ul>
+                <div class="threshold-box"><b>建议通过：</b>平面坐标标准差最好 &lt;1–2 mm。</div>
+                <div class="threshold-box danger"><b>暂停复杂融合：</b>若抖动已达约 5 mm，先修相机固定、深度与检测。</div>
+              </article>
+
+              <article class="day-task">
+                <span class="task-kicker">任务 2 · 执行层</span>
+                <h4>机械到点重复性</h4>
+                <p><b>目的：</b>判断视觉改善能否穿透机械回差和小步长死区。</p>
+                <ul>
+                  <li>选择中心、左侧、右侧三个点。</li>
+                  <li>同一初始姿态到达 5 次；再从两个相反方向各到达 5 次。</li>
+                  <li>用外部相机末端标记或人工量具记录实际位置。</li>
+                  <li>测试 2、5、10 mm 小步长是否真实发生运动。</li>
+                </ul>
+                <div class="threshold-box warn">若视觉约 1–2 mm、机械约 5–8 mm，A4 必须分开报告视觉层与执行层，不能只看抓取率。</div>
+              </article>
+
+              <article class="day-task">
+                <span class="task-kicker">任务 3 · 系统层</span>
+                <h4>20 次连续运行测试</h4>
+                <p><b>固定链路：</b>采图 → 检测 → 坐标 → 日志 → 移到目标上方 → 返回初始姿态。</p>
+                <ul>
+                  <li>记录成功、相机掉线、检测失败、坐标异常。</li>
+                  <li>记录串口/控制失败和日志缺失。</li>
+                  <li>失败必须有 failure_type，而不是只写“失败”。</li>
+                </ul>
+                <div class="threshold-box"><b>继续正式侦察：</b>至少 18/20 次完整运行，日志完整率 ≥95%。</div>
+                <div class="threshold-box danger"><b>未达门槛：</b>第二天优先修 C1 底座，不进入正式对比。</div>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="scout-block" open>
+          <summary><span>D2</span><div>第二天：只验证三个关键问题</div></summary>
+          <div class="scout-block-body">
+            <div class="day-task-grid">
+              <article class="day-task" style="--accent:#26835e">
+                <h4><span class="scout-card-letter">A</span>B2 是否真的有可研究差异</h4>
+                <p><b>快速模型：</b>仿射、单应性、PnP；双相机三角化稍后再加。</p>
+                <div class="measurement-tags">
+                  <span class="measurement-tag">同一批输入点</span><span class="measurement-tag">9 标定点</span>
+                  <span class="measurement-tag">12 验证点</span><span class="measurement-tag">每点 ×3</span>
+                  <span class="measurement-tag">高度 0/20/40 mm</span>
+                </div>
+                <ul>
+                  <li>记录拟合残差、验证误差、标准差、最大误差。</li>
+                  <li>拆分中心/边缘误差和不同高度误差。</li>
+                  <li>记录标定操作耗时；只允许更换坐标估计模型。</li>
+                </ul>
+                <div class="continue-box"><strong>满足任一项即可继续：</strong>
+                  <ul>
+                    <li>模型平均误差相差约 1.5–2 mm 以上。</li>
+                    <li>边缘差异稳定，或高度使二维模型明显退化。</li>
+                    <li>简单模型精度接近复杂模型，但标定显著更快。</li>
+                    <li>重投影误差与机器人坐标误差不一致，形成解释空间。</li>
+                  </ul>
+                </div>
+                <div class="fallback-inline"><b>若差异被机械误差覆盖：</b>转为“标定复杂度与低成本机械执行误差的边界研究”。</div>
+              </article>
+
+              <article class="day-task" style="--accent:#2e5f91">
+                <h4><span class="scout-card-letter">B</span>A4 的质量指标有没有真实信号</h4>
+                <p><b>遮挡：</b>O0 无遮挡；O1 约 20%；O2 约 40%；O3 约 60%；O4 RGB 可检出但深度大量失效。</p>
+                <div class="measurement-tags">
+                  <span class="measurement-tag">每相机 20–30 帧/条件</span>
+                  <span class="measurement-tag">目标可见比例</span><span class="measurement-tag">有效深度率</span>
+                  <span class="measurement-tag">检测置信度</span><span class="measurement-tag">位置标准差</span>
+                </div>
+                <p>先比较四个原始指标与真实定位误差，不先设计复杂总分。</p>
+                <div class="continue-box"><strong>建议至少满足两项：</strong>
+                  <ul>
+                    <li>质量指标与误差存在明显单调关系。</li>
+                    <li>阈值能区分可接受与不可接受观测。</li>
+                    <li>门控比“完全检测失败后切换”更早发现风险。</li>
+                    <li>辅助相机在主相机失效时确实可用。</li>
+                    <li>模拟切换使定位失败率下降约 20 个百分点以上。</li>
+                  </ul>
+                </div>
+                <div class="fallback-inline"><b>若质量指标无关：</b>退为“遮挡等级下的单/双视角定位与抓取比较”。</div>
+              </article>
+
+              <article class="day-task" style="--accent:#6c5aa6">
+                <h4><span class="scout-card-letter">C</span>A5+B5 的布局实验是否做得动</h4>
+                <p><b>只测两个布局：</b>L1 当前布局；L2 明显不同的交叉互补布局。不要一开始做 3–6 套。</p>
+                <div class="measurement-tags">
+                  <span class="measurement-tag">安装时间</span><span class="measurement-tag">重标定时间</span>
+                  <span class="measurement-tag">共同视场</span><span class="measurement-tag">12 点可见数</span>
+                  <span class="measurement-tag">5 点定位误差</span><span class="measurement-tag">下降遮挡</span>
+                  <span class="measurement-tag">深度有效率</span>
+                </div>
+                <div class="continue-box"><strong>满足至少一项并确认工时可控：</strong>
+                  <ul>
+                    <li>共同覆盖、深度有效率或定位误差差异明确。</li>
+                    <li>遮挡恢复率相差约 15–20 个百分点以上。</li>
+                    <li>布局切换与标定能在 60–90 分钟内完成。</li>
+                    <li>支架可回到相同位置，重复安装误差可控。</li>
+                  </ul>
+                </div>
+                <div class="fallback-inline"><b>若一次换布局耗时半天且无法复位：</b>A5/B5 不适合作为两周主线。</div>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="scout-block" open>
+          <summary><span>评分</span><div>48 小时后：用实测结果更新推荐排序</div></summary>
+          <div class="scout-block-body">
+            <p style="margin-top:0;color:var(--muted)">只更新四项侦察指标，文献独特性、原始发表判断等保留。下表默认把侦察证据作为总推荐分的 40%；未完成四项评分的方向不会进入侦察后排序。</p>
+
+            <div class="score-rule-grid">
+              <div class="score-rule"><h4>工程准备度</h4><p>依据 20 次运行成功率与日志完整率：&lt;60% 为 1，60–80% 为 2，80–90% 为 3，90–95% 为 4，≥95% 为 5。</p><div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+              <div class="score-rule"><h4>实验区分度</h4><p>无差异/方向混乱为 1；差异很小为 2；有趋势但噪声大为 3；明显差异为 4；差异大且重复稳定为 5。</p><div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+              <div class="score-rule"><h4>风险可控性</h4><p>关键技术未跑通为 1；经常阻断为 2；每天损失数小时为 3；偶尔返工为 4；可自动恢复且替代路径清晰为 5。</p><div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+              <div class="score-rule"><h4>可验证性</h4><p>无法判断准确性为 1；真值噪声接近方法差异为 2；近似真值为 3；基本可靠为 4；真值明确且重复误差远小于差异为 5。</p><div class="score-scale"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div></div>
+            </div>
+
+            <div class="panel scout-score-panel" style="margin-top:14px;box-shadow:none">
+              <div class="scout-score-toolbar">
+                <div><b style="color:#214766">侦察后评分表</b><div class="note" style="margin:2px 0 0">每项 1–5；自动保存到本地浏览器。</div></div>
+                <label class="evidence-weight"><span>侦察证据权重</span><input id="scoutEvidenceWeight" type="range" min="20" max="70" value="40" /><b id="scoutEvidenceWeightLabel">40%</b></label>
+              </div>
+              <div class="table-wrap">
+                <table class="scout-score-table" style="min-width:950px">
+                  <thead><tr><th>方向</th><th>工程准备度</th><th>实验区分度</th><th>风险可控性</th><th>可验证性</th><th>侦察分</th><th>原推荐分</th><th>侦察后分</th></tr></thead>
+                  <tbody id="scoutScoreBody"></tbody>
+                </table>
+              </div>
+              <div class="scout-result" id="scoutResult"><b>尚未录入完整侦察评分。</b>完成四项后，页面会生成侦察后排序；最终仍须检查下方的方向继续条件。</div>
+              <div class="mini-actions" style="padding:0 18px 18px;margin-top:0"><button class="mini-button" id="resetScoutScores">清空侦察评分</button></div>
+            </div>
+          </div>
+        </details>
+
+        <details class="scout-block">
+          <summary><span>决策</span><div>正式选题规则与对应论文主张</div></summary>
+          <div class="scout-block-body">
+            <div class="decision-rule-grid">
+              <article class="decision-rule" data-code="B2">
+                <h4>选择 B2，当模型边界可被稳定暴露</h4>
+                <ul>
+                  <li>三种模型出现可解释差异，同数据比较稳定运行。</li>
+                  <li>高度或边缘条件暴露模型边界。</li>
+                  <li>剩余完整实验可在 7–10 天完成。</li>
+                </ul>
+                <div class="paper-title">Accuracy–Complexity Trade-offs of Camera–Robot Calibration Models for Low-Cost Planar Manipulation</div>
+              </article>
+              <article class="decision-rule" data-code="A4">
+                <h4>选择 A4，当质量指标能提前预测失败</h4>
+                <ul>
+                  <li>至少一个质量指标能预测定位误差。</li>
+                  <li>辅助视角可在主视角遮挡时恢复观测。</li>
+                  <li>重扫描或一次位置修正稳定运行。</li>
+                  <li>视觉改进可单独测量，而非完全依赖抓取率。</li>
+                </ul>
+                <div class="paper-title">Observation-Quality-Gated Dual-View Re-observation for Low-Cost Tabletop Manipulation</div>
+              </article>
+              <article class="decision-rule" data-code="A5+B5">
+                <h4>选择 A5+B5，当布局差异明确且工时可控</h4>
+                <ul>
+                  <li>两个布局已表现出明显差异。</li>
+                  <li>支架能够重复安装并恢复位置。</li>
+                  <li>单布局标定与实验工时可接受。</li>
+                  <li>可以稳定测试至少三种离散布局。</li>
+                </ul>
+                <div class="paper-title">Task-Oriented Placement of Dual External RGB-D Cameras for Low-Cost Tabletop Manipulation</div>
+              </article>
+              <article class="decision-rule system-only" data-code="C1">
+                <h4>C1 只在其他方向无差异时独立成题</h4>
+                <ul>
+                  <li>系统本身已非常完整、稳定、可复现。</li>
+                  <li>具备延迟、掉线、恢复、失败分类和重复部署实验。</li>
+                  <li>可以开源代码、配置与数据。</li>
+                </ul>
+                <div class="fallback-inline"><b>否则：</b>C1 只作为系统章节、公共底座和降级路径，不作为主贡献。</div>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="scout-block">
+          <summary><span>规模</span><div>正式定题后的最低完整实验规模</div></summary>
+          <div class="scout-block-body">
+            <div class="full-plan-grid">
+              <article class="full-plan">
+                <small>方案一</small><h4>B2 标定模型比较</h4>
+                <div class="plan-stat"><span>4 种模型</span><span>12–15 验证点</span><span>每点 ×5</span><span>3 个高度</span><span>3 次独立标定</span><span>3×30 次抓取</span></div>
+                <ul><li>误差箱线图与工作区热力图。</li><li>高度—误差曲线。</li><li>标定耗时—精度 Pareto。</li><li>抓取成功率与失败分类。</li></ul>
+              </article>
+              <article class="full-plan">
+                <small>方案二</small><h4>A4 质量门控双视角</h4>
+                <div class="plan-stat"><span>4 种策略</span><span>4 遮挡等级</span><span>12 个位置</span><span>每条件 ≥5</span><span>3×30 次抓取</span><span>失败分账</span></div>
+                <ul><li>质量分—定位误差与 ROC。</li><li>遮挡程度—失败率。</li><li>策略误差箱线图与切换时间线。</li><li>感知失败和机械失败分类。</li></ul>
+              </article>
+              <article class="full-plan">
+                <small>方案三</small><h4>A5+B5 相机布局</h4>
+                <div class="plan-stat"><span>3 种夹角</span><span>2 种基线</span><span>12 点 ×5</span><span>每布局 20 抓取</span><span>最优/最差重装 ×3</span><span>多目标权衡</span></div>
+                <ul><li>共同视场和夹角—误差曲线。</li><li>夹角—深度有效率。</li><li>遮挡恢复率。</li><li>标定时间与重复安装误差。</li></ul>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <div class="checklist-board" style="margin-top:14px">
+          <div class="checklist-head">
+            <div><h3>下一步直接执行清单</h3><div class="note" style="margin:3px 0 0">勾选状态自动保存。完成 Day 2 后，必须正式选择一个主方向和一个降级方向。</div></div>
+            <div class="progress-wrap"><div class="progress-label"><span>总体进度</span><b id="scoutProgressText">0 / 0</b></div><div class="progress-track"><span id="scoutProgressBar"></span></div></div>
+          </div>
+          <div class="checklist-columns" id="scoutChecklist">
+            <div class="checklist-column">
+              <h4>明天开始前</h4>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_cam_id"><span>给两个相机编号并记录序列号。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_fix"><span>固定机械臂底座、桌面原点和相机线缆。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_points"><span>画出 9 个标定点和 12 个独立验证点。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_save"><span>确认两相机可保存 RGB、深度和时间戳。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_csv"><span>建立统一 CSV、calibration_id 与 layout_id。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_success"><span>冻结抓取成功标准和 failure_type。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="pre_photo"><span>拍摄布局照片并备份代码与标定文件。</span></label>
+            </div>
+            <div class="checklist-column">
+              <h4>第一天</h4>
+              <label class="action-check"><input type="checkbox" data-scout-check="d1_vision"><span>每个相机静态采集 30 帧。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d1_robot"><span>测三个点的机械到点重复性与方向回差。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d1_steps"><span>验证 2、5、10 mm 小步长是否真实移动。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d1_run"><span>完成 20 次端到端连续运行。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d1_fix"><span>修复日志缺失、掉线和随机中断。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d1_output"><span>输出视觉抖动、机械误差、系统成功率。</span></label>
+            </div>
+            <div class="checklist-column">
+              <h4>第二天</h4>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_b2"><span>同数据运行仿射、单应性和 PnP。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_occ"><span>测试 0%、20%、40%、60% 遮挡与深度失效。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_metrics"><span>记录质量指标、深度有效率和定位误差。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_layout"><span>测试第二种明显不同的相机布局。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_time"><span>记录布局更换与重标定总耗时。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_score"><span>按四项实测指标更新五方向评分。</span></label>
+              <label class="action-check"><input type="checkbox" data-scout-check="d2_choose"><span>正式选择一个主方向和一个降级方向。</span></label>
+            </div>
+          </div>
+          <div class="mini-actions" style="padding:0 16px 16px;margin-top:0"><button class="mini-button" id="resetScoutChecklist">清空执行清单</button></div>
+        </div>
+      </section>
+
+
+      <section class="section" id="directions">
+        <div class="section-heading">
+          <h2>五个方向详细卡片</h2>
+          <p>每张卡片依次呈现：核心故事、文献重叠、改进点、实验 SOP、数据记录、假设风险和降级路径。</p>
+        </div>
+
+        <!-- A4 -->
+        <details class="direction-card" id="A4">
+          <summary>
+            <div class="code-box" style="background:#2e5f91">A4</div>
+            <div class="summary-title">
+              <h3>遮挡感知的双视角闭环抓取</h3>
+              <p>用任务相关的观测质量评分决定“是否换视角、是否重拍、是否做一次位置修正”。</p>
+            </div>
+            <div class="summary-metrics">
+              <span class="status-pill risk-high">假设风险：中高</span>
+              <span class="status-pill risk-mid">两周：中</span>
+              <span class="score-large">86<small>/100 审计潜力</small></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="card-body">
+            <div class="story"><b>核心故事：</b>低成本桌面机械臂难以配置可靠 Eye-in-Hand 深度相机，固定主相机又会在夹爪下降时被遮挡。系统不持续融合全部观测，而是计算轻量的任务相关质量分 Q；当当前视角不再足以支持定位时，才触发辅助相机重扫描，并执行至多一次视觉修正。论文同时报告视觉定位误差、切换代价和抓取成功率，区分感知瓶颈与机械执行瓶颈。</div>
+
+            <div class="detail-grid">
+              <div class="detail-box full">
+                <h4>文献重叠度</h4>
+                <div class="table-wrap">
+                  <table class="literature-table">
+                    <thead><tr><th>相关工作</th><th>已覆盖内容</th><th>与本方向关系</th></tr></thead>
+                    <tbody>
+                      <tr><td>Uncalibrated Adaptive Visual Servoing Based on Dual-Camera Fusion (2025)</td><td>Eye-in-Hand + Eye-to-Hand、双相机切换、遮挡恢复、连续视觉伺服。</td><td><span class="overlap high">高重叠</span> 区别必须落在“两台固定外部相机、低成本抓取、按需门控”。</td></tr>
+                      <tr><td>Multi-view Object Pose Distribution Tracking (ICRA 2022)</td><td>机器人相机与固定外部相机融合，维护 6D 位姿分布。</td><td><span class="overlap mid">中重叠</span> 不研究夹爪下降遮挡与固定双外部视角切换。</td></tr>
+                      <tr><td>Probabilistic Multi-View Fusion of Active Stereo Depth Maps (2021)</td><td>多视角概率融合，改善深度重建和检测。</td><td><span class="overlap low">中低重叠</span> 关注稠密重建，不做在线观测选择。</td></tr>
+                      <tr><td>Multi-View Keypoints for Reliable 6D Pose (ICRA 2023)</td><td>置信度、多视角关键点融合、点云一致性。</td><td><span class="overlap mid">中重叠</span> 说明“质量评分 + 多视角”并非全新，需突出任务触发与闭环抓取。</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>独特性与必须补强的点</h4>
+                <ul>
+                  <li>质量分必须与真实定位误差或抓取失败概率建立定量关系，不能主观设“60 分”。</li>
+                  <li>比较固定主相机、检测彻底失败后切换、质量门控提前切换、门控 + 重扫描 + 一次修正。</li>
+                  <li>增加 Oracle：离线选择真实误差最小视角，作为理论上限。</li>
+                  <li>把视觉误差与机械回差、夹爪误差分账，防止“定位变好 = 抓取变好”的错误推断。</li>
+                  <li>最小版本无需神经网络；可解释子指标和阈值标定已经足够。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>质量分建议</h4>
+                <p><b>Q =</b> w₁·目标可见率 + w₂·有效深度率 + w₃·检测置信度 − w₄·跨视角重投影不一致 − w₅·时间抖动。</p>
+                <ul>
+                  <li>可见率：轮廓、ArUco 四角或关键点可见比例。</li>
+                  <li>有效深度率：目标区域非零、非异常深度像素比例。</li>
+                  <li>重投影不一致：两个视角映射至同一桌面坐标后的差异。</li>
+                  <li>时间抖动：连续帧位置估计标准差。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full">
+                <h4>实验 SOP</h4>
+                <div class="sop">
+                  <div class="sop-step"><span class="step-no">1</span><strong>标定</strong><span>冻结双相机外参、桌面坐标、机器人坐标和固定验证点；先确认非采样点误差。</span></div>
+                  <div class="sop-step"><span class="step-no">2</span><strong>基线实验</strong><span>G1 主相机、G2 辅助相机、G3 检测失败后切换；记录无遮挡性能。</span></div>
+                  <div class="sop-step"><span class="step-no">3</span><strong>扰动 / 对照</strong><span>20/40/60% 人工遮挡、机械臂遮挡、夹爪下降、深度空洞、图像边缘。</span></div>
+                  <div class="sop-step"><span class="step-no">4</span><strong>数据分析</strong><span>Q–误差散点、ROC/PR、成功率、切换代价、错误切换率、视觉/执行误差分账。</span></div>
+                  <div class="sop-step"><span class="step-no">5</span><strong>结论校验</strong><span>验证 Q 是否优于“检测不到才切换”，并用 Oracle 判断尚有多少提升空间。</span></div>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>最低样本量与数据记录</h4>
+                <ul>
+                  <li>≥12 个工作区位置，各遮挡条件重复 5 次。</li>
+                  <li>质量分标定图像 100–150 组。</li>
+                  <li>至少 3 个主策略 × 30 次抓取，共 ≥90 次。</li>
+                  <li>逐帧保存相机 ID、时间戳、RGB、深度、掩膜、Q 及子项、坐标估计、真值误差。</li>
+                  <li>记录切换耗时、重拍次数、命令位姿、反馈位姿、抓取结果与失败类型。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>推荐图表</h4>
+                <ul>
+                  <li>Q 与真实定位误差散点图；Q 预测不合格观测的 ROC / PR。</li>
+                  <li>不同遮挡等级下成功率折线；各策略误差箱线图。</li>
+                  <li>单次抓取中的 Q、切换和修正时间线。</li>
+                  <li>视觉误差与最终抓取误差分账图。</li>
+                  <li>错误切换、漏切换、机械执行失败案例拼图。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full risk-analysis">
+                <h4>假设风险分析</h4>
+                <p><b>核心假设：</b>一个由可见率、有效深度、检测置信度、跨视角一致性和时间抖动构成的轻量评分，能够在抓取前预测当前视角是否会产生不可接受的定位误差；辅助视角的改善足以穿透机械回差。</p>
+                <div class="risk-grid">
+                  <div class="risk-stat"><small>假设不成立概率</small><strong>约 45%</strong></div>
+                  <div class="risk-stat"><small>结论崩塌程度</small><strong>中高</strong></div>
+                  <div class="risk-stat"><small>出现“不显著”概率</small><strong>较高</strong></div>
+                  <div class="risk-stat"><small>负面结果可写性</small><strong>中高</strong></div>
+                </div>
+                <ul>
+                  <li>可能出现 Q 与定位误差相关性弱，原因是检测置信度过于离散、深度空洞不等于坐标错误，或真值噪声过大。</li>
+                  <li>可能出现第二相机视觉误差更低，但最终抓取率无显著改善，因为 RoArm 回差和夹爪容差主导结果。</li>
+                  <li>可能出现“提前切换”带来的延迟与误切换抵消精度收益。</li>
+                  <li>负面结果仍可写成：哪些图像质量指标不能预测低成本机械臂抓取风险，以及感知改善何时被执行误差吞没。</li>
+                </ul>
+                <div class="fallback"><b>降级路径：</b>若在线闭环效果不显著，退化为“观测质量指标—真实定位误差相关性研究”；若 Q 也不稳定，则写双相机遮挡条件下的失败模式与感知/执行误差分离。</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- A5 -->
+        <details class="direction-card" id="A5">
+          <summary>
+            <div class="code-box" style="background:#6c5aa6">A5</div>
+            <div class="summary-title">
+              <h3>面向任务的相机放置优化</h3>
+              <p>不只优化覆盖率，而是联合考虑深度工作距离、自遮挡、三角几何、标定与重复安装代价。</p>
+            </div>
+            <div class="summary-metrics">
+              <span class="status-pill risk-high">假设风险：高</span>
+              <span class="status-pill risk-high">两周：中低</span>
+              <span class="score-large">80<small>/100 审计潜力</small></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="card-body">
+            <div class="story"><b>核心故事：</b>传统相机布局研究常以覆盖和重叠为目标，但低成本桌面抓取还受到近场深度失效、机械臂自遮挡、可达工作区、支架振动和重复安装误差制约。本方向构建一个“任务结果导向”的布局评价框架，并以三个可重复安装的离散布局验证评分与定位、抓取性能的关系。</div>
+            <div class="detail-grid">
+              <div class="detail-box full">
+                <h4>文献重叠度</h4>
+                <div class="table-wrap">
+                  <table class="literature-table">
+                    <thead><tr><th>相关工作</th><th>已覆盖内容</th><th>与本方向关系</th></tr></thead>
+                    <tbody>
+                      <tr><td>Optimizing Camera Placements for Overlapped Coverage (ICRA 2022)</td><td>6-DoF 候选位姿、体素覆盖、重叠和可三角化区域。</td><td><span class="overlap high">高层重叠</span> 但应用是大空间监控，不含抓取、深度失效和标定成本。</td></tr>
+                      <tr><td>Multiresolution Camera Placement Optimization (2022)</td><td>大规模候选位姿的多分辨率求解。</td><td><span class="overlap mid">中重叠</span> 提供求解思路，不含机械臂任务变量。</td></tr>
+                      <tr><td>ViewActive: Active Viewpoint Optimization (IROS 2025)</td><td>自遮挡率、表面法向熵、视觉熵构成视角质量场。</td><td><span class="overlap mid">中重叠</span> 移动主动视角，不是固定双相机安装设计。</td></tr>
+                      <tr><td>Optimal Viewpoint Assistance Using D-Optimality (2025)</td><td>用信息量优化辅助视角，降低操作定位不确定性。</td><td><span class="overlap high">中高重叠</span> 但未考虑固定相机的最小测距和重标定成本。</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>独特性与限制边界</h4>
+                <ul>
+                  <li>不要声称求解通用最优布局；限制为两个固定相机、一个桌面、一个低成本机械臂、三个可重复安装位。</li>
+                  <li>目标函数同时考虑工作区覆盖、双视角覆盖、预计三角误差、机械遮挡、近场深度失效、安装与标定代价。</li>
+                  <li>仿真只用于候选筛选，实物任务指标才是最终评价。</li>
+                  <li>至少测量三次重复安装，验证“理论最优”是否可稳定复现。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>离散布局与消融</h4>
+                <ul>
+                  <li><b>L1 高位对称：</b>覆盖稳定，侧面信息较少。</li>
+                  <li><b>L2 交叉互补：</b>主俯视 + 辅斜视，优先解决自遮挡。</li>
+                  <li><b>L3 双斜视大夹角：</b>三角几何较好，但共同视场和近场深度风险更高。</li>
+                  <li>消融：纯覆盖 → +遮挡 → +真实深度有效率 → 完整任务评分 → 人工直观布局。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full">
+                <h4>实验 SOP</h4>
+                <div class="sop">
+                  <div class="sop-step"><span class="step-no">1</span><strong>标定</strong><span>制作定位槽；记录相机高度、朝向、夹角、基线、序列号；每布局独立标定。</span></div>
+                  <div class="sop-step"><span class="step-no">2</span><strong>基线实验</strong><span>测无遮挡覆盖、共同视场、深度有效率、重投影与非采样点定位误差。</span></div>
+                  <div class="sop-step"><span class="step-no">3</span><strong>扰动 / 对照</strong><span>四类机械臂姿态遮挡、拆装重装、边缘点、近场目标、人工直观布局。</span></div>
+                  <div class="sop-step"><span class="step-no">4</span><strong>数据分析</strong><span>布局评分与实际误差/抓取率相关性；精度—安装成本 Pareto；深度有效率热力图。</span></div>
+                  <div class="sop-step"><span class="step-no">5</span><strong>结论校验</strong><span>确认模型预测的高分布局是否真实更好；检查是否仅在个别姿态或点位成立。</span></div>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>最低样本量与记录项</h4>
+                <ul>
+                  <li>每布局 ≥12 个验证点 × 5 次。</li>
+                  <li>每布局 10 次无遮挡 + 10 次遮挡抓取。</li>
+                  <li>每布局 ≥3 次重新安装与标定。</li>
+                  <li>记录单/双视角覆盖、深度有效率、遮挡率、标定时间、外参漂移、抓取成功率。</li>
+                  <li>三布局最低约 180 个定位样本、60 次抓取、9 次安装/标定。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>推荐输出</h4>
+                <ul>
+                  <li>相机顶视/侧视布局图与共同视场图。</li>
+                  <li>工作区深度有效率热力图；机械臂姿态—遮挡率矩阵。</li>
+                  <li>布局评分—定位误差相关图；三布局误差箱线图。</li>
+                  <li>抓取成功率、标定耗时、重复安装误差综合表。</li>
+                  <li>精度—安装成本 Pareto 图。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full risk-analysis">
+                <h4>假设风险分析</h4>
+                <p><b>核心假设：</b>把覆盖、共同视场、三角几何、机械臂遮挡、深度有效率和标定成本组合成任务评分后，评分最高或居中的布局会稳定对应更低定位误差与更高抓取成功率。</p>
+                <div class="risk-grid">
+                  <div class="risk-stat"><small>假设不成立概率</small><strong>约 55%</strong></div>
+                  <div class="risk-stat"><small>结论崩塌程度</small><strong>高</strong></div>
+                  <div class="risk-stat"><small>出现“无最优值”概率</small><strong>高</strong></div>
+                  <div class="risk-stat"><small>负面结果可写性</small><strong>中</strong></div>
+                </div>
+                <ul>
+                  <li>不同指标可能互相冲突，且权重缺少客观依据，导致布局排序随权重变化。</li>
+                  <li>三个离散布局样本过少，可能只能证明“各有优劣”，不能宣称存在最优放置。</li>
+                  <li>真实抓取可能主要受机械臂执行误差影响，布局差异无法穿透噪声。</li>
+                  <li>负面结果可写成：任务导向相机布局不存在单一最优，应该输出 Pareto 前沿和约束条件下的设计准则。</li>
+                </ul>
+                <div class="fallback"><b>降级路径：</b>与 B5 合并。A5 保留为问题框架和评价函数，B5 用夹角/基线敏感性提供实证主体；避免实现复杂全局优化。</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- B2 -->
+        <details class="direction-card" id="B2" open>
+          <summary>
+            <div class="code-box" style="background:#26835e">B2</div>
+            <div class="summary-title">
+              <h3>不同标定模型比较</h3>
+              <p>公平比较二维仿射、单应性、PnP 与双相机三角化：复杂模型在低成本平面抓取中是否真的更有用？</p>
+            </div>
+            <div class="summary-metrics">
+              <span class="status-pill risk-low">假设风险：低</span>
+              <span class="status-pill risk-low">两周：高</span>
+              <span class="score-large">92<small>/100 审计潜力</small></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="card-body">
+            <div class="story"><b>核心故事：</b>现有标定研究往往默认更完整的三维模型更高级，但低成本桌面抓取主要发生在近似平面上，且机械执行误差可能达到数毫米。本文在相同原始图像、相同检测结果、相同标定点和独立验证点下，公平比较二维仿射、平面单应性、PnP 与双视角三角化，并通过高度变化和真实抓取回答：什么时候需要完整三维建模，什么时候简单模型已足够。</div>
+            <div class="detail-grid">
+              <div class="detail-box full">
+                <h4>文献重叠度</h4>
+                <div class="table-wrap">
+                  <table class="literature-table">
+                    <thead><tr><th>相关工作</th><th>已覆盖内容</th><th>与本方向关系</th></tr></thead>
+                    <tbody>
+                      <tr><td>Multi-Camera Hand-Eye Calibration for HRC (RA-L 2024)</td><td>联合优化多相机—机器人基座 SE(3) 外参和相机间约束。</td><td><span class="overlap mid">中重叠</span> 不比较平面模型，也不讨论下游抓取是否需要复杂模型。</td></tr>
+                      <tr><td>Observability-Aware Active Extrinsic Calibration (ICRA 2023)</td><td>通过可观测性选择采样运动，解决外参退化。</td><td><span class="overlap low">低重叠</span> 提醒必须控制采样点分布与退化。</td></tr>
+                      <tr><td>Automatic Hand-Eye Calibration by 3D Vision (2024)</td><td>学习式识别机器人底座，追求快速、低人工、高精度标定。</td><td><span class="overlap low">低重叠</span> 方法复杂度更高，但研究问题不同。</td></tr>
+                      <tr><td>Accurate Extrinsic Calibration of Multiple Azure Kinect (2025)</td><td>平面棋盘、多 Kinect 外参、不同距离和朝向的精度评价。</td><td><span class="overlap mid">中重叠</span> 不比较机器人坐标模型与抓取结果。</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>独特性来自“公平性”而非新算法</h4>
+                <ul>
+                  <li>相同原始图像、角点检测、标定点和验证点，只替换坐标估计模型。</li>
+                  <li>标定点与验证点严格分离，防止训练残差冒充泛化误差。</li>
+                  <li>评价非采样点机器人坐标误差、边缘稳定性、高度泛化、标定耗时与抓取率。</li>
+                  <li>分离视觉预测误差和机械末端执行误差。</li>
+                  <li>输出精度—复杂度—操作成本 Pareto，而非简单“谁第一”。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>模型组与研究问题</h4>
+                <ul>
+                  <li><b>M1：</b>2D 仿射；<b>M2：</b>平面单应性。</li>
+                  <li><b>M3：</b>单相机 PnP + 相机外参。</li>
+                  <li><b>M4：</b>双相机三角化。</li>
+                  <li><b>M5 可选：</b>平面约束双视角融合。</li>
+                  <li>RQ1：平面上复杂度是否带来实际提升？RQ2：离开平面后何时失效？RQ3：视觉差异能否穿透机械误差？</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full">
+                <h4>实验 SOP</h4>
+                <div class="sop">
+                  <div class="sop-step"><span class="step-no">1</span><strong>标定</strong><span>冻结原点、坐标轴、单位、9–12 个标定点、≥15 个独立验证点；每模型独立标定 3 次。</span></div>
+                  <div class="sop-step"><span class="step-no">2</span><strong>基线实验</strong><span>在 0 mm 桌面平面，使用同一批观测计算 M1–M4，测中心、边缘、近端和远端误差。</span></div>
+                  <div class="sop-step"><span class="step-no">3</span><strong>扰动 / 对照</strong><span>目标垫高 10/20/40 mm；减少标定点；角点丢失；独立重标定；机械臂执行验证。</span></div>
+                  <div class="sop-step"><span class="step-no">4</span><strong>数据分析</strong><span>均值、标准差、最大值、P95；高度—误差曲线；耗时—误差 Pareto；模型间统计检验。</span></div>
+                  <div class="sop-step"><span class="step-no">5</span><strong>结论校验</strong><span>确认重投影误差是否真的预测机器人坐标误差；仅对最简单、最准确、折中模型做抓取验证。</span></div>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>最低样本量与记录项</h4>
+                <ul>
+                  <li>每模型 15 验证点 × 5 次 = 75 个测量；原始观测可复用。</li>
+                  <li>每模型 3 次独立标定。</li>
+                  <li>抓取只比较 3 个代表模型，每个 ≥30 次。</li>
+                  <li>记录标定残差、非采样点 xyz 误差、平面欧氏误差、P95、中心/边缘误差。</li>
+                  <li>记录标定点数、操作耗时、角点丢失失败率和模型运行时间。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>推荐图表</h4>
+                <ul>
+                  <li>四模型坐标链图；工作区中心/边缘误差热力图。</li>
+                  <li>模型误差箱线图；高度—误差曲线。</li>
+                  <li>标定耗时—误差 Pareto；重投影误差—机器人坐标误差相关图。</li>
+                  <li>视觉预测误差与真实末端误差对比。</li>
+                  <li>抓取成功率与失败类型表。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full risk-analysis">
+                <h4>假设风险分析</h4>
+                <p><b>核心假设：</b>在近似平面、机械精度有限的桌面抓取中，简单二维模型很可能达到与复杂三维模型相近的下游表现；即使该假设不成立，模型差异和失效边界本身仍可形成明确结论。</p>
+                <div class="risk-grid">
+                  <div class="risk-stat"><small>假设不成立概率</small><strong>约 20%</strong></div>
+                  <div class="risk-stat"><small>结论崩塌程度</small><strong>低</strong></div>
+                  <div class="risk-stat"><small>出现“不显著”概率</small><strong>中</strong></div>
+                  <div class="risk-stat"><small>负面结果可写性</small><strong>很高</strong></div>
+                </div>
+                <ul>
+                  <li>若复杂模型显著更好，论文结论变为：二维模型在何种高度、边缘区域和深度条件下失效。</li>
+                  <li>若各模型无显著差异，反而支持“机械误差和任务平面约束使复杂模型收益有限”。</li>
+                  <li>若重投影误差与机器人坐标误差不相关，可揭示仅报告标定残差的局限。</li>
+                  <li>无论正负结果，都能形成可复现的精度—复杂度—操作成本比较。</li>
+                </ul>
+                <div class="fallback"><b>降级路径：</b>即使双相机三角化实现不稳定，仍可完成仿射、单应性、PnP 三模型比较；若真实抓取时间不足，保留非采样点与机械末端误差分账，也能形成完整实验论文。</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- B5 -->
+        <details class="direction-card" id="B5">
+          <summary>
+            <div class="code-box" style="background:#2b8293">B5</div>
+            <div class="summary-title">
+              <h3>双相机基线与夹角敏感性</h3>
+              <p>研究理论三角几何、共同视场、深度有效率、自遮挡和真实抓取之间的多目标冲突。</p>
+            </div>
+            <div class="summary-metrics">
+              <span class="status-pill risk-mid">假设风险：中</span>
+              <span class="status-pill risk-mid">两周：中高</span>
+              <span class="score-large">87<small>/100 审计潜力</small></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="card-body">
+            <div class="story"><b>核心故事：</b>增加第二台相机不自动意味着更可靠。更大的夹角可能改善三角几何，却会缩小共同视场、增加外参敏感性，并让某一相机进入近场深度失效区。通过可重复安装的离散布局，系统测量夹角和基线对覆盖、深度有效率、遮挡恢复、定位误差与抓取性能的联合影响，输出低成本桌面系统的放置建议。</div>
+            <div class="detail-grid">
+              <div class="detail-box full">
+                <h4>文献重叠度</h4>
+                <div class="table-wrap">
+                  <table class="literature-table">
+                    <thead><tr><th>相关工作</th><th>已覆盖内容</th><th>与本方向关系</th></tr></thead>
+                    <tbody>
+                      <tr><td>Optimizing Camera Placements for Overlapped Coverage (ICRA 2022)</td><td>共同覆盖与可三角化区域。</td><td><span class="overlap high">高几何重叠</span> 不研究小型抓取工作区的实物敏感性曲线。</td></tr>
+                      <tr><td>Probabilistic Multi-View Fusion for Bin-Picking (2021)</td><td>视角多样性缓解深度空洞和反光。</td><td><span class="overlap mid">中重叠</span> 未把外部相机夹角/基线作为独立变量。</td></tr>
+                      <tr><td>Multi-View Keypoints for Reliable 6D Pose (2023)</td><td>已知视角运动、多视角融合、点云一致性。</td><td><span class="overlap mid">中重叠</span> 视角来自机械臂运动，不是固定安装参数。</td></tr>
+                      <tr><td>Empirical Comparison of Four Stereo Depth Cameras (2025)</td><td>不同相机、工作距离与内部基线影响深度性能。</td><td><span class="overlap mid">中重叠</span> 不是两台外部相机之间的布局研究。</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>差异化与层级关系</h4>
+                <ul>
+                  <li>A5 问“应该放在哪里”；B5 问“基线和夹角变化时，各指标如何变化”。</li>
+                  <li>不建议拆成两篇：B5 应作为实验主体，A5 作为任务导向的问题框架。</li>
+                  <li>贡献不能是“夹角越大越准”，而应是解释几何精度与视场、深度、遮挡、标定成本的冲突。</li>
+                  <li>目标是设计准则，不需要声称存在通用全局最优。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>分阶段参数设计</h4>
+                <ul>
+                  <li>第一阶段固定基线：约 25°、50°、80° 三个夹角。</li>
+                  <li>第二阶段固定第一阶段表现最好的夹角：短基线 vs 长基线。</li>
+                  <li>总计 4 套独立布局，避免完整 3×2 六套标定。</li>
+                  <li>每布局保持相同模型和同一验证点，避免几何与算法混杂。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full">
+                <h4>实验 SOP</h4>
+                <div class="sop">
+                  <div class="sop-step"><span class="step-no">1</span><strong>标定</strong><span>可调支架带定位槽；实测基线、夹角、高度、俯仰和工作距离；每布局重标定。</span></div>
+                  <div class="sop-step"><span class="step-no">2</span><strong>基线实验</strong><span>单相机 1、单相机 2、双相机平均、三角化/置信度选择；无遮挡定位与共同视场。</span></div>
+                  <div class="sop-step"><span class="step-no">3</span><strong>扰动 / 对照</strong><span>机械臂遮挡、近场深度空洞、边缘目标；最优和最差布局重装 3 次。</span></div>
+                  <div class="sop-step"><span class="step-no">4</span><strong>数据分析</strong><span>理论三角误差 vs 实测误差；共同视场、深度有效率、遮挡恢复率和抓取率联合分析。</span></div>
+                  <div class="sop-step"><span class="step-no">5</span><strong>结论校验</strong><span>检查“中等夹角更稳”是否成立；若无单一最优，输出 Pareto 与条件化建议。</span></div>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>最低样本量与记录项</h4>
+                <ul>
+                  <li>每布局 12 点 × 5 次，四布局共 240 个定位观测。</li>
+                  <li>每布局 10 次无遮挡 + 10 次遮挡抓取，共 80 次。</li>
+                  <li>最优与最差布局各重装 3 次。</li>
+                  <li>记录共同覆盖率、射线夹角、理论误差指标、非采样点误差、深度有效率、遮挡可用率。</li>
+                  <li>记录标定耗时、拆装误差和机械臂同时挡住双相机的频率。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>推荐图表</h4>
+                <ul>
+                  <li>夹角/基线定义图；理论三角误差—实测误差曲线。</li>
+                  <li>共同视场面积随夹角变化；深度有效率热力图。</li>
+                  <li>布局误差箱线图；遮挡恢复率柱状图。</li>
+                  <li>精度、覆盖、遮挡、标定成本雷达图。</li>
+                  <li>最优、中间、最差布局实物照片。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full risk-analysis">
+                <h4>假设风险分析</h4>
+                <p><b>核心假设：</b>存在一个比极小或极大夹角更平衡的中间区域，使定位、共同视场、深度有效率和遮挡恢复形成更好的任务级折中；夹角/基线变化会产生可统计区分的性能差异。</p>
+                <div class="risk-grid">
+                  <div class="risk-stat"><small>假设不成立概率</small><strong>约 40%</strong></div>
+                  <div class="risk-stat"><small>结论崩塌程度</small><strong>中</strong></div>
+                  <div class="risk-stat"><small>出现“无最优值”概率</small><strong>中高</strong></div>
+                  <div class="risk-stat"><small>负面结果可写性</small><strong>高</strong></div>
+                </div>
+                <ul>
+                  <li>三种夹角可能差异不显著，尤其当机械臂定位误差大于视觉几何差异时。</li>
+                  <li>“最佳夹角”可能随工作区位置、遮挡类型和目标高度变化，不存在单一全局值。</li>
+                  <li>大夹角可能理论误差更好，但共同视场与深度有效率变差，最终呈现多目标冲突而非单峰最优。</li>
+                  <li>负面结果可写成：低成本系统中教科书三角几何优势为何不能直接转化为任务性能。</li>
+                </ul>
+                <div class="fallback"><b>降级路径：</b>若基线阶段时间不足，只完成三夹角研究；若抓取差异不显著，保留定位、覆盖、深度有效率和重装误差的多因素敏感性分析，并与 A5 合并。</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- C1 -->
+        <details class="direction-card" id="C1">
+          <summary>
+            <div class="code-box" style="background:#546579">C1</div>
+            <div class="summary-title">
+              <h3>ROS2 双相机机械臂系统架构</h3>
+              <p>把标定版本、时间戳、TF、质量门控、失败日志和降级运行组织成可追溯工程链。</p>
+            </div>
+            <div class="summary-metrics">
+              <span class="status-pill risk-low">假设风险：低</span>
+              <span class="status-pill risk-low">两周：高</span>
+              <span class="score-large">82<small>/100 审计潜力</small></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="card-body">
+            <div class="story"><b>核心故事：</b>低成本双相机机械臂系统的困难并非单一算法，而是相机数据、外参版本、TF、控制命令和失败事件缺少可追溯链路。系统引入标定版本管理、数据新鲜度检查、视角质量门控和结构化失败日志，并通过相机断开、外参失效和重复抓取验证降级运行与故障诊断能力。它更适合作为其他方向的公共底座，而不是首选主论文。</div>
+            <div class="detail-grid">
+              <div class="detail-box full">
+                <h4>文献重叠度</h4>
+                <div class="table-wrap">
+                  <table class="literature-table">
+                    <thead><tr><th>相关工作</th><th>已覆盖内容</th><th>与本方向关系</th></tr></thead>
+                    <tbody>
+                      <tr><td>Integrated Robotic Workcell for Automated Bonding (2024)</td><td>ROS、多个视觉系统、协作机器人和工业任务集成。</td><td><span class="overlap high">高系统重叠</span> 工业规模更大，说明“集成”本身不是创新。</td></tr>
+                      <tr><td>Open-Source Multi-Robot Framework Based on ROS2 (2025)</td><td>任务控制、导航、视觉定位和不确定性模块。</td><td><span class="overlap mid">中重叠</span> 不面向桌面双相机操作。</td></tr>
+                      <tr><td>Comparison of Simulation Software for Arm Manipulation Using ROS2 (2022)</td><td>统一任务、重复实验、成功率和资源指标。</td><td><span class="overlap low">低算法重叠</span> 提供系统论文如何定量评价的范式。</td></tr>
+                      <tr><td>ROS-Based Multi-Camera Framework for 3D Tracking (2026)</td><td>多相机、ROS、软件同步与三维跟踪。</td><td><span class="overlap mid">中重叠</span> 应用不同，但架构与同步问题相近。</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>必须加入的研究问题</h4>
+                <ul>
+                  <li>时间同步和数据过期如何影响定位与闭环修正？</li>
+                  <li>相机移动后，系统能否发现外参失效并拒绝抓取？</li>
+                  <li>双相机是否提高系统可用性、故障恢复率和任务完成率？</li>
+                  <li>端到端延迟、掉帧、重连和重启性能如何？</li>
+                  <li>开源材料是否足以让他人复现实验？</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>四个工程机制</h4>
+                <ul>
+                  <li><b>标定版本：</b>calibration ID、相机序列号、安装位置、日期、验证误差。</li>
+                  <li><b>数据新鲜度：</b>捕获、处理完成、控制发送和结果年龄。</li>
+                  <li><b>失败日志：</b>相机掉线、深度低、检测失败、双相机不一致、TF/IK/执行/夹爪失败。</li>
+                  <li><b>可复现部署：</b>topic/message、TF 图、JSON 模板、一键脚本、CSV 字段、验收脚本。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full">
+                <h4>实验 SOP</h4>
+                <div class="sop">
+                  <div class="sop-step"><span class="step-no">1</span><strong>标定</strong><span>统一 TF、单位、相机序列号与 calibration ID；启动时运行固定点外参自检。</span></div>
+                  <div class="sop-step"><span class="step-no">2</span><strong>基线实验</strong><span>单相机架构；双相机但无同步/质量检查；记录正常运行的帧率、延迟和任务率。</span></div>
+                  <div class="sop-step"><span class="step-no">3</span><strong>扰动 / 对照</strong><span>断开相机、制造时间差、加载错误外参、重启节点、TF 缺失和深度失效。</span></div>
+                  <div class="sop-step"><span class="step-no">4</span><strong>数据分析</strong><span>延迟分布、掉帧、恢复时间、故障检出率、任务失败帕累托和资源占用。</span></div>
+                  <div class="sop-step"><span class="step-no">5</span><strong>结论校验</strong><span>确认系统机制是否降低错误抓取并缩短诊断时间；用复现实验验证文档完整性。</span></div>
+                </div>
+              </div>
+
+              <div class="detail-box">
+                <h4>最低样本量与记录项</h4>
+                <ul>
+                  <li>连续运行 ≥30 分钟；每相机 ≥3000 帧。</li>
+                  <li>完整抓取任务 ≥30 次。</li>
+                  <li>相机断开/重连 ≥10 次；系统重启 ≥5 次。</li>
+                  <li>正常与人为失效外参各 ≥10 次自检。</li>
+                  <li>记录帧率、掉帧、双相机时间差、端到端延迟、CPU/内存/带宽、TF 失败、恢复时间。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>推荐图表</h4>
+                <ul>
+                  <li>ROS2 节点/数据流图；TF 树和坐标转换图。</li>
+                  <li>端到端时序图；延迟直方图或箱线图。</li>
+                  <li>单/双相机任务成功率；失败模式 Pareto。</li>
+                  <li>相机掉线后的状态转换图。</li>
+                  <li>部署成本、节点频率和硬件清单。</li>
+                </ul>
+              </div>
+
+              <div class="detail-box full risk-analysis">
+                <h4>假设风险分析</h4>
+                <p><b>核心假设：</b>标定版本、自检、时间新鲜度和结构化日志能够显著提升系统可用性、错误检出率和故障恢复能力；但“系统更稳”未必足以构成独立学术创新。</p>
+                <div class="risk-grid">
+                  <div class="risk-stat"><small>假设不成立概率</small><strong>约 15%</strong></div>
+                  <div class="risk-stat"><small>结论崩塌程度</small><strong>低</strong></div>
+                  <div class="risk-stat"><small>技术结果不显著概率</small><strong>低</strong></div>
+                  <div class="risk-stat"><small>发表价值风险</small><strong>高</strong></div>
+                </div>
+                <ul>
+                  <li>工程机制大概率能提高可诊断性，但审稿人可能认为这些是良好工程实践，而非研究贡献。</li>
+                  <li>如果只展示一次成功抓取或一张架构图，会退化为课程项目报告。</li>
+                  <li>即使故障检出率很高，也需要统一任务、重复实验、延迟与资源指标支撑。</li>
+                  <li>负面结果可写性一般；更适合作为 A4、B2、A5+B5 的系统章节和开源贡献。</li>
+                </ul>
+                <div class="fallback"><b>降级路径：</b>立即搭建并服务全部实验。只有当其他方向失败时，再扩展为系统 Benchmark：故障注入、降级运行、外参失效检测与复现性评估。</div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="audit">
+        <div class="section-heading">
+          <h2>通用论文质量审计清单</h2>
+          <p>勾选状态保存在浏览器本地。此清单评估“证据链完整度”，不替代论文创新性判断。</p>
+        </div>
+        <div class="audit-layout">
+          <div class="panel audit-list" id="auditList"></div>
+          <div class="panel audit-score-panel">
+            <div>
+              <div class="score-ring" id="auditRing">
+                <div><strong id="auditScore">0</strong><small>/ 100</small></div>
+              </div>
+              <h3>当前审计得分</h3>
+              <p id="auditComment" style="color:var(--muted);max-width:260px;margin:0 auto;">尚未勾选项目。</p>
+              <button class="reset-button" id="resetAudit">清空审计状态</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:18px;overflow:hidden;">
+          <div class="panel-header"><h3>五方向按审计标准的预估得分</h3><small>假设按照各卡片中的最低样本量和对照完成</small></div>
+          <div class="table-wrap">
+            <table style="min-width:760px">
+              <thead><tr><th>方向</th><th>设计完整性</th><th>对照/消融</th><th>失败分析</th><th>可复现性</th><th>下游任务</th><th>预估总分</th></tr></thead>
+              <tbody>
+                <tr><td><b>B2 标定模型比较</b></td><td>19/20</td><td>19/20</td><td>18/20</td><td>18/20</td><td>18/20</td><td><b>92</b></td></tr>
+                <tr><td><b>B5 基线与夹角</b></td><td>18/20</td><td>17/20</td><td>18/20</td><td>17/20</td><td>17/20</td><td><b>87</b></td></tr>
+                <tr><td><b>A4 质量门控抓取</b></td><td>18/20</td><td>19/20</td><td>18/20</td><td>15/20</td><td>16/20</td><td><b>86</b></td></tr>
+                <tr><td><b>C1 ROS2 架构</b></td><td>16/20</td><td>15/20</td><td>18/20</td><td>20/20</td><td>13/20</td><td><b>82</b></td></tr>
+                <tr><td><b>A5 放置优化</b></td><td>17/20</td><td>18/20</td><td>15/20</td><td>15/20</td><td>15/20</td><td><b>80</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="decision">
+        <div class="section-heading">
+          <h2>预侦察决策矩阵与方向关系</h2>
+          <p>雷达图使用四个统一维度：创新性、两周实验可行性、发表概率和抗风险能力。</p>
+        </div>
+        <div class="panel radar-layout">
+          <div class="radar-wrap"><canvas id="radarCanvas" width="560" height="420" aria-label="五方向雷达图"></canvas></div>
+          <div>
+            <h3 style="margin-top:0;color:#1f4567">显示方向</h3>
+            <div class="legend" id="radarLegend"></div>
+            <div class="decision-callout"><strong>侦察前暂定主线：B2。</strong>它并非创新性最高，但研究问题可被公平实验回答，数据可离线复用，不必频繁移动硬件；正结果、负结果和“不显著”结果都有可写解释。</div>
+            <div class="decision-callout"><strong>备选保底：C1 作为底座，而不是首选论文。</strong>先把标定版本、日志、时间戳和故障分类搭好；若算法方向失败，再扩展为系统 Benchmark 与失败分析。</div>
+            <div class="decision-callout"><strong>冲刺策略：A4。</strong>只有当质量分确实能预测定位风险，且视觉修正能够穿透机械回差时，才升级为主论文。否则应及时降级为相关性或失败模式研究。</div>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:20px;margin-top:18px;">
+          <h3 style="margin:0;color:#1f4567">五个方向的系统层级关系</h3>
+          <div class="system-map">
+            <div class="layer-box"><small>基础设施层</small><strong>C1：ROS2、TF、日志、标定版本</strong></div>
+            <div class="layer-box"><small>几何模型层</small><strong>B2：观测如何变成机器人坐标</strong></div>
+            <div class="layer-box"><small>系统设计层</small><strong>A5 + B5：实验前相机如何放</strong></div>
+            <div class="layer-box"><small>运行时决策层</small><strong>A4：何时换视角与闭环修正</strong></div>
+          </div>
+          <p class="note">建议共享同一套相机固定方式、标定版本、工作区验证点、真值定义、CSV 日志和抓取失败分类。这样每做一个实验，都能同时为其他方向积累可复用数据。</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <button class="floating-top" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    const directions = [
+      {
+        id: 'A4', name: '质量门控的遮挡感知闭环抓取', short: 'A4',
+        innovation: 4.8, difficulty: 4.0, feasibility: 3.0, publish: 3.5, robustness: 2.7,
+        riskProb: 0.45, collapse: 0.65, audit: 86, color: '#2e5f91',
+        note: '上限高，但质量分有效性与机械回差是双重风险。'
+      },
+      {
+        id: 'A5', name: '面向任务的相机放置优化', short: 'A5',
+        innovation: 4.1, difficulty: 4.6, feasibility: 2.3, publish: 3.2, robustness: 2.4,
+        riskProb: 0.55, collapse: 0.75, audit: 80, color: '#6c5aa6',
+        note: '评价框架有价值，但两周内优化、支架、重装与抓取验证易失控。'
+      },
+      {
+        id: 'B2', name: '不同标定模型公平比较', short: 'B2',
+        innovation: 3.6, difficulty: 2.4, feasibility: 4.8, publish: 4.3, robustness: 4.7,
+        riskProb: 0.20, collapse: 0.20, audit: 92, color: '#26835e',
+        note: '完成度最高；正负结果均可解释，最适合作为两周主线。'
+      },
+      {
+        id: 'B5', name: '双相机基线与夹角敏感性', short: 'B5',
+        innovation: 3.9, difficulty: 3.5, feasibility: 3.8, publish: 4.0, robustness: 3.7,
+        riskProb: 0.40, collapse: 0.45, audit: 87, color: '#2b8293',
+        note: '实物经验价值较高，最好与 A5 合并，输出多目标折中而非单一最优。'
+      },
+      {
+        id: 'C1', name: 'ROS2 双相机机械臂系统架构', short: 'C1',
+        innovation: 1.5, difficulty: 2.5, feasibility: 4.6, publish: 1.8, robustness: 4.6,
+        riskProb: 0.15, collapse: 0.10, audit: 82, color: '#546579',
+        note: '工程价值高、学术独特性低；应先搭建，作为公共底座与保底。'
+      }
+    ];
+
+    const weightInputs = {
+      innovation: document.getElementById('wInnovation'),
+      feasibility: document.getElementById('wFeasibility'),
+      publish: document.getElementById('wPublish'),
+      robustness: document.getElementById('wRobust')
+    };
+
+    function stars(value) {
+      const rounded = Math.round(value);
+      return `<span class="stars">${'★'.repeat(rounded)}<span class="empty">${'★'.repeat(5-rounded)}</span></span>`;
+    }
+
+    function riskLabel(d) {
+      const composite = d.riskProb * d.collapse;
+      if (composite >= 0.32) return ['高', 'risk-high'];
+      if (composite >= 0.14) return ['中', 'risk-mid'];
+      return ['低', 'risk-low'];
+    }
+
+    function getWeights() {
+      const w = Object.fromEntries(Object.entries(weightInputs).map(([k, el]) => [k, Number(el.value)]));
+      const total = Object.values(w).reduce((a,b) => a+b, 0) || 1;
+      return { raw: w, total, normalized: Object.fromEntries(Object.entries(w).map(([k,v]) => [k, v/total])) };
+    }
+
+    function computeScore(d, normalized) {
+      const base = (
+        d.innovation * normalized.innovation +
+        d.feasibility * normalized.feasibility +
+        d.publish * normalized.publish +
+        d.robustness * normalized.robustness
+      ) * 20;
+      // 独立风险惩罚：假设失败概率 × 结论崩塌程度，最多扣 12 分。
+      const penalty = d.riskProb * d.collapse * 12;
+      return Math.max(0, Math.min(100, base - penalty));
+    }
+
+    function renderOverview() {
+      const { raw, total, normalized } = getWeights();
+      Object.entries(raw).forEach(([k,v]) => {
+        const label = document.getElementById(`w${k.charAt(0).toUpperCase()+k.slice(1)}Label`);
+        if (label) label.textContent = `${v}%`;
+      });
+
+      const totalEl = document.getElementById('weightTotal');
+      totalEl.textContent = `当前总权重：${total}%${total === 100 ? '' : '（系统已自动归一化）'}`;
+      totalEl.classList.toggle('warn', total !== 100);
+
+      const ranked = directions
+        .map(d => ({ ...d, score: computeScore(d, normalized) }))
+        .sort((a,b) => b.score - a.score);
+
+      const body = document.getElementById('overviewBody');
+      body.innerHTML = ranked.map((d, i) => {
+        const [rLabel, rClass] = riskLabel(d);
+        const difficultyText = d.difficulty >= 4.2 ? '高' : d.difficulty >= 3.2 ? '中' : '中低';
+        return `
+          <tr class="${i===0 ? 'top-ranked' : ''}">
+            <td>
+              <span class="rank-badge ${i===0 ? 'first' : ''}">${i+1}</span>
+              <span class="direction-title" style="margin-left:8px">${d.short} ${d.name}</span>
+              <span class="direction-sub" style="margin-left:42px">${d.note}</span>
+            </td>
+            <td>${stars(d.innovation)}<div class="meter"><span style="width:${d.innovation*20}%"></span></div></td>
+            <td><b>${difficultyText}</b><div class="direction-sub">${d.difficulty.toFixed(1)} / 5</div></td>
+            <td>${stars(d.feasibility)}<div class="meter"><span style="width:${d.feasibility*20}%"></span></div></td>
+            <td>${stars(d.publish)}<div class="meter"><span style="width:${d.publish*20}%"></span></div></td>
+            <td><span class="risk-pill ${rClass}">${rLabel}</span><div class="direction-sub">失败 ${Math.round(d.riskProb*100)}%</div></td>
+            <td><b>${d.audit}</b><div class="meter"><span style="width:${d.audit}%"></span></div></td>
+            <td><span class="score-large">${d.score.toFixed(1)}</span></td>
+          </tr>`;
+      }).join('');
+
+      const top = ranked[0];
+      document.getElementById('topDirectionBadge').textContent = `预侦察首选：${top.short}`;
+      document.getElementById('dynamicRecommendation').innerHTML = `<b>${top.short} 当前仅为预侦察排名第一。</b><br>${top.note}<br><small>第二名：${ranked[1].short}；第三名：${ranked[2].short}。完成 48 小时侦察后，请以下方实测评分重新排序。</small>`;
+      if (document.getElementById('scoutScoreBody')) updateScoutScores();
+    }
+
+    Object.values(weightInputs).forEach(el => el.addEventListener('input', renderOverview));
+
+    const safeStorage = {
+      get(key) {
+        try { return window.localStorage.getItem(key); }
+        catch (_) { return null; }
+      },
+      set(key, value) {
+        try { window.localStorage.setItem(key, value); }
+        catch (_) { /* Local file privacy settings may block storage; page still works. */ }
+      },
+      remove(key) {
+        try { window.localStorage.removeItem(key); }
+        catch (_) { /* Ignore unavailable storage. */ }
+      }
+    };
+
+    const auditItems = [
+      { id:'rq', points:8, title:'研究问题可证伪', desc:'不是“做一个系统”，而是有可能被实验否定的明确问题。' },
+      { id:'novelty', points:8, title:'贡献与现有文献边界清楚', desc:'明确哪些思想已有、差异来自何种硬件约束、实验变量或评价方法。' },
+      { id:'calib', points:8, title:'标定与坐标链完整', desc:'报告坐标系、单位、外参版本、标定点与独立验证点。' },
+      { id:'baseline2', points:10, title:'至少两个有意义基线', desc:'基线应覆盖简单方法、当前常用方法和合理上限，而非只与自己比较。' },
+      { id:'ablation', points:8, title:'包含消融或组件贡献分析', desc:'逐步加入质量指标、遮挡模型、深度有效率或系统机制。' },
+      { id:'sample', points:10, title:'样本量与重复次数足够', desc:'定位点、抓取次数、独立重标定或重复安装不依赖偶然结果。' },
+      { id:'independent', points:8, title:'训练/标定与验证严格分开', desc:'避免用标定点、阈值选择集或同一安装状态证明泛化。' },
+      { id:'stats', points:8, title:'报告分布与统计不只平均值', desc:'均值、标准差、最大值、P95、置信区间或统计检验。' },
+      { id:'failure', points:8, title:'报告失败案例与失败类型', desc:'错误切换、深度空洞、TF、执行偏差、夹爪失败等分类。' },
+      { id:'downstream', points:8, title:'有真实下游任务验证', desc:'不把重投影或视觉误差自动等同于抓取性能。' },
+      { id:'cost', points:6, title:'报告延迟、操作成本或标定耗时', desc:'体现低成本系统的实际权衡，而不只追求精度。' },
+      { id:'reproduce', points:8, title:'可复现材料完整', desc:'硬件安装、参数、日志字段、脚本、数据和验收条件可追溯。' }
+    ];
+
+    function renderAudit() {
+      const container = document.getElementById('auditList');
+      container.innerHTML = auditItems.map(item => `
+        <label class="audit-row">
+          <input type="checkbox" data-id="${item.id}" />
+          <span><strong>${item.title}</strong><span>${item.desc}</span></span>
+          <b class="audit-points">${item.points} 分</b>
+        </label>`).join('');
+
+      const saved = JSON.parse(safeStorage.get('dualCameraAudit') || '{}');
+      container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = Boolean(saved[cb.dataset.id]);
+        cb.addEventListener('change', updateAudit);
+      });
+      updateAudit();
+    }
+
+    function updateAudit() {
+      const state = {};
+      let score = 0;
+      document.querySelectorAll('#auditList input[type="checkbox"]').forEach(cb => {
+        state[cb.dataset.id] = cb.checked;
+        if (cb.checked) score += auditItems.find(i => i.id === cb.dataset.id).points;
+      });
+      safeStorage.set('dualCameraAudit', JSON.stringify(state));
+      document.getElementById('auditScore').textContent = score;
+      document.getElementById('auditRing').style.setProperty('--audit-angle', `${score * 3.6}deg`);
+      const comment = score >= 90 ? '证据链已接近完整论文标准。' : score >= 75 ? '主体较完整，仍需补齐关键对照或失败分析。' : score >= 50 ? '可形成实验报告，但论文审计仍有明显缺口。' : '目前更接近项目 Demo，尚不足以支撑严谨论文。';
+      document.getElementById('auditComment').textContent = comment;
+    }
+
+    document.getElementById('resetAudit').addEventListener('click', () => {
+      safeStorage.remove('dualCameraAudit');
+      document.querySelectorAll('#auditList input[type="checkbox"]').forEach(cb => cb.checked = false);
+      updateAudit();
+    });
+
+    document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.direction-card').forEach(d => d.open = true));
+    document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.direction-card').forEach(d => d.open = false));
+
+
+
+    // 48-hour reconnaissance scoring and checklist
+    const scoutMetrics = ['readiness', 'separation', 'control', 'verification'];
+    const scoutMetricLabels = {
+      readiness: '工程准备度', separation: '实验区分度', control: '风险可控性', verification: '可验证性'
+    };
+
+    function scoreSelect(directionId, metric) {
+      const options = ['<option value="0">待评</option>']
+        .concat([1,2,3,4,5].map(v => `<option value="${v}">${v}</option>`));
+      return `<select data-scout-dir="${directionId}" data-scout-metric="${metric}" aria-label="${directionId} ${scoutMetricLabels[metric]}">${options.join('')}</select>`;
+    }
+
+    function renderScoutScoreTable() {
+      const body = document.getElementById('scoutScoreBody');
+      if (!body) return;
+      body.innerHTML = directions.map(d => `
+        <tr>
+          <td><b style="color:${d.color}">${d.short}</b> ${d.name}</td>
+          ${scoutMetrics.map(m => `<td>${scoreSelect(d.id, m)}</td>`).join('')}
+          <td id="scoutRaw_${d.id}" class="score-placeholder">待完成</td>
+          <td id="scoutBase_${d.id}">—</td>
+          <td id="scoutPost_${d.id}" class="score-placeholder">待完成</td>
+        </tr>`).join('');
+
+      const saved = JSON.parse(safeStorage.get('dualCameraScoutScores') || '{}');
+      body.querySelectorAll('select[data-scout-dir]').forEach(select => {
+        const key = `${select.dataset.scoutDir}_${select.dataset.scoutMetric}`;
+        select.value = saved[key] || '0';
+        select.addEventListener('change', () => {
+          const state = {};
+          document.querySelectorAll('select[data-scout-dir]').forEach(s => {
+            state[`${s.dataset.scoutDir}_${s.dataset.scoutMetric}`] = s.value;
+          });
+          safeStorage.set('dualCameraScoutScores', JSON.stringify(state));
+          updateScoutScores();
+        });
+      });
+
+      const evidence = document.getElementById('scoutEvidenceWeight');
+      const savedWeight = Number(safeStorage.get('dualCameraScoutEvidenceWeight'));
+      if (savedWeight >= 20 && savedWeight <= 70) evidence.value = savedWeight;
+      evidence.addEventListener('input', () => {
+        safeStorage.set('dualCameraScoutEvidenceWeight', evidence.value);
+        updateScoutScores();
+      });
+      updateScoutScores();
+    }
+
+    function updateScoutScores() {
+      const body = document.getElementById('scoutScoreBody');
+      if (!body) return;
+      const evidenceEl = document.getElementById('scoutEvidenceWeight');
+      if (!evidenceEl) return;
+      const evidenceWeight = Number(evidenceEl.value) / 100;
+      document.getElementById('scoutEvidenceWeightLabel').textContent = `${Math.round(evidenceWeight * 100)}%`;
+      const { normalized } = getWeights();
+      const completed = [];
+
+      directions.forEach(d => {
+        const values = scoutMetrics.map(metric => Number(document.querySelector(`select[data-scout-dir="${d.id}"][data-scout-metric="${metric}"]`)?.value || 0));
+        const complete = values.every(v => v >= 1);
+        const base = computeScore(d, normalized);
+        const baseCell = document.getElementById(`scoutBase_${d.id}`);
+        if (baseCell) baseCell.textContent = base.toFixed(1);
+        const rawCell = document.getElementById(`scoutRaw_${d.id}`);
+        const postCell = document.getElementById(`scoutPost_${d.id}`);
+        if (!complete) {
+          rawCell.textContent = '待完成'; rawCell.className = 'score-placeholder';
+          postCell.textContent = '待完成'; postCell.className = 'score-placeholder';
+          return;
+        }
+        const scoutScore = values.reduce((a,b) => a+b, 0) / values.length * 20;
+        const postScore = base * (1 - evidenceWeight) + scoutScore * evidenceWeight;
+        rawCell.textContent = scoutScore.toFixed(1); rawCell.className = 'post-score';
+        postCell.textContent = postScore.toFixed(1); postCell.className = 'post-score';
+        completed.push({ ...d, base, scoutScore, postScore, values });
+      });
+
+      completed.sort((a,b) => b.postScore - a.postScore);
+      const result = document.getElementById('scoutResult');
+      if (!completed.length) {
+        result.innerHTML = '<b>尚未录入完整侦察评分。</b>完成某个方向的四项评分后，它才会进入侦察后排序。';
+        return;
+      }
+      const top = completed[0];
+      const second = completed[1];
+      const mergedName = (top.id === 'A5' || top.id === 'B5') ? 'A5+B5 合并方向' : `${top.id} ${top.name}`;
+      const coverage = completed.length === directions.length ? '五个方向均已评分' : `已完整评分 ${completed.length}/5 个方向`;
+      result.innerHTML = `<b>${coverage}；当前侦察后第一名：${mergedName}（${top.postScore.toFixed(1)}）。</b><br>` +
+        `${second ? `第二名：${second.id}（${second.postScore.toFixed(1)}）。` : ''}` +
+        ` 分数只负责排序；正式定题仍须满足该方向的“继续条件”，并同时指定一个降级方向。`;
+    }
+
+    document.getElementById('resetScoutScores')?.addEventListener('click', () => {
+      safeStorage.remove('dualCameraScoutScores');
+      safeStorage.remove('dualCameraScoutEvidenceWeight');
+      document.querySelectorAll('select[data-scout-dir]').forEach(s => s.value = '0');
+      const evidence = document.getElementById('scoutEvidenceWeight');
+      if (evidence) evidence.value = '40';
+      updateScoutScores();
+    });
+
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.style.position = 'fixed'; area.style.opacity = '0';
+      document.body.appendChild(area); area.select();
+      try { document.execCommand('copy'); } finally { area.remove(); }
+      return Promise.resolve();
+    }
+
+    document.getElementById('copySchema')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      await copyText(document.getElementById('logSchema').textContent.trim());
+      const previous = button.textContent;
+      button.textContent = '已复制';
+      setTimeout(() => button.textContent = previous, 1300);
+    });
+
+    function initScoutChecklist() {
+      const checks = [...document.querySelectorAll('[data-scout-check]')];
+      const saved = JSON.parse(safeStorage.get('dualCameraScoutChecklist') || '{}');
+      checks.forEach(cb => {
+        cb.checked = Boolean(saved[cb.dataset.scoutCheck]);
+        cb.addEventListener('change', updateScoutChecklist);
+      });
+      updateScoutChecklist();
+    }
+
+    function updateScoutChecklist() {
+      const checks = [...document.querySelectorAll('[data-scout-check]')];
+      if (!checks.length) return;
+      const state = {};
+      checks.forEach(cb => state[cb.dataset.scoutCheck] = cb.checked);
+      safeStorage.set('dualCameraScoutChecklist', JSON.stringify(state));
+      const done = checks.filter(cb => cb.checked).length;
+      document.getElementById('scoutProgressText').textContent = `${done} / ${checks.length}`;
+      document.getElementById('scoutProgressBar').style.width = `${done / checks.length * 100}%`;
+    }
+
+    document.getElementById('resetScoutChecklist')?.addEventListener('click', () => {
+      safeStorage.remove('dualCameraScoutChecklist');
+      document.querySelectorAll('[data-scout-check]').forEach(cb => cb.checked = false);
+      updateScoutChecklist();
+    });
+
+
+    // Radar chart
+    const canvas = document.getElementById('radarCanvas');
+    const ctx = canvas.getContext('2d');
+    const radarAxes = ['创新性','两周可行性','发表概率','抗风险能力'];
+    const activeRadar = Object.fromEntries(directions.map(d => [d.id, true]));
+
+    function hexToRgba(hex, alpha) {
+      const h = hex.replace('#','');
+      const bigint = parseInt(h, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    function drawRadar() {
+      const width = canvas.width, height = canvas.height;
+      ctx.clearRect(0,0,width,height);
+      const cx = width/2, cy = height/2 + 5, radius = Math.min(width,height)*0.34;
+      const count = radarAxes.length;
+      const angleFor = i => -Math.PI/2 + i * (Math.PI*2/count);
+
+      ctx.font = '12px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      for (let level=1; level<=5; level++) {
+        ctx.beginPath();
+        for (let i=0;i<count;i++) {
+          const r = radius * level/5;
+          const x = cx + Math.cos(angleFor(i))*r;
+          const y = cy + Math.sin(angleFor(i))*r;
+          if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = level===5 ? '#bac7d4' : '#dce3ea';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      for (let i=0;i<count;i++) {
+        const a = angleFor(i);
+        ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(a)*radius,cy+Math.sin(a)*radius);
+        ctx.strokeStyle = '#d5dde6'; ctx.stroke();
+        const labelR = radius + 34;
+        ctx.fillStyle = '#405a72';
+        ctx.fillText(radarAxes[i], cx+Math.cos(a)*labelR, cy+Math.sin(a)*labelR);
+      }
+
+      directions.forEach(d => {
+        if (!activeRadar[d.id]) return;
+        const vals = [d.innovation, d.feasibility, d.publish, d.robustness];
+        ctx.beginPath();
+        vals.forEach((v,i) => {
+          const r = radius * v/5;
+          const x = cx + Math.cos(angleFor(i))*r;
+          const y = cy + Math.sin(angleFor(i))*r;
+          if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        });
+        ctx.closePath();
+        ctx.fillStyle = hexToRgba(d.color, .09);
+        ctx.strokeStyle = d.color;
+        ctx.lineWidth = 2;
+        ctx.fill(); ctx.stroke();
+        vals.forEach((v,i) => {
+          const r = radius * v/5;
+          const x = cx + Math.cos(angleFor(i))*r;
+          const y = cy + Math.sin(angleFor(i))*r;
+          ctx.beginPath(); ctx.arc(x,y,3.2,0,Math.PI*2); ctx.fillStyle = d.color; ctx.fill();
+        });
+      });
+    }
+
+    function renderLegend() {
+      const legend = document.getElementById('radarLegend');
+      legend.innerHTML = directions.map(d => `
+        <label>
+          <input type="checkbox" data-radar="${d.id}" checked />
+          <span class="legend-dot" style="background:${d.color}"></span>
+          <span><b>${d.id}</b> ${d.name}</span>
+        </label>`).join('');
+      legend.querySelectorAll('input').forEach(cb => cb.addEventListener('change', () => {
+        activeRadar[cb.dataset.radar] = cb.checked;
+        drawRadar();
+      }));
+    }
+
+    // Active section tracking
+    const navLinks = [...document.querySelectorAll('.side-nav a')];
+    const trackedSections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+      if (!visible) return;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${visible.target.id}`));
+    }, { rootMargin: '-20% 0px -65% 0px', threshold: [0, .2, .5] });
+    trackedSections.forEach(s => observer.observe(s));
+
+    renderScoutScoreTable();
+    initScoutChecklist();
+    renderOverview();
+    renderAudit();
+    renderLegend();
+    drawRadar();
+  </script>
+</body>
+</html>

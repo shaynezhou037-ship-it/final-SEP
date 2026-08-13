@@ -1,0 +1,43 @@
+{
+  "data_revision_id": "20260813_confirmed_manual_reading_corrections_v2",
+  "planned_trials": 108,
+  "executed_rows_saved": 44,
+  "measured_trials": 44,
+  "remaining_unexecuted": 64,
+  "remaining_without_physical_measurement": 64,
+  "complete": false,
+  "by_method": {
+    "Oracle": {
+      "n": 11,
+      "mean_mm": 1.2261289481913475,
+      "rmse_mm": 1.461630471892139,
+      "median_mm": 1.118033988749895,
+      "sd_mm": 0.8344270984621114,
+      "max_mm": 2.5
+    },
+    "Affine": {
+      "n": 11,
+      "mean_mm": 3.2127963509805744,
+      "rmse_mm": 3.519426606190792,
+      "median_mm": 3.0413812651491097,
+      "sd_mm": 1.5068953407050187,
+      "max_mm": 5.830951894845301
+    },
+    "Homography": {
+      "n": 11,
+      "mean_mm": 2.2488297024475137,
+      "rmse_mm": 2.7136021011998723,
+      "median_mm": 1.8027756377319946,
+      "sd_mm": 1.592809300050954,
+      "max_mm": 4.6097722286464435
+    },
+    "PnP_IPPE": {
+      "n": 11,
+      "mean_mm": 2.096082696002223,
+      "rmse_mm": 2.3979157616563596,
+      "median_mm": 1.8027756377319946,
+      "sd_mm": 1.221507701437882,
+      "max_mm": 4.123105625617661
+    }
+  }
+}

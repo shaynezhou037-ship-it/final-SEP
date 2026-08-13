@@ -1,0 +1,58 @@
+{
+  "revision_id": "20260813_confirmed_manual_reading_corrections_v2",
+  "revised_at": "2026-08-13",
+  "reason": "The experimenter verified three pointer X readings from the original source evidence. The original values were manual scale-reading/transcription errors.",
+  "policy": "Only experimenter-confirmed source readings were corrected. Robot commands, T105 feedback, frozen vision predictions, and all other trials were left unchanged.",
+  "corrections": [
+    {
+      "trial_uid": "R1-T05-PnP_IPPE",
+      "field": "measured_pointer_x_mm",
+      "original_value": -6.0,
+      "corrected_value": -16.0,
+      "evidence": "experimenter photo verification",
+      "recomputed_fields": {
+        "e2e_dx_mm": 0.0,
+        "e2e_dy_mm": 0.0,
+        "e2e_xy_error_mm": 0.0,
+        "downstream_dx_mm": -0.2881345288507191,
+        "downstream_dy_mm": -0.08038887249006166,
+        "downstream_xy_error_mm": 0.2991385590930218
+      }
+    },
+    {
+      "trial_uid": "R1-T05-Oracle",
+      "field": "measured_pointer_x_mm",
+      "original_value": -7.5,
+      "corrected_value": -17.5,
+      "evidence": "experimenter photo verification",
+      "recomputed_fields": {
+        "e2e_dx_mm": -1.5,
+        "e2e_dy_mm": 0.0,
+        "e2e_xy_error_mm": 1.5,
+        "downstream_dx_mm": -1.5,
+        "downstream_dy_mm": 0.0,
+        "downstream_xy_error_mm": 1.5
+      }
+    },
+    {
+      "trial_uid": "R2-T02-Homography",
+      "field": "measured_pointer_x_mm",
+      "original_value": -17.5,
+      "corrected_value": -12.5,
+      "evidence": "experimenter source-reading verification",
+      "recomputed_fields": {
+        "e2e_dx_mm": 3.5,
+        "e2e_dy_mm": 3.0,
+        "e2e_xy_error_mm": 4.6097722286464435,
+        "downstream_dx_mm": 0.9672552596992059,
+        "downstream_dy_mm": 0.6370736123543992,
+        "downstream_xy_error_mm": 1.1582078936762872
+      }
+    }
+  ],
+  "summary_files_recomputed": [
+    "E4A_live_summary.json",
+    "E4A_metadata.json:live_summary"
+  ],
+  "unresolved_review_candidates": []
+}

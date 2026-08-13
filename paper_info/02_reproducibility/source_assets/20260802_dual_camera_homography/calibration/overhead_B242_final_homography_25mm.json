@@ -1,0 +1,149 @@
+{
+  "camera_name": "camera_overhead_B242",
+  "camera_role": "overhead",
+  "serial_number": "HK100QB5311M2B242",
+  "source_image": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\homography_final_input\\Color_1.bmp",
+  "image_size_px": {
+    "width": 640,
+    "height": 400
+  },
+  "chessboard_inner_corners": {
+    "columns": 8,
+    "rows": 6
+  },
+  "measured_square_size_mm": 25.0,
+  "intrinsics_source": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\intrinsic_output\\camera_intrinsics.json",
+  "camera_matrix_K": [
+    [
+      402.68419783736783,
+      0.0,
+      320.65608777126454
+    ],
+    [
+      0.0,
+      402.8661657950663,
+      204.12211088684393
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "distortion_coefficients_D": [
+    0.01865811182268223,
+    -0.04790715572964584,
+    -0.00027276537922026506,
+    -0.00010615928361129637,
+    0.026360804405568934
+  ],
+  "raw_baseline": {
+    "detector": "findChessboardCornersSB",
+    "H_raw_image_to_board": [
+      [
+        201.74243382978688,
+        67.69758445218781,
+        -66363.67415351368
+      ],
+      [
+        -5.373452214641992,
+        321.67825676414117,
+        -89194.87209066263
+      ],
+      [
+        -0.004757632653049019,
+        0.5038164882583318,
+        1.0
+      ]
+    ],
+    "all_point_error_mm": {
+      "count": 48,
+      "mean": 0.21087223883094375,
+      "rmse": 0.2504574228379544,
+      "median": 0.18476309173914052,
+      "max": 0.6988019644327514
+    },
+    "holdout_error_mm": {
+      "count": 12,
+      "mean": 0.21432581779643492,
+      "rmse": 0.2408570155373229,
+      "median": 0.19696961486047626,
+      "max": 0.4591735725382263
+    }
+  },
+  "formal_undistorted_mapping": {
+    "detector": "findChessboardCornersSB",
+    "undistortion_projection_matrix": "K",
+    "H_undistorted_pixel_to_board": [
+      [
+        216.53275190151626,
+        72.60508328290098,
+        -71226.84673967779
+      ],
+      [
+        -5.841825148626476,
+        345.537543964287,
+        -95775.39586323562
+      ],
+      [
+        -0.004692244862983893,
+        0.5401556927442787,
+        1.0
+      ]
+    ],
+    "H_train_only_for_validation": [
+      [
+        121.05754641004539,
+        40.53940906421404,
+        -39802.59428161029
+      ],
+      [
+        -3.336530815882095,
+        193.19341179629222,
+        -53527.798430453455
+      ],
+      [
+        -0.003391030617846723,
+        0.30141897041616866,
+        0.9999999999999999
+      ]
+    ],
+    "all_point_error_mm": {
+      "count": 48,
+      "mean": 0.20322073849184483,
+      "rmse": 0.24013160018267138,
+      "median": 0.17952025550737805,
+      "max": 0.6662634289096393
+    },
+    "holdout_error_mm": {
+      "count": 12,
+      "mean": 0.20035382491491496,
+      "rmse": 0.22631616736968915,
+      "median": 0.185340642208161,
+      "max": 0.4255985051545226
+    }
+  },
+  "runtime_pixel_mapping": {
+    "step_1": "Undistort raw pixel with cv2.undistortPoints(raw_pixel, K, D, P=K).",
+    "step_2": "Apply H_undistorted_pixel_to_board to the undistorted pixel."
+  },
+  "board_coordinate_definition": {
+    "corner_0": [
+      0.0,
+      0.0
+    ],
+    "corner_7": [
+      175.0,
+      0.0
+    ],
+    "corner_40": [
+      0.0,
+      125.0
+    ],
+    "corner_47": [
+      175.0,
+      125.0
+    ],
+    "unit": "mm"
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "camera_name": "camera_overhead_B242",
+  "camera_role": "overhead",
+  "serial_number": "HK100QB5311M2B242",
+  "device_index_at_capture": 0,
+  "image_size_px": {
+    "width": 640,
+    "height": 400
+  },
+  "chessboard_inner_corners": {
+    "columns": 8,
+    "rows": 6
+  },
+  "measured_square_size_mm": 25.0,
+  "input_image_count": 42,
+  "accepted_image_count": 42,
+  "rejected_image_count": 0,
+  "opencv_rms_reprojection_error_px": 0.17380480878542842,
+  "mean_per_view_reprojection_rmse_px": 0.1686860489273869,
+  "max_per_view_reprojection_rmse_px": 0.29612608609739055,
+  "worst_image": {
+    "name": "Color_tilt_004.bmp",
+    "rmse_px": 0.29612608609739055
+  },
+  "camera_matrix": [
+    [
+      402.68419783736783,
+      0.0,
+      320.65608777126454
+    ],
+    [
+      0.0,
+      402.8661657950663,
+      204.12211088684393
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "distortion_model": "plumb_bob",
+  "distortion_coefficients": [
+    0.01865811182268223,
+    -0.04790715572964584,
+    -0.00027276537922026506,
+    -0.00010615928361129637,
+    0.026360804405568934
+  ],
+  "optimal_new_camera_matrix_alpha_1": [
+    [
+      401.5056101373511,
+      0.0,
+      320.57134329787283
+    ],
+    [
+      0.0,
+      401.72025984387824,
+      203.98171058478138
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "valid_pixel_roi": {
+    "x": 1,
+    "y": 1,
+    "width": 638,
+    "height": 397
+  },
+  "accepted_images": [
+    "Color_flat_001.bmp",
+    "Color_flat_002.bmp",
+    "Color_flat_003.bmp",
+    "Color_flat_004.bmp",
+    "Color_flat_005.bmp",
+    "Color_flat_006.bmp",
+    "Color_flat_007.bmp",
+    "Color_flat_008.bmp",
+    "Color_flat_009.bmp",
+    "Color_flat_010.bmp",
+    "Color_flat_011.bmp",
+    "Color_flat_012.bmp",
+    "Color_flat_013.bmp",
+    "Color_flat_014.bmp",
+    "Color_flat_015.bmp",
+    "Color_flat_016.bmp",
+    "Color_flat_017.bmp",
+    "Color_flat_018.bmp",
+    "Color_flat_019.bmp",
+    "Color_flat_020.bmp",
+    "Color_flat_021.bmp",
+    "Color_flat_022.bmp",
+    "Color_tilt_001.bmp",
+    "Color_tilt_002.bmp",
+    "Color_tilt_004.bmp",
+    "Color_tilt_005.bmp",
+    "Color_tilt_006.bmp",
+    "Color_tilt_007.bmp",
+    "Color_tilt_008.bmp",
+    "Color_tilt_009.bmp",
+    "Color_tilt_010.bmp",
+    "Color_tilt_011.bmp",
+    "Color_tilt_012.bmp",
+    "Color_tilt_013.bmp",
+    "Color_tilt_014.bmp",
+    "Color_tilt_015.bmp",
+    "Color_tilt_016.bmp",
+    "Color_tilt_017.bmp",
+    "Color_tilt_018.bmp",
+    "Color_tilt_019.bmp",
+    "Color_tilt_020.bmp",
+    "Color_tilt_021.bmp"
+  ],
+  "rejected_images": [],
+  "per_image_reprojection_rmse_px": [
+    {
+      "name": "Color_flat_001.bmp",
+      "rmse_px": 0.15938101948795888
+    },
+    {
+      "name": "Color_flat_002.bmp",
+      "rmse_px": 0.15583053551506537
+    },
+    {
+      "name": "Color_flat_003.bmp",
+      "rmse_px": 0.18529893471663292
+    },
+    {
+      "name": "Color_flat_004.bmp",
+      "rmse_px": 0.17573187982465535
+    },
+    {
+      "name": "Color_flat_005.bmp",
+      "rmse_px": 0.16650683157132573
+    },
+    {
+      "name": "Color_flat_006.bmp",
+      "rmse_px": 0.1494596760755259
+    },
+    {
+      "name": "Color_flat_007.bmp",
+      "rmse_px": 0.14421837035859666
+    },
+    {
+      "name": "Color_flat_008.bmp",
+      "rmse_px": 0.14667163323894214
+    },
+    {
+      "name": "Color_flat_009.bmp",
+      "rmse_px": 0.2801241460469689
+    },
+    {
+      "name": "Color_flat_010.bmp",
+      "rmse_px": 0.14560960243134471
+    },
+    {
+      "name": "Color_flat_011.bmp",
+      "rmse_px": 0.14089196745778773
+    },
+    {
+      "name": "Color_flat_012.bmp",
+      "rmse_px": 0.16198718970035247
+    },
+    {
+      "name": "Color_flat_013.bmp",
+      "rmse_px": 0.16144871234429042
+    },
+    {
+      "name": "Color_flat_014.bmp",
+      "rmse_px": 0.1850227079598975
+    },
+    {
+      "name": "Color_flat_015.bmp",
+      "rmse_px": 0.16811823846380472
+    },
+    {
+      "name": "Color_flat_016.bmp",
+      "rmse_px": 0.2023247857209691
+    },
+    {
+      "name": "Color_flat_017.bmp",
+      "rmse_px": 0.17087079505797503
+    },
+    {
+      "name": "Color_flat_018.bmp",
+      "rmse_px": 0.16318041526123325
+    },
+    {
+      "name": "Color_flat_019.bmp",
+      "rmse_px": 0.15162051137733482
+    },
+    {
+      "name": "Color_flat_020.bmp",
+      "rmse_px": 0.14930424986928806
+    },
+    {
+      "name": "Color_flat_021.bmp",
+      "rmse_px": 0.17063999252509507
+    },
+    {
+      "name": "Color_flat_022.bmp",
+      "rmse_px": 0.141251921609028
+    },
+    {
+      "name": "Color_tilt_001.bmp",
+      "rmse_px": 0.24094540733938397
+    },
+    {
+      "name": "Color_tilt_002.bmp",
+      "rmse_px": 0.2417208575185816
+    },
+    {
+      "name": "Color_tilt_004.bmp",
+      "rmse_px": 0.29612608609739055
+    },
+    {
+      "name": "Color_tilt_005.bmp",
+      "rmse_px": 0.11945076348819018
+    },
+    {
+      "name": "Color_tilt_006.bmp",
+      "rmse_px": 0.11741989061096321
+    },
+    {
+      "name": "Color_tilt_007.bmp",
+      "rmse_px": 0.12184788084304485
+    },
+    {
+      "name": "Color_tilt_008.bmp",
+      "rmse_px": 0.10386343321196767
+    },
+    {
+      "name": "Color_tilt_009.bmp",
+      "rmse_px": 0.14253274639643013
+    },
+    {
+      "name": "Color_tilt_010.bmp",
+      "rmse_px": 0.20681032052769358
+    },
+    {
+      "name": "Color_tilt_011.bmp",
+      "rmse_px": 0.18724466859882555
+    },
+    {
+      "name": "Color_tilt_012.bmp",
+      "rmse_px": 0.1687985262152212
+    },
+    {
+      "name": "Color_tilt_013.bmp",
+      "rmse_px": 0.21469113391260586
+    },
+    {
+      "name": "Color_tilt_014.bmp",
+      "rmse_px": 0.16252308071804947
+    },
+    {
+      "name": "Color_tilt_015.bmp",
+      "rmse_px": 0.20451993817725478
+    },
+    {
+      "name": "Color_tilt_016.bmp",
+      "rmse_px": 0.13757763561961073
+    },
+    {
+      "name": "Color_tilt_017.bmp",
+      "rmse_px": 0.09926169622420333
+    },
+    {
+      "name": "Color_tilt_018.bmp",
+      "rmse_px": 0.17890639117705925
+    },
+    {
+      "name": "Color_tilt_019.bmp",
+      "rmse_px": 0.13134422439573024
+    },
+    {
+      "name": "Color_tilt_020.bmp",
+      "rmse_px": 0.12529558757325596
+    },
+    {
+      "name": "Color_tilt_021.bmp",
+      "rmse_px": 0.20843966969071412
+    }
+  ],
+  "notes": [
+    "K/D are valid for this camera serial number at 640x400 color resolution.",
+    "Moving the camera does not invalidate intrinsics; changing resolution or device does."
+  ]
+}

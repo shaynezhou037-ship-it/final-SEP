@@ -1,0 +1,126 @@
+{
+  "run_id": "20260811_195125",
+  "created_at": "2026-08-11T19:51:25",
+  "status": "IN_PROGRESS",
+  "formal_experiment": "E4-A",
+  "camera": "ihawk1",
+  "n_targets": 9,
+  "methods": [
+    "Oracle",
+    "Affine",
+    "Homography",
+    "PnP_IPPE"
+  ],
+  "robot_repeats": 3,
+  "planned_physical_trials": 108,
+  "freeze_run": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958",
+  "frozen_vision_results": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/E4_heldout_model_results.csv",
+  "frozen_targets": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/E4_formal_9targets.csv",
+  "design": {
+    "target_order_seed": 20260811,
+    "method_order": "rotating 4x4 Latin cycle",
+    "fresh_vision_during_robot_trial": false,
+    "reason": "Use pre-frozen 9-point vision predictions. Three repeats therefore measure downstream robot propagation."
+  },
+  "paper_to_robot": {
+    "robot_x": [
+      -0.074105303,
+      0.9922592,
+      187.854293495
+    ],
+    "robot_y": [
+      -0.986716324,
+      -0.006933251,
+      -4.851741339
+    ],
+    "robot_z": [
+      0.001405397,
+      0.006345201,
+      -118.909081155
+    ]
+  },
+  "robot_execution": {
+    "base_pid_p": 16,
+    "base_pid_i": 8,
+    "controller": "T104 only",
+    "extra_t101_correction": false,
+    "target_tit_rad": 1.5,
+    "travel_spd": 0.05,
+    "descent_spd": 0.02
+  },
+  "contact_protocol": {
+    "high_relative_to_pred_surface_mm": 40.0,
+    "contact_relative_to_pred_surface_mm": 10.0
+  },
+  "primary_outcome": "physical paper endpoint XY error relative to known paper GT",
+  "t105_role": "internal execution diagnostic only; not independent GT",
+  "sessions": [
+    {
+      "session_id": "20260811_195145",
+      "started_at": "2026-08-11T19:51:45",
+      "serial_port": "/dev/ttyUSB0",
+      "status": "STOPPED_BY_USER",
+      "completed_trial_uids": [],
+      "fixed_start_t105": {
+        "T": 1051,
+        "x": 345.3271732,
+        "y": 13.24962721,
+        "z": 208.5945462,
+        "tit": 0.044485443,
+        "b": 0.03834952,
+        "s": 0.001533981,
+        "e": 1.61681575,
+        "t": -0.003067962,
+        "r": -0.001533981,
+        "g": 3.129320807,
+        "tB": -108,
+        "tS": 44,
+        "tE": 132,
+        "tT": 0,
+        "tR": 20
+      },
+      "final_start_t105": {
+        "T": 1051,
+        "x": 343.5025335,
+        "y": 13.7073523,
+        "z": 188.7978593,
+        "tit": 0.065961174,
+        "b": 0.0398835,
+        "s": 0.003067962,
+        "e": 1.727262367,
+        "t": -0.093572828,
+        "r": 0,
+        "g": 1.081456455,
+        "tB": -143,
+        "tS": 48,
+        "tE": 148,
+        "tT": 52,
+        "tR": 0
+      },
+      "ended_at": "2026-08-11T19:54:17"
+    }
+  ],
+  "last_updated": "2026-08-11T19:54:17",
+  "live_summary": {
+    "planned_trials": 108,
+    "executed_rows_saved": 0,
+    "measured_trials": 0,
+    "remaining_unexecuted": 108,
+    "remaining_without_physical_measurement": 108,
+    "complete": false,
+    "by_method": {
+      "Oracle": {
+        "n": 0
+      },
+      "Affine": {
+        "n": 0
+      },
+      "Homography": {
+        "n": 0
+      },
+      "PnP_IPPE": {
+        "n": 0
+      }
+    }
+  }
+}

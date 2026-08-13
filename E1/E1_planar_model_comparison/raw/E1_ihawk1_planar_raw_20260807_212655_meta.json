@@ -1,0 +1,39 @@
+{
+  "experiment": "E1 planar model comparison",
+  "camera": "ihawk1",
+  "image_topic": "/ihawk1/color/color_raw",
+  "camera_info_topic": "/ihawk1/color/camera_info",
+  "cols_inner_corners": 6,
+  "rows_inner_corners": 8,
+  "square_mm": 25.0,
+  "accepted_frames": 50,
+  "K": [
+    [
+      401.77020263671875,
+      0.0,
+      322.1313781738281
+    ],
+    [
+      0.0,
+      401.9191589355469,
+      202.54229736328125
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "D": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "distortion_model": "plumb_bob",
+  "image_width": 640,
+  "image_height": 400,
+  "primary_input_for_all_models": "undistorted pixel coordinates",
+  "ground_truth": "known planar board XY, Z=0"
+}

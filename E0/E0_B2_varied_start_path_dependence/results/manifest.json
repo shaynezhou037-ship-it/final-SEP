@@ -1,0 +1,13 @@
+{
+  "experiment_id": "E0-B2",
+  "run_timestamp": "20260807_204040",
+  "csv": {
+    "path": "/mnt/c/Users/ASUS/Desktop/paper/E0/E0_B2_varied_start_path_dependence/raw/E0B2_varied_start_20arrivals_20260807_204040.csv",
+    "sha256": "320a0ed9af8704c6a9a81c129fb5db5bf3a220e282b0cfbd6631b2d9fe47aa2c"
+  },
+  "script": {
+    "path": "/mnt/c/Users/ASUS/Desktop/paper/E0/E0_B2_varied_start_path_dependence/scripts/e0b2_varied_start_path_dependence.py",
+    "sha256": "61f9458b1417fd296d67286312a89653a5f929d84e77af2d06cc9c4e346c4cb5"
+  },
+  "interpretation": "/mnt/c/Users/ASUS/Desktop/paper/E0/E0_B2_varied_start_path_dependence/results/E0B2_varied_start_20arrivals_20260807_204040_interpretation.json"
+}

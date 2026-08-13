@@ -1,0 +1,18 @@
+board_type: checkerboard_with_external_aruco
+
+checkerboard:
+  squares_x: 9
+  squares_y: 7
+  inner_corners_x: 8
+  inner_corners_y: 6
+  square_length_m: 0.025
+  measured_width_m: 0.225
+  measured_height_m: 0.175
+
+aruco:
+  dictionary: DICT_4X4_50
+  marker_length_m: 0.050
+  target_marker_id: 0
+  note: external_markers_not_part_of_checkerboard_geometry
+
+units: metres

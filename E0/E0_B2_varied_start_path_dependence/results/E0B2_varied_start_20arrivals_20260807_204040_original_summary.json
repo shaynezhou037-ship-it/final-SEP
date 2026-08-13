@@ -1,0 +1,199 @@
+{
+  "experiment": "E0-B Robot Repeatability",
+  "method": "Yunkai Task10 Final target scan once; fixed target; manual signed XYZ offsets relative to Trial 1",
+  "run_id": "20260807_204040",
+  "trials_requested": 20,
+  "random_seed": 20260807,
+  "serial_port": "/dev/ttyUSB0",
+  "baud": 115200,
+  "yunkai_core_file": "/mnt/c/Users/ASUS/Desktop/FURP-2026-YUNKAI-CHOU-Mobile_Manipulator/tools/dual_berxel_roarm/task10_guarded_approach.py",
+  "scan_target_mm": {
+    "x": 282.950556089896,
+    "y": 20.809018068040835,
+    "z": -75.97057650412663
+  },
+  "fixed_final_target_mm": {
+    "x": 282.950556089896,
+    "y": 20.809018068040835,
+    "z": -65.97057650412663
+  },
+  "clearance_mm": 10.0,
+  "max_tracking_error_mm": 45.0,
+  "measurement_resolution_mm": 1.0,
+  "measurement_protocol": "Threshold/censored manual needle-paper measurement: below-resolution observations are stored without numeric XYZ.",
+  "baseline_definition": "Trial 1 physical endpoint; baseline only. Comparison statistics exclude Trial 1.",
+  "successful_motion_arrivals": 20,
+  "comparison_trials_excluding_baseline": 19,
+  "threshold_result": {
+    "measurement_resolution_mm_approx": 1.0,
+    "below_resolution_count": 1,
+    "measurable_exceedance_count": 18,
+    "unclassified_count": 0,
+    "exceedance_rate": 0.9473684210526315,
+    "measurable_exceedance_events": [
+      {
+        "trial_index": 2,
+        "dx_mm": -7.0,
+        "dy_mm": -1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 7.0710678118654755,
+        "3d_offset_mm": 7.0710678118654755,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 4,
+        "dx_mm": 21.0,
+        "dy_mm": 1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 21.02379604162864,
+        "3d_offset_mm": 21.02379604162864,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 5,
+        "dx_mm": -7.0,
+        "dy_mm": 0.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 7.0,
+        "3d_offset_mm": 7.0,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 6,
+        "dx_mm": -7.0,
+        "dy_mm": -1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 7.0710678118654755,
+        "3d_offset_mm": 7.0710678118654755,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 7,
+        "dx_mm": 14.0,
+        "dy_mm": 1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 14.035668847618199,
+        "3d_offset_mm": 14.035668847618199,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 8,
+        "dx_mm": -7.0,
+        "dy_mm": -1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 7.0710678118654755,
+        "3d_offset_mm": 7.0710678118654755,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 9,
+        "dx_mm": 12.0,
+        "dy_mm": 0.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 12.0,
+        "3d_offset_mm": 12.0,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 10,
+        "dx_mm": 12.0,
+        "dy_mm": 1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 12.041594578792296,
+        "3d_offset_mm": 12.041594578792296,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 11,
+        "dx_mm": 12.0,
+        "dy_mm": 1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 12.041594578792296,
+        "3d_offset_mm": 12.041594578792296,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 12,
+        "dx_mm": -4.0,
+        "dy_mm": -1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 4.123105625617661,
+        "3d_offset_mm": 4.123105625617661,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 13,
+        "dx_mm": -4.0,
+        "dy_mm": 0.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 4.0,
+        "3d_offset_mm": 4.0,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 14,
+        "dx_mm": -7.0,
+        "dy_mm": -1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 7.0710678118654755,
+        "3d_offset_mm": 7.0710678118654755,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 15,
+        "dx_mm": -5.0,
+        "dy_mm": 0.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 5.0,
+        "3d_offset_mm": 5.0,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 16,
+        "dx_mm": 13.0,
+        "dy_mm": 1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 13.038404810405298,
+        "3d_offset_mm": 13.038404810405298,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 17,
+        "dx_mm": -7.0,
+        "dy_mm": 0.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 7.0,
+        "3d_offset_mm": 7.0,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 18,
+        "dx_mm": 9.0,
+        "dy_mm": 0.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 9.0,
+        "3d_offset_mm": 9.0,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 19,
+        "dx_mm": 2.0,
+        "dy_mm": 1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 2.23606797749979,
+        "3d_offset_mm": 2.23606797749979,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      },
+      {
+        "trial_index": 20,
+        "dx_mm": -5.0,
+        "dy_mm": -1.0,
+        "dz_mm": 0.0,
+        "xy_offset_mm": 5.0990195135927845,
+        "3d_offset_mm": 5.0990195135927845,
+        "notes": "At least one axis clearly exceeded ~1.00 mm"
+      }
+    ]
+  },
+  "statistics_note": "Sub-resolution observations are censored and are NOT converted to exact zeros. Therefore no continuous repeatability SD is reported from the manual needle-paper measurements. The primary result is the count/rate of arrivals with a clearly resolvable displacement above the practical measurement threshold."
+}

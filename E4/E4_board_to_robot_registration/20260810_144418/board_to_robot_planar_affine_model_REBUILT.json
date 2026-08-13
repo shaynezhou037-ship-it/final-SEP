@@ -1,0 +1,46 @@
+{
+  "schema": "board_to_robot_planar_affine",
+  "sample_count": 20,
+  "board_z_assumption_mm": 0.0,
+  "input": [
+    "board_x_mm",
+    "board_y_mm",
+    "1"
+  ],
+  "output": [
+    "robot_x_mm",
+    "robot_y_mm",
+    "robot_z_mm"
+  ],
+  "robot_x_coefficients": [
+    -0.0741053026803481,
+    0.9922592003849893,
+    187.8542934950161
+  ],
+  "robot_y_coefficients": [
+    -0.9867163239231607,
+    -0.006933250739228847,
+    -4.851741339106947
+  ],
+  "robot_z_coefficients": [
+    0.0014053965948974722,
+    0.006345200761604275,
+    -118.90908115507429
+  ],
+  "equations": {
+    "robot_x": "-0.074105303*board_x + 0.992259200*board_y + 187.854293495",
+    "robot_y": "-0.986716324*board_x + -0.006933251*board_y + -4.851741339",
+    "robot_z": "0.001405397*board_x + 0.006345201*board_y + -118.909081155"
+  },
+  "training_fit_only_not_independent_accuracy": {
+    "xy_mean_mm": 3.090894464285472,
+    "xy_rmse_mm": 3.3270956776399583,
+    "xy_median_mm": 3.2890928668230597,
+    "xy_max_mm": 4.92894848310009,
+    "three_dimensional_mean_mm": 3.198112397450033,
+    "three_dimensional_rmse_mm": 3.4186681642489636,
+    "three_dimensional_median_mm": 3.527521367876556,
+    "three_dimensional_max_mm": 4.92910681291955
+  },
+  "warning": "Training residual is not independent accuracy. Validate on held-out points before E4 use."
+}

@@ -1,0 +1,149 @@
+{
+  "run_id": "20260808_145501",
+  "experiment": "E2 dual-camera height x XY-grid scan",
+  "created_at": "2026-08-08T14:55:01.627",
+  "ground_truth": {
+    "height": "Manual user-entered height in millimetres relative to the chosen experiment reference plane.",
+    "board_outer_size_mm": [
+      210.0,
+      297.0
+    ],
+    "marker_outer_size_mm": 50.0,
+    "xy_reference": "At every placement the user enters the A4 CENTER XY coordinate in millimetres. The center marker is assumed to coincide with the A4 center.",
+    "xy_axis_convention": {
+      "+X": "right on the board",
+      "+Y": "up on the board"
+    },
+    "rotation_assumption_deg": 0.0,
+    "xy_assumption": "The A4 board is translated only, without rotation. Four corner-marker OUTER EDGES align with the A4 edges; the center marker is centered.",
+    "marker_local_xy_from_board_center_mm": {
+      "TL": [
+        -80.0,
+        123.5
+      ],
+      "TR": [
+        80.0,
+        123.5
+      ],
+      "C": [
+        0.0,
+        0.0
+      ],
+      "BL": [
+        -80.0,
+        -123.5
+      ],
+      "BR": [
+        80.0,
+        -123.5
+      ]
+    }
+  },
+  "aruco": {
+    "dictionary": "DICT_4X4_50",
+    "selected_marker_ids": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "marker_id_to_position": {
+      "4": "C",
+      "0": "TL",
+      "1": "TR",
+      "2": "BL",
+      "3": "BR"
+    },
+    "position_mapping_basis": "First valid ihawk1 frame. Center = marker nearest the five-marker image centroid; remaining four labelled by image top/bottom and left/right. Mapping is then frozen by marker ID for both cameras."
+  },
+  "cameras": {
+    "ihawk1": {
+      "role": "primary",
+      "color_topic": "/ihawk1/color/color_raw",
+      "camera_info_topic": "/ihawk1/color/camera_info",
+      "depth_topic": "/ihawk1/depth/depth_raw",
+      "K": [
+        [
+          401.77020263671875,
+          0.0,
+          322.1313781738281
+        ],
+        [
+          0.0,
+          401.9191589355469,
+          202.54229736328125
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "distortion_model": "plumb_bob",
+      "camera_info_width": 640,
+      "camera_info_height": 400,
+      "color_encoding": "rgb8",
+      "depth_encoding": ""
+    },
+    "ihawk2": {
+      "role": "secondary",
+      "color_topic": "/ihawk2/color/color_raw",
+      "camera_info_topic": "/ihawk2/color/camera_info",
+      "depth_topic": "/ihawk2/depth/depth_raw",
+      "K": [
+        [
+          391.3234558105469,
+          0.0,
+          320.85333251953125
+        ],
+        [
+          0.0,
+          391.3234558105469,
+          202.9705047607422
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "distortion_model": "plumb_bob",
+      "camera_info_width": 640,
+      "camera_info_height": 400,
+      "color_encoding": "rgb8",
+      "depth_encoding": ""
+    }
+  },
+  "collection": {
+    "placements_per_height": 1,
+    "frames_per_placement": 3,
+    "max_pair_delta_ms": 50.0,
+    "depth_aligned_to_color_asserted": false,
+    "depth_roi_radius_px": 2,
+    "raw_color_saved_losslessly": true,
+    "raw_depth_saved_when_available": true,
+    "one_row_per_expected_marker_per_camera_per_frame": true,
+    "missing_marker_rows_are_retained": true
+  },
+  "important_interpretation": [
+    "Manual height is ground truth for Z.",
+    "Camera/PnP/depth values are observations, not ground truth.",
+    "The raw dataset is intended for later offline model comparison.",
+    "PnP in this collector is a diagnostic per-marker camera-frame pose."
+  ]
+}

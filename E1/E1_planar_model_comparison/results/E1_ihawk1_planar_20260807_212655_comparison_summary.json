@@ -1,0 +1,123 @@
+{
+  "experiment": "E1 planar model comparison",
+  "camera": "ihawk1",
+  "fairness": {
+    "same_undistorted_pixels": true,
+    "same_calibration_indices": [
+      0,
+      5,
+      47,
+      42,
+      20,
+      23,
+      9,
+      24,
+      33,
+      12,
+      35,
+      44
+    ],
+    "same_validation_indices": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      43,
+      45,
+      46
+    ],
+    "same_ground_truth": "known board XY, Z=0",
+    "n_calibration_points": 12,
+    "n_validation_points": 36,
+    "accepted_frames": 50
+  },
+  "primary_median_point_accuracy_mm": {
+    "Affine": {
+      "n": 36,
+      "mean_mm": 4.521472079252693,
+      "median_mm": 4.670519125282892,
+      "rmse_mm": 4.8541970154126535,
+      "std_mm": 1.7912699440441693,
+      "p95_mm": 7.725468304121287,
+      "max_mm": 9.161960094214933
+    },
+    "Homography": {
+      "n": 36,
+      "mean_mm": 0.5852027845940372,
+      "median_mm": 0.5701671849209806,
+      "rmse_mm": 0.65973716403692,
+      "std_mm": 0.3089368754077697,
+      "p95_mm": 1.0574857311747086,
+      "max_mm": 1.1971234948720009
+    },
+    "PnP": {
+      "n": 36,
+      "mean_mm": 0.5868963571740355,
+      "median_mm": 0.5858031197426956,
+      "rmse_mm": 0.6614469462238788,
+      "std_mm": 0.30939250289978193,
+      "p95_mm": 1.0045584220444805,
+      "max_mm": 1.2932535493331974
+    }
+  },
+  "framewise_validation_error_mm": {
+    "Affine": {
+      "n": 1800,
+      "mean_mm": 4.521354647893889,
+      "median_mm": 4.677349388676948,
+      "rmse_mm": 4.854712940660578,
+      "std_mm": 1.7684250869727633,
+      "p95_mm": 8.615972120598764,
+      "max_mm": 9.318211445356589
+    },
+    "Homography": {
+      "n": 1800,
+      "mean_mm": 0.5849735619318617,
+      "median_mm": 0.5611487290805575,
+      "rmse_mm": 0.6594907746728446,
+      "std_mm": 0.3046072245587236,
+      "p95_mm": 1.090714680410932,
+      "max_mm": 1.2579899769518605
+    },
+    "PnP": {
+      "n": 1800,
+      "mean_mm": 0.5869772138219941,
+      "median_mm": 0.5872767810822046,
+      "rmse_mm": 0.6614905348816031,
+      "std_mm": 0.3050888212507825,
+      "p95_mm": 1.064645507713811,
+      "max_mm": 1.353804384154454
+    }
+  },
+  "pnp_solver": "IPPE",
+  "interpretation": "Primary comparison uses held-out board points. Models are fitted once from median undistorted calibration-point pixels across the accepted frames, then evaluated on the same held-out locations. Frame-wise statistics use the frozen models and quantify combined model + residual image-localization variation."
+}

@@ -1,0 +1,97 @@
+{
+  "camera": "ihawk1",
+  "input_pixel": "u_undist_median_px, v_undist_median_px",
+  "distortion_used_for_fit": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "camera_matrix": [
+    [
+      401.77020263671875,
+      0.0,
+      322.1313781738281
+    ],
+    [
+      0.0,
+      401.9191589355469,
+      202.54229736328125
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "affine": {
+    "method": "ordinary least squares",
+    "ransac": false,
+    "matrix_2x3_image_to_paper": [
+      [
+        0.8754865238990064,
+        1.8298203987704855,
+        -768.9417858032684
+      ],
+      [
+        -1.1491117658372996,
+        1.3997039229843702,
+        -2.7821749991624762
+      ]
+    ],
+    "rank": 3
+  },
+  "homography": {
+    "method": "cv2.findHomography(method=0)",
+    "ransac": false,
+    "matrix_3x3_image_to_paper": [
+      [
+        43.10114689079391,
+        93.00179488911276,
+        -38336.00504491085
+      ],
+      [
+        -58.1421258165973,
+        70.81411374870414,
+        -0.1841426290485795
+      ],
+      [
+        -0.002626591973741074,
+        0.18964392108101974,
+        1.0
+      ]
+    ]
+  },
+  "pnp": {
+    "method": "cv2.solvePnP",
+    "solver": "SOLVEPNP_IPPE",
+    "object_frame": "paper_frame, Z=0 mm",
+    "rvec_paper_to_camera": [
+      -0.9902259977045744,
+      0.4753144061589566,
+      0.8329116005067079
+    ],
+    "tvec_paper_to_camera_mm": [
+      -1.6549909236131048,
+      88.27444961918117,
+      580.3416850764424
+    ],
+    "prediction": "camera ray intersect paper Z=0"
+  },
+  "calibration_charuco_ids": [
+    0,
+    2,
+    5,
+    7,
+    24,
+    26,
+    29,
+    31,
+    40,
+    42,
+    45,
+    47
+  ],
+  "n_calibration_points": 12
+}

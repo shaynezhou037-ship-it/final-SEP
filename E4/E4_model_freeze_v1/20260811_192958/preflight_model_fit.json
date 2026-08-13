@@ -1,0 +1,121 @@
+{
+  "calibration_csv": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_calibration_v4/20260811_191758/E4_calibration_12spread.csv",
+  "geometry_csv": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_calibration_v4/20260811_191758/E4_charuco_all48_geometry.csv",
+  "opencv_version": "4.5.4",
+  "calibration_ids": [
+    0,
+    2,
+    5,
+    7,
+    24,
+    26,
+    29,
+    31,
+    40,
+    42,
+    45,
+    47
+  ],
+  "heldout_ids": [
+    9,
+    11,
+    14,
+    17,
+    19,
+    22,
+    33,
+    35,
+    38
+  ],
+  "heldout_selection_rule": "predefined 3x3 interior spread from remaining non-calibration ChArUco corners; selected before held-out model errors",
+  "paper_to_robot_used_for_preview_only": {
+    "robot_x": [
+      -0.074105303,
+      0.9922592,
+      187.854293495
+    ],
+    "robot_y": [
+      -0.986716324,
+      -0.006933251,
+      -4.851741339
+    ],
+    "robot_z": [
+      0.001405397,
+      0.006345201,
+      -118.909081155
+    ]
+  },
+  "safe_hover_preview_mm": 40.0,
+  "training_sanity": {
+    "ihawk1": {
+      "affine": {
+        "n": 12,
+        "mean_mm": 6.454232512008931,
+        "rmse_mm": 7.10707921655609,
+        "median_mm": 5.648697897451795,
+        "sd_mm": 3.1077833675520528,
+        "p95_mm": 12.235147113662077,
+        "max_mm": 12.266808473236251
+      },
+      "homography": {
+        "n": 12,
+        "mean_mm": 0.6894955640469155,
+        "rmse_mm": 0.7982501247769702,
+        "median_mm": 0.6472017869324871,
+        "sd_mm": 0.42012871906258936,
+        "p95_mm": 1.3194018785400454,
+        "max_mm": 1.6633035420502025
+      },
+      "pnp_plane_xy": {
+        "n": 12,
+        "mean_mm": 0.7904715944809476,
+        "rmse_mm": 0.9245533858436709,
+        "median_mm": 0.6969365920880009,
+        "sd_mm": 0.5008577605309562,
+        "p95_mm": 1.693457536891293,
+        "max_mm": 2.0588889805123043
+      },
+      "pnp_reprojection_px": {
+        "mean_px": 0.35683562027331206,
+        "rmse_px": 0.4210476765286456,
+        "max_px": 0.9429706382291823
+      },
+      "model_file": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/ihawk1_E4_frozen_models.json"
+    },
+    "ihawk2": {
+      "affine": {
+        "n": 12,
+        "mean_mm": 6.264165878339934,
+        "rmse_mm": 6.7559413311305665,
+        "median_mm": 4.877154862119225,
+        "sd_mm": 2.642925882423752,
+        "p95_mm": 10.09465386933655,
+        "max_mm": 10.127702604828746
+      },
+      "homography": {
+        "n": 12,
+        "mean_mm": 0.39091785944804397,
+        "rmse_mm": 0.49421090502944315,
+        "median_mm": 0.3456422785329907,
+        "sd_mm": 0.3158152149272458,
+        "p95_mm": 0.8527541404135306,
+        "max_mm": 1.1232787445845223
+      },
+      "pnp_plane_xy": {
+        "n": 12,
+        "mean_mm": 0.40658869283082794,
+        "rmse_mm": 0.5245901259956306,
+        "median_mm": 0.31208266726044953,
+        "sd_mm": 0.34622184451995025,
+        "p95_mm": 0.9484543252323601,
+        "max_mm": 1.2987927906954029
+      },
+      "pnp_reprojection_px": {
+        "mean_px": 0.22582079608062933,
+        "rmse_px": 0.277111430963714,
+        "max_px": 0.5829839082067428
+      },
+      "model_file": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/ihawk2_E4_frozen_models.json"
+    }
+  }
+}

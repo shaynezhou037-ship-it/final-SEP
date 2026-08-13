@@ -1,0 +1,186 @@
+{
+  "camera_name": "camera_side_B479",
+  "camera_role": "side",
+  "serial_number": "HK100QB6513M2B479",
+  "source_image": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\homography_final_input\\Color_1.bmp",
+  "image_size_px": {
+    "width": 640,
+    "height": 400
+  },
+  "chessboard_inner_corners": {
+    "columns": 8,
+    "rows": 6
+  },
+  "measured_square_size_mm": 25.0,
+  "intrinsics_source": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\intrinsic_output\\camera_intrinsics.json",
+  "camera_matrix_K": [
+    [
+      402.28410461744414,
+      0.0,
+      317.6323302869204
+    ],
+    [
+      0.0,
+      402.02515535806447,
+      200.7827024910489
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "distortion_coefficients_D": [
+    0.024408559656773868,
+    -0.09666832723857993,
+    -0.0013378832403892434,
+    -0.002780143803559201,
+    0.09504498759834198
+  ],
+  "raw_baseline": {
+    "detector": "findChessboardCornersSB",
+    "H_raw_image_to_board": [
+      [
+        64.86670526248062,
+        231.646478367682,
+        -79871.42607158014
+      ],
+      [
+        -131.9224158057239,
+        140.34239595996033,
+        11786.416518540073
+      ],
+      [
+        -0.00414001550937778,
+        0.36116578136525823,
+        1.0
+      ]
+    ],
+    "all_point_error_mm": {
+      "count": 48,
+      "mean": 0.26999554142982407,
+      "rmse": 0.3291550315771023,
+      "median": 0.20488917010291913,
+      "max": 0.829465823286248
+    },
+    "holdout_error_mm": {
+      "count": 12,
+      "mean": 0.38267663164187765,
+      "rmse": 0.4712016272715199,
+      "median": 0.3745494107906969,
+      "max": 1.1724453729087418
+    }
+  },
+  "formal_undistorted_mapping": {
+    "detector": "findChessboardCornersSB",
+    "undistortion_projection_matrix": "K",
+    "H_undistorted_pixel_to_board": [
+      [
+        72.22046885506539,
+        258.79706922462015,
+        -89162.85289357863
+      ],
+      [
+        -147.3613924400955,
+        156.89706153733212,
+        13133.47733561641
+      ],
+      [
+        -0.004574215064055953,
+        0.4036443277156359,
+        1.0
+      ]
+    ],
+    "H_train_only_for_validation": [
+      [
+        232.48365368951485,
+        840.2326903982957,
+        -288894.45049756794
+      ],
+      [
+        -477.8423074672815,
+        509.5579692278061,
+        42327.84931842276
+      ],
+      [
+        -0.024684657777687788,
+        1.3259911241142444,
+        0.9999999999999999
+      ]
+    ],
+    "all_point_error_mm": {
+      "count": 48,
+      "mean": 0.27371027948503895,
+      "rmse": 0.33585745227864744,
+      "median": 0.19410447914639903,
+      "max": 0.9432415377782617
+    },
+    "holdout_error_mm": {
+      "count": 12,
+      "mean": 0.3731487319584222,
+      "rmse": 0.49553876834328053,
+      "median": 0.2674664003220949,
+      "max": 1.3500715230667037
+    }
+  },
+  "runtime_pixel_mapping": {
+    "step_1": "Undistort raw pixel with cv2.undistortPoints(raw_pixel, K, D, P=K).",
+    "step_2": "Apply H_undistorted_pixel_to_board to the undistorted pixel."
+  },
+  "board_coordinate_definition": {
+    "frame_name": "common_board",
+    "origin": [
+      0.0,
+      0.0
+    ],
+    "x_axis_extent_mm": [
+      0.0,
+      175.0
+    ],
+    "y_axis_extent_mm": [
+      0.0,
+      125.0
+    ],
+    "unit": "mm",
+    "note": "This document now maps side-camera pixels directly into the same board coordinate frame used by the overhead camera."
+  },
+  "coordinate_frame": "common_board",
+  "common_board_alignment": {
+    "applied": true,
+    "reason": "Side-camera checkerboard corner ordering was rotated 180 degrees relative to the overhead/common board frame.",
+    "source_frame": "side_camera_local_board",
+    "target_frame": "common_board",
+    "formula": {
+      "x_common_mm": "175.0 - x_side_mm",
+      "y_common_mm": "125.0 - y_side_mm"
+    },
+    "transform_matrix_T_180": [
+      [
+        -1.0,
+        0.0,
+        175.0
+      ],
+      [
+        0.0,
+        -1.0,
+        125.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "board_extent_mm": {
+      "x": [
+        0.0,
+        175.0
+      ],
+      "y": [
+        0.0,
+        125.0
+      ]
+    },
+    "distance_metrics_note": "The transform is a rigid 180-degree planar rotation, so all existing millimetre error magnitudes remain unchanged."
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "experiment": "E0-A Camera Static Repeatability",
+  "script_version": "v2_subpixel",
+  "phase": "formal",
+  "position": "far",
+  "run_id": "20260807_190004",
+  "dictionary": "DICT_4X4_50",
+  "marker_id": 4,
+  "samples_requested_per_camera": 50,
+  "samples_collected": {
+    "ihawk1": 50,
+    "ihawk2": 50
+  },
+  "sample_interval_s": 0.2,
+  "depth_patch_size": 9,
+  "min_valid_ratio": 0.5,
+  "max_rgb_depth_dt_ms": 80.0,
+  "subpixel_refinement": {
+    "enabled": true,
+    "method": "CORNER_REFINE_SUBPIX",
+    "win_size": 5,
+    "max_iterations": 50,
+    "min_accuracy": 0.01
+  },
+  "depth_encoding": "mono16",
+  "depth_scale_mm": null,
+  "depth_unit_status": "UNVERIFIED_NATIVE_UNIT",
+  "camera_info": {
+    "ihawk1": {
+      "serial": "HK100QB6513M2B479",
+      "frame_id": "ihawk1/berxel_camera_depth_optical_frame",
+      "width": 640,
+      "height": 400,
+      "distortion_model": "plumb_bob",
+      "D": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "K": [
+        401.77020263671875,
+        0.0,
+        322.1313781738281,
+        0.0,
+        401.9191589355469,
+        202.54229736328125,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "P": [
+        401.77020263671875,
+        0.0,
+        322.1313781738281,
+        0.0,
+        0.0,
+        401.9191589355469,
+        202.54229736328125,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    "ihawk2": {
+      "serial": "HK100QB5311M2B242",
+      "frame_id": "ihawk2/berxel_camera_depth_optical_frame",
+      "width": 640,
+      "height": 400,
+      "distortion_model": "plumb_bob",
+      "D": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "K": [
+        391.3234558105469,
+        0.0,
+        320.85333251953125,
+        0.0,
+        391.3234558105469,
+        202.9705047607422,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "P": [
+        391.3234558105469,
+        0.0,
+        320.85333251953125,
+        0.0,
+        0.0,
+        391.3234558105469,
+        202.9705047607422,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "camera_mapping": {
+    "ihawk1": {
+      "serial": "HK100QB6513M2B479",
+      "color_topic": "/ihawk1/color/color_raw",
+      "depth_topic": "/ihawk1/depth/depth_raw",
+      "info_topic": "/ihawk1/depth/camera_info"
+    },
+    "ihawk2": {
+      "serial": "HK100QB5311M2B242",
+      "color_topic": "/ihawk2/color/color_raw",
+      "depth_topic": "/ihawk2/depth/depth_raw",
+      "info_topic": "/ihawk2/depth/camera_info"
+    }
+  }
+}

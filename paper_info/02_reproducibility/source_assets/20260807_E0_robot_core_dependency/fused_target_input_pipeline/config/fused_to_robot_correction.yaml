@@ -1,0 +1,41 @@
+status: provisional_validated
+model: rigid_transform
+description: >
+  Maps the dual-camera fused base point into the
+  RoArm robot-referenced base coordinate.
+
+source_frame: base_link
+target_frame: base_link
+calibration_points: 6
+
+rotation:
+  - [0.98134014, -0.10336585, -0.16213275]
+  - [0.10078440, 0.99461662, -0.02408898]
+  - [0.16374991, 0.00729903, 0.98647488]
+
+translation_mm:
+  x: -10.25263208
+  y: 0.09260867
+  z: -22.17450662
+
+calibration_rmse_mm: 6.3220
+calibration_max_residual_mm: 9.4798
+
+independent_validation:
+  label: P7
+  robot_reference_method: three_touch_mean
+  error_xyz_mm:
+    x: -0.569
+    y: 9.318
+    z: 2.223
+  error_3d_mm: 9.60
+
+usage:
+  allow_coordinate_testing: true
+  allow_rviz_visualization: true
+  allow_low_height_autonomous_motion: false
+
+warnings:
+  - Recalibrate if either camera moves.
+  - Current robot-referenced accuracy is approximately 10 mm.
+  - Do not use for collision-sensitive autonomous grasping.

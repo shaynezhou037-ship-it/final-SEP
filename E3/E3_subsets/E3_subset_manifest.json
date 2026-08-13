@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-08-08T17:31:21",
+  "experiment": "E3 calibration-point quantity and spatial-distribution sensitivity",
+  "source_calibration_pool": "/mnt/c/Users/ASUS/Desktop/paper/E3/E3_split/E3_calibration_candidate_36points.csv",
+  "candidate_points": 36,
+  "point_counts": [
+    4,
+    6,
+    8,
+    12,
+    16,
+    24
+  ],
+  "distributions": {
+    "spread": "100 valid candidate subsets with the highest spatial coverage scores.",
+    "random": "100 uniformly selected valid candidate subsets excluding the selected spread and clustered extremes.",
+    "clustered": "100 valid candidate subsets with the lowest spatial coverage scores."
+  },
+  "spatial_score": "0.5 * normalized convex-hull coverage + 0.5 * normalized mean pairwise distance",
+  "degeneracy_rule": "Subsets with convex-hull coverage below 0.01 are rejected to avoid collinear or near-collinear calibration geometries.",
+  "trials_per_condition": 100,
+  "total_subset_trials": 1800,
+  "random_seed": 20260808,
+  "candidate_reservoir_per_point_count": 12000,
+  "important_statistical_note": "Subset trials are offline calibration-design resamples and are not independent physical experimental repeats.",
+  "outputs": {
+    "subsets": "/mnt/c/Users/ASUS/Desktop/paper/E3/E3_subsets/E3_calibration_subsets.csv",
+    "subset_points": "/mnt/c/Users/ASUS/Desktop/paper/E3/E3_subsets/E3_calibration_subset_points.csv",
+    "design_summary": "/mnt/c/Users/ASUS/Desktop/paper/E3/E3_subsets/E3_subset_design_summary.csv"
+  }
+}

@@ -1,0 +1,23 @@
+# Keep source and metadata line endings stable across Windows/Linux checkouts.
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.bib text eol=lf
+*.log text eol=lf
+
+# Binary research and office artifacts.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bmp binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.npy binary
+*.npz binary
+*.pkl binary

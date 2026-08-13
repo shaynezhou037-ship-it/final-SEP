@@ -1,0 +1,187 @@
+{
+  "success": true,
+  "formal_dataset_frozen": true,
+  "paper_frame": {
+    "x_direction": "physical right",
+    "y_direction": "physical up",
+    "left_bottom_mm": [
+      -116.0,
+      -92.0
+    ],
+    "right_bottom_mm": [
+      109.0,
+      -92.0
+    ],
+    "right_top_mm": [
+      109.0,
+      83.0
+    ],
+    "left_top_mm": [
+      -116.0,
+      83.0
+    ]
+  },
+  "board_to_paper": {
+    "B00_board_mm": [
+      0.0,
+      0.0
+    ],
+    "B00_paper_mm": [
+      -116.0,
+      83.0
+    ],
+    "formula": [
+      "paper_x = -116 + board_x",
+      "paper_y = +83 - board_y"
+    ]
+  },
+  "formal_ids": [
+    0,
+    2,
+    5,
+    7,
+    24,
+    26,
+    29,
+    31,
+    40,
+    42,
+    45,
+    47
+  ],
+  "formal_points": [
+    {
+      "charuco_id": 0,
+      "board_x_mm": 25.0,
+      "board_y_mm": 25.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": -91.0,
+      "paper_y_mm": 58.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 2,
+      "board_x_mm": 75.0,
+      "board_y_mm": 25.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": -41.0,
+      "paper_y_mm": 58.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 5,
+      "board_x_mm": 150.0,
+      "board_y_mm": 25.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": 34.0,
+      "paper_y_mm": 58.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 7,
+      "board_x_mm": 200.0,
+      "board_y_mm": 25.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": 84.0,
+      "paper_y_mm": 58.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 24,
+      "board_x_mm": 25.0,
+      "board_y_mm": 100.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": -91.0,
+      "paper_y_mm": -17.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 26,
+      "board_x_mm": 75.0,
+      "board_y_mm": 100.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": -41.0,
+      "paper_y_mm": -17.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 29,
+      "board_x_mm": 150.0,
+      "board_y_mm": 100.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": 34.0,
+      "paper_y_mm": -17.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 31,
+      "board_x_mm": 200.0,
+      "board_y_mm": 100.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": 84.0,
+      "paper_y_mm": -17.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 40,
+      "board_x_mm": 25.0,
+      "board_y_mm": 150.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": -91.0,
+      "paper_y_mm": -67.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 42,
+      "board_x_mm": 75.0,
+      "board_y_mm": 150.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": -41.0,
+      "paper_y_mm": -67.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 45,
+      "board_x_mm": 150.0,
+      "board_y_mm": 150.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": 34.0,
+      "paper_y_mm": -67.0,
+      "paper_z_mm": 0.0
+    },
+    {
+      "charuco_id": 47,
+      "board_x_mm": 200.0,
+      "board_y_mm": 150.0,
+      "board_z_mm": 0.0,
+      "paper_x_mm": 84.0,
+      "paper_y_mm": -67.0,
+      "paper_z_mm": 0.0
+    }
+  ],
+  "target_samples_per_point": 20,
+  "elapsed_seconds": 27.192159414291382,
+  "camera_topics": {
+    "ihawk1": "/ihawk1/color/color_raw",
+    "ihawk2": "/ihawk2/color/color_raw"
+  },
+  "files": {
+    "per_frame": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_calibration_v4/20260811_191758/E4_charuco_12spread_per_frame.csv",
+    "visibility": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_calibration_v4/20260811_191758/visibility_report.csv",
+    "formal_12spread": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_charuco_calibration_v4/20260811_191758/E4_calibration_12spread.csv"
+  },
+  "pixel_repeatability": {
+    "ihawk1": {
+      "mean_u_sd_px": 0.05318707498251041,
+      "mean_v_sd_px": 0.13568643538571348,
+      "max_u_sd_px": 0.21507908340850942,
+      "max_v_sd_px": 0.8254673514701134
+    },
+    "ihawk2": {
+      "mean_u_sd_px": 0.0258973623664898,
+      "mean_v_sd_px": 0.023036772211755218,
+      "max_u_sd_px": 0.07931479830560541,
+      "max_v_sd_px": 0.06803065150315056
+    }
+  }
+}

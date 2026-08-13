@@ -1,0 +1,52 @@
+{
+  "run_id": "20260811_165522",
+  "purpose": "E4 held-out high-hover sanity validation",
+  "formal_endpoint_ground_truth": false,
+  "execution": {
+    "base_pid_p": 16,
+    "base_pid_i": 8,
+    "controller": "T104 Cartesian only",
+    "extra_t101_base_correction": false,
+    "safe_hover_mm": 40.0,
+    "target_tit_rad": 1.5,
+    "t104_spd": 0.05
+  },
+  "registration": {
+    "type": "20-point planar affine",
+    "robot_x": [
+      -0.074105303,
+      0.9922592,
+      187.854293495
+    ],
+    "robot_y": [
+      -0.986716324,
+      -0.006933251,
+      -4.851741339
+    ],
+    "robot_z": [
+      0.001405397,
+      0.006345201,
+      -118.909081155
+    ]
+  },
+  "heldout_points": {
+    "H1": [
+      -80.0,
+      -60.0
+    ],
+    "H2": [
+      -60.0,
+      50.0
+    ],
+    "H3": [
+      40.0,
+      -20.0
+    ]
+  },
+  "csv": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_heldout_validation_v3/20260811_165522/heldout_high_hover.csv",
+  "completed_targets": [
+    "H1",
+    "H2",
+    "H3"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "created_at": "2026-08-08T16:43:52",
+  "purpose": "Complete clean rebuild of the formal E2 dataset directly from original raw acquisition CSV files.",
+  "formal_runs": [
+    "20260808_131913",
+    "20260808_141232",
+    "20260808_145501",
+    "20260808_151001",
+    "20260808_162715"
+  ],
+  "excluded_primary_run": "20260808_135543",
+  "replacement_run": "20260808_162715",
+  "replacement_reason": "The previous 20260808_135543 run contained an unintended target reorientation during part of the height sequence. A complete replacement run was therefore collected under the intended fixed-orientation protocol.",
+  "height_levels_mm": [
+    0.0,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0
+  ],
+  "retained_height_steps": {
+    "20260808_131913": {
+      "0": 1,
+      "5": 2,
+      "10": 15,
+      "15": 4,
+      "20": 5,
+      "25": 6,
+      "30": 7,
+      "35": 14,
+      "40": 10,
+      "45": 12,
+      "50": 13
+    },
+    "20260808_141232": {
+      "0": 1,
+      "5": 2,
+      "10": 8,
+      "15": 9,
+      "20": 10,
+      "25": 11,
+      "30": 12,
+      "35": 16,
+      "40": 17,
+      "45": 20,
+      "50": 21
+    },
+    "20260808_145501": {
+      "0": 1,
+      "5": 2,
+      "10": 3,
+      "15": 4,
+      "20": 5,
+      "25": 10,
+      "30": 12,
+      "35": 13,
+      "40": 14,
+      "45": 15,
+      "50": 16
+    },
+    "20260808_151001": {
+      "0": 3,
+      "5": 6,
+      "10": 12,
+      "15": 13,
+      "20": 14,
+      "25": 15,
+      "30": 16,
+      "35": 18,
+      "40": 19,
+      "45": 20,
+      "50": 21
+    },
+    "20260808_162715": {
+      "0": 7,
+      "5": 8,
+      "10": 9,
+      "15": 11,
+      "20": 12,
+      "25": 13,
+      "30": 14,
+      "35": 15,
+      "40": 16,
+      "45": 18,
+      "50": 20
+    }
+  },
+  "printed_target_geometry_mm": {
+    "A4_width": 210.0,
+    "A4_height": 297.0,
+    "marker_size": 50.0,
+    "marker_to_paper_edge_margin": 10.0,
+    "marker_local_xy": {
+      "TL": [
+        -70.0,
+        113.5
+      ],
+      "TR": [
+        70.0,
+        113.5
+      ],
+      "C": [
+        0.0,
+        0.0
+      ],
+      "BL": [
+        -70.0,
+        -113.5
+      ],
+      "BR": [
+        70.0,
+        -113.5
+      ]
+    }
+  },
+  "board_rotation_policy": "All retained formal observations are required to have board_rotation_gt_deg = 0. The script aborts instead of silently correcting a rotated observation.",
+  "frames_per_run_height_marker_camera": 3,
+  "expected_rows_per_height": 30,
+  "expected_rows_per_run": 330,
+  "expected_total_rows": 1650,
+  "raw_files_modified": false,
+  "qc": {
+    "runs": 5,
+    "rows": 1650,
+    "all_detection_valid": true,
+    "all_pnp_valid": true,
+    "all_pair_sync_valid": true,
+    "status": "PASS"
+  },
+  "formal_combined_csv": "/mnt/c/Users/ASUS/Desktop/paper/E2/E2_rebuilt/E2_all_5runs_REBUILT_clean.csv"
+}

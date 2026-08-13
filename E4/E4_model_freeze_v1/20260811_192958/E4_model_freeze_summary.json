@@ -1,0 +1,175 @@
+{
+  "status": "E4_VISION_MODELS_AND_9_HELDOUT_FROZEN",
+  "formal_robot_trials_started": false,
+  "method_freeze": {
+    "Affine": "ordinary least-squares 2-D affine; no RANSAC",
+    "Homography": "cv2.findHomography(method=0); no RANSAC",
+    "PnP": "cv2.solvePnP SOLVEPNP_IPPE; fixed K; undistorted pixels; D=0; ray-plane Z=0 prediction",
+    "fairness": "same 12 calibration correspondences and same held-out observations for all three models"
+  },
+  "calibration_ids": [
+    0,
+    2,
+    5,
+    7,
+    24,
+    26,
+    29,
+    31,
+    40,
+    42,
+    45,
+    47
+  ],
+  "heldout_ids": [
+    9,
+    11,
+    14,
+    17,
+    19,
+    22,
+    33,
+    35,
+    38
+  ],
+  "training_sanity": {
+    "ihawk1": {
+      "affine": {
+        "n": 12,
+        "mean_mm": 6.454232512008931,
+        "rmse_mm": 7.10707921655609,
+        "median_mm": 5.648697897451795,
+        "sd_mm": 3.1077833675520528,
+        "p95_mm": 12.235147113662077,
+        "max_mm": 12.266808473236251
+      },
+      "homography": {
+        "n": 12,
+        "mean_mm": 0.6894955640469155,
+        "rmse_mm": 0.7982501247769702,
+        "median_mm": 0.6472017869324871,
+        "sd_mm": 0.42012871906258936,
+        "p95_mm": 1.3194018785400454,
+        "max_mm": 1.6633035420502025
+      },
+      "pnp_plane_xy": {
+        "n": 12,
+        "mean_mm": 0.7904715944809476,
+        "rmse_mm": 0.9245533858436709,
+        "median_mm": 0.6969365920880009,
+        "sd_mm": 0.5008577605309562,
+        "p95_mm": 1.693457536891293,
+        "max_mm": 2.0588889805123043
+      },
+      "pnp_reprojection_px": {
+        "mean_px": 0.35683562027331206,
+        "rmse_px": 0.4210476765286456,
+        "max_px": 0.9429706382291823
+      },
+      "model_file": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/ihawk1_E4_frozen_models.json"
+    },
+    "ihawk2": {
+      "affine": {
+        "n": 12,
+        "mean_mm": 6.264165878339934,
+        "rmse_mm": 6.7559413311305665,
+        "median_mm": 4.877154862119225,
+        "sd_mm": 2.642925882423752,
+        "p95_mm": 10.09465386933655,
+        "max_mm": 10.127702604828746
+      },
+      "homography": {
+        "n": 12,
+        "mean_mm": 0.39091785944804397,
+        "rmse_mm": 0.49421090502944315,
+        "median_mm": 0.3456422785329907,
+        "sd_mm": 0.3158152149272458,
+        "p95_mm": 0.8527541404135306,
+        "max_mm": 1.1232787445845223
+      },
+      "pnp_plane_xy": {
+        "n": 12,
+        "mean_mm": 0.40658869283082794,
+        "rmse_mm": 0.5245901259956306,
+        "median_mm": 0.31208266726044953,
+        "sd_mm": 0.34622184451995025,
+        "p95_mm": 0.9484543252323601,
+        "max_mm": 1.2987927906954029
+      },
+      "pnp_reprojection_px": {
+        "mean_px": 0.22582079608062933,
+        "rmse_px": 0.277111430963714,
+        "max_px": 0.5829839082067428
+      },
+      "model_file": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/ihawk2_E4_frozen_models.json"
+    }
+  },
+  "heldout_vision_metrics": {
+    "ihawk1": {
+      "Affine": {
+        "n": 9,
+        "mean_mm": 3.410410392667808,
+        "rmse_mm": 3.691532433602196,
+        "median_mm": 3.5658949961070157,
+        "sd_mm": 1.4986916776510117,
+        "p95_mm": 5.544599660210867,
+        "max_mm": 5.715701716359345
+      },
+      "Homography": {
+        "n": 9,
+        "mean_mm": 1.1921400426634685,
+        "rmse_mm": 1.6264836630761808,
+        "median_mm": 0.7612188675788548,
+        "sd_mm": 1.1735768522123127,
+        "p95_mm": 3.2345031115189005,
+        "max_mm": 3.4638442564516705
+      },
+      "PnP_IPPE": {
+        "n": 9,
+        "mean_mm": 1.0438044874543704,
+        "rmse_mm": 1.4200570530340695,
+        "median_mm": 0.6850275104159008,
+        "sd_mm": 1.021231366572808,
+        "p95_mm": 2.8477708129149493,
+        "max_mm": 3.0719859163500485
+      }
+    },
+    "ihawk2": {
+      "Affine": {
+        "n": 9,
+        "mean_mm": 4.220843295863907,
+        "rmse_mm": 4.403767989584359,
+        "median_mm": 4.617250884840059,
+        "sd_mm": 1.3322391583644613,
+        "p95_mm": 5.513308282368234,
+        "max_mm": 5.750762671942212
+      },
+      "Homography": {
+        "n": 9,
+        "mean_mm": 0.5008650137814942,
+        "rmse_mm": 0.5259267670542723,
+        "median_mm": 0.500007616745239,
+        "sd_mm": 0.17014656199303677,
+        "p95_mm": 0.7561420559183916,
+        "max_mm": 0.8746190222788163
+      },
+      "PnP_IPPE": {
+        "n": 9,
+        "mean_mm": 0.46463509047447676,
+        "rmse_mm": 0.5047152799771399,
+        "median_mm": 0.485065671927072,
+        "sd_mm": 0.20906509718255126,
+        "p95_mm": 0.7713704444384183,
+        "max_mm": 0.8595582443507667
+      }
+    }
+  },
+  "files": {
+    "formal_targets": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/E4_formal_9targets.csv",
+    "heldout_pixels": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/E4_heldout_9points_pixels.csv",
+    "heldout_results": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/E4_heldout_model_results.csv",
+    "heldout_per_frame": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/E4_heldout_9points_per_frame.csv",
+    "ihawk1_models": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/ihawk1_E4_frozen_models.json",
+    "ihawk2_models": "/mnt/c/Users/ASUS/Desktop/paper/E4/E4_model_freeze_v1/20260811_192958/ihawk2_E4_frozen_models.json"
+  }
+}

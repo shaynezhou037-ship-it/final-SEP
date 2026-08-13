@@ -1,0 +1,3 @@
+camera,total_frames,detected_frames,detection_rate,board_x_mean,board_x_std,board_x_range,board_y_mean,board_y_std,board_y_range,depth_mean,depth_std,depth_range,depth_valid_rate_mean,depth_valid_rate_min,judgment_xy
+camA,30,30,1.0,107.69599999999997,2.890758581290855e-14,0.0,-9.742999999999999,1.8067241133067846e-15,0.0,456.3066666666666,0.16174337556829577,0.5,1.0,1.0,pass_good_xy_std_lt_2mm
+camB,30,30,1.0,94.39686666666667,0.13162452693914353,0.42199999999999704,112.05740000000002,0.34582800189769275,0.7909999999999968,396.0,0.36198685440029005,1.0,1.0,1.0,pass_good_xy_std_lt_2mm

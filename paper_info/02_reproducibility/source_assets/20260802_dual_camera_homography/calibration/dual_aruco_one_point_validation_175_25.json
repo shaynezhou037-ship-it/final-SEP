@@ -1,0 +1,81 @@
+{
+  "camera_overhead_B242": {
+    "camera_name": "camera_overhead_B242",
+    "camera_role": "overhead",
+    "serial_number": "HK100QB5311M2B242",
+    "image_path": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\validation_points\\Color_1.bmp",
+    "aruco_dictionary": "DICT_4X4_50",
+    "target_marker_id": 0,
+    "detected_ids": [
+      0
+    ],
+    "marker_area_px2": 1092.0,
+    "raw_marker_center_px": [
+      358.5,
+      295.5
+    ],
+    "undistorted_marker_center_px": [
+      358.4718933105469,
+      295.4324951171875
+    ],
+    "target_board_mm": [
+      175.0,
+      25.0
+    ],
+    "predicted_board_mm": [
+      175.23220082981356,
+      26.517047921176918
+    ],
+    "error_vector_mm": [
+      0.23220082981356427,
+      1.5170479211769177
+    ],
+    "euclidean_error_mm": 1.5347154852002096,
+    "calibration_json": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\final_homography_output\\camera_final_homography.json",
+    "annotated_image": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\validation_output\\aruco_one_point_validation.png",
+    "note": "One-point manually placed sanity check. Placement uncertainty is included in this error."
+  },
+  "camera_side_B479": {
+    "camera_name": "camera_side_B479",
+    "camera_role": "side",
+    "serial_number": "HK100QB6513M2B479",
+    "image_path": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\validation_points\\Color_1.bmp",
+    "aruco_dictionary": "DICT_4X4_50",
+    "target_marker_id": 0,
+    "detected_ids": [
+      0
+    ],
+    "marker_area_px2": 1362.0,
+    "raw_marker_center_px": [
+      404.75,
+      317.75
+    ],
+    "undistorted_marker_center_px": [
+      404.91754150390625,
+      317.84783935546875
+    ],
+    "target_board_mm": [
+      175.0,
+      25.0
+    ],
+    "predicted_board_mm": [
+      175.2796809432131,
+      26.157548941069955
+    ],
+    "error_vector_mm": [
+      0.2796809432130942,
+      1.1575489410699547
+    ],
+    "euclidean_error_mm": 1.1908572462594915,
+    "calibration_json": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\final_homography_output\\camera_final_homography.json",
+    "annotated_image": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\validation_output\\aruco_one_point_validation.png",
+    "note": "One-point manually placed sanity check. Placement uncertainty is included in this error."
+  },
+  "dual_camera_agreement": {
+    "side_minus_overhead_mm": [
+      0.047480113399529955,
+      -0.359498980106963
+    ],
+    "euclidean_disagreement_mm": 0.3626208458795203
+  }
+}
