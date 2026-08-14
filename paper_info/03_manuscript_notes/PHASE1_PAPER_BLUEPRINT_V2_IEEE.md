@@ -4,7 +4,7 @@
 日期：2026-08-13  
 默认正文语言：English  
 当前定位：IEEE journal-style experimental study  
-状态：作者已确认 end-to-end 定义、E4 角色、三条 venue 路线和暂留 Acuna；阶段 2 第一轮近邻文献审计已写回；作为当前唯一蓝图；V1 已删除
+状态：作者已确认 end-to-end 定义、E4 角色、三条 venue 检索路线和暂留 Acuna；阶段 2 第一轮近邻文献审计与 2026-08-14 三刊规则冻结已写回；作为当前唯一蓝图；V1 已删除
 
 ## 1. 论文定位
 
@@ -214,17 +214,17 @@ E0 静态结果优先压缩进 Table II 或 Supplement，不强制单独占用�
 
 ## 11. IEEE 目标与阶段 2 门槛
 
-阶段 2 并行评估：
+2026-08-14 官方硬规则与 B2 适配判断已冻结在 `../04_writing_standards/IEEE_VENUE_RULES_AND_FIT.md`。蓝图执行顺序为：
 
-- **IEEE Access 路线**：应用实验与跨领域叙事更现实，但仍须证明原创性并达到高技术/统计标准；
-- **TIM/OJIM 路线**：若能建立 measurement novelty、ground-truth/人工读数 uncertainty 和更完整计量学论证，主题更集中；
-- **Sensors Journal 路线**：只有在传感系统与数据处理贡献足够突出时考虑；
-- **RA-L 路线**：作为 stretch venue 观察而非当前默认目标。End-to-end 定位叙事提高了机器人相关性，但 E4 的单个完整 block、人工读数和提前停止仍会受到严格追问；RA-L 的 6 页正文、最多 8 页且不能用补充文字绕过篇幅，也不利于透明展开全部边界。
+- **IEEE Access Research Article：当前默认路线。** 它最能容纳 B2 的完整应用实验、不同统计单位、透明限制与可复现补充材料；仍须证明相对现有工作的明确 advance，并保持高技术/统计标准。
+- **TIM Regular Paper：条件冲刺路线。** 仅在现有数据能够通过 measurement gate 时升级：定义 measurand/measurement chain，区分并讨论各误差来源，形成诚实的不确定度/误差预算，以 I&M 文献和 measurement novelty 组织全文。E4 无法复读的 observer component 必须保留为未估计限制。
+- **RA-L：暂停路线。** 当前没有足够突出的新机器人算法/系统贡献，且 6–8 页、禁止 supplemental text 的限制与 E0–E4 的透明证据链冲突；只保留 RA-L 样本作为叙事和图表基准。
+- **Sensors Journal/OJIM：不在本轮三刊冻结范围内。** 除非后续 scope 判断出现实质变化，不新增分支，避免写作发散。
 
 进入全文写作前必须完成三项：
 
 1. 最接近工作第一轮精读已完成并形成 `PHASE2_NOVELTY_GAP_AUDIT.md`；投稿前仍需按最终 venue 更新检索，禁止把当前结果升级为穷尽性 `first` 声明；
-2. 冻结目标 venue 及模板、页数、双盲、supplement 规则；
+2. TIM / IEEE Access / RA-L 的模板、页数、匿名审稿和 supplement 规则已冻结；仍需作者签认默认 venue，且正式投稿前按官网再次核验；
 3. 冻结统计模型、figure list 和主张—证据映射 v2。
 
 ## 12. AI 与自然语言终审

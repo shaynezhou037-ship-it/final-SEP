@@ -29,6 +29,10 @@
 5. 引用前不仅看 PDF 是否存在，还必须在 `citation_sentence_ledger.csv` 把具体句子核验为 `VERIFIED`；
 6. `references.bib` 在原文件更新，不生成多个副本。
 
+## 公共仓库边界
+
+`final_papers/` 只作为本机全文核验库，不进入公开 Git 仓库，避免重复分发第三方出版物；可公开、可追溯的 DOI、官方链接、版本说明和核验状态由本目录的 CSV、BibTeX 与 notes 保存。代码、项目数据和本项目自有文档不受这一排除规则影响。
+
 ## 已知版本例外
 
 `Zhang2000_FlexibleCameraCalibration_EXTENDED_AUTHOR_VERSION.pdf` 是作者扩展技术报告，不是正式 5 页 TPAMI 排版版；引用使用期刊 DOI 和页码。`Acuna2018_..._PREPRINT.pdf` 目前只确认到 arXiv 预印本，不能伪装成 IEEE/期刊论文。

@@ -1,6 +1,6 @@
 # B2 论文写作长期计划
 
-最后更新：2026-08-13
+最后更新：2026-08-14
 
 ## 总目标
 
@@ -37,7 +37,7 @@
 
 在 Introduction 动笔前，`citation_sentence_ledger.csv` 的正文引用必须完成全文核验，最接近本研究的 novelty gap 必须被验证而不是假设；目标 venue 的最新 scope、页数、模板、double-anonymous、AI 和 supplement 规则必须重新冻结。
 
-状态：阶段 2 已正式开启。2A 已完成首轮；2B 已完成第一轮近邻/缺口审计：新增核验 T-RO endpoint propagation、PLOS algorithm benchmarking、ISPRS end-to-end prior art、2026 low-cost external metrology 和 JCGM GUM，并形成 `../05_literature_library/notes/PHASE2_NOVELTY_GAP_AUDIT.md`。当前不能声称首次 end-to-end calibration；可守新意是共享数据协议下的 geometry-conditioned、auditable multilevel evaluation。目标 venue 保持 TIM / IEEE Access / RA-L 三路线，尚未冻结；仍未达到完整正文写作门槛。
+状态：阶段 2 已正式开启。2A 已完成首轮；2B 已完成第一轮近邻/缺口审计：新增核验 T-RO endpoint propagation、PLOS algorithm benchmarking、ISPRS end-to-end prior art、2026 low-cost external metrology 和 JCGM GUM，并形成 `../05_literature_library/notes/PHASE2_NOVELTY_GAP_AUDIT.md`。当前不能声称首次 end-to-end calibration；可守新意是共享数据协议下的 geometry-conditioned、auditable multilevel evaluation。2026-08-14 已在 `../04_writing_standards/IEEE_VENUE_RULES_AND_FIT.md` 冻结 TIM / IEEE Access / RA-L 官方硬规则；当前建议顺序为 IEEE Access 默认、TIM 通过 measurement gate 后冲刺、RA-L 暂停。最终 venue 仍需作者签认，统计模型、figure list 与主张—证据映射冻结后才进入完整正文。
 
 ### 阶段 3：正式图表
 

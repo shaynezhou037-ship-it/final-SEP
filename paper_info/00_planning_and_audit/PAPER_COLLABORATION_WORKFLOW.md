@@ -56,7 +56,7 @@
 
 - **R1 — 通过**：标题/叙事采用 `From Calibration Accuracy to End-to-End Robot Positioning`；end-to-end 只指已定义的 image-to-endpoint 链；
 - **R2 — 通过**：E4 在叙事中使用一张主图/完整小节，但统计上仍为 exploratory、one completed nine-target block；
-- **R3 — 通过**：暂按 TIM（学术定位）/IEEE Access（现实路线）/RA-L（stretch）三路线继续检索，目标 venue 尚未冻结；
+- **R3 — 2026-08-13 通过的检索起点，已完成**：按 TIM / IEEE Access / RA-L 三路线检索；其后形成的当前路线建议见 R6；
 - **R4 — 通过**：暂留 Acuna 预印本作为 E3 线索，同时继续寻找同行评审替代；
 - **R5 — 暂缓决定**：实际 AI 使用范围与披露文字在正文形成后再决定；期间继续保留事实日志，不预写最终披露结论。
 
@@ -87,3 +87,11 @@
 - 用 AI paraphrasing 躲避检测或隐藏实际使用。
 
 允许且推荐：更强的标题和 Fig. 1、更清晰的 end-to-end 定义、把真实 downstream case study 前置、强调公平可审计协议、公开数据/代码、补做不确定性和稳健性分析、根据 venue scope 调整叙事。
+
+## 9. Git 基线与三刊规则冻结（2026-08-14）
+
+- 当前公开 Git 基线为 commit `704bdda9b2dc97e0bb72facbd53c3c4eb08fb17a`（short `704bdda`），已推送到 `final-SEP` 的 `main`，本地与 `origin/main` 一致。
+- 公开基线保留 E0–E4 实验数据、正式代码、配置、元数据、审计文档与写作资料；第三方论文 PDF 所在的 `05_literature_library/final_papers/` 仅本机保留，不公开再分发，引用元数据和核验记录仍纳入 Git。
+- TIM、IEEE Access、RA-L 的官方规则已冻结到 `../04_writing_standards/IEEE_VENUE_RULES_AND_FIT.md`。
+- **R6 — 待作者签认**：默认按 IEEE Access Research Article 推进；TIM 作为通过 measurement gate 后的冲刺路线；RA-L 暂停。
+- 在 R6 签认前，可以继续做不依赖模板的统计/图表冻结，但不建立三套正文副本。

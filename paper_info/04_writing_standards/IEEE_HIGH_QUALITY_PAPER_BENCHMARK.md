@@ -17,13 +17,15 @@ IEEE 的期刊搜索页可查看当前 bibliometric scores；投稿前再核验�
 
 | Venue | 本项目用途 | 当前匹配判断 |
 |---|---|---|
-| IEEE Transactions on Instrumentation and Measurement (TIM) | 测量设计、校准、误差与不确定性基准 | 学术定位最有潜力；需要强化 measurement novelty、真值与人工读数不确定性 |
-| IEEE Access | 完整实验比较、应用导向、可复现数据 | 当前最现实；仍要求高技术标准、充分实验和由数据支持的结论 |
-| IEEE Robotics and Automation Letters (RA-L) | 机器人叙事、Fig. 1、端到端任务收束 | stretch venue；E4 证据规模和 6–8 页限制是主要风险 |
+| IEEE Transactions on Instrumentation and Measurement (TIM) | 测量设计、校准、误差与不确定性基准 | 条件冲刺；只有通过 measurement gate 才升级为首选 |
+| IEEE Access | 完整实验比较、应用导向、可复现数据 | 当前默认；仍要求明确 advance、高技术标准和由数据支持的结论 |
+| IEEE Robotics and Automation Letters (RA-L) | 机器人叙事、Fig. 1、端到端任务收束 | 当前投稿路线暂停；只保留为叙事/图表基准 |
 | IEEE Sensors Journal | 传感器系统和数据处理 | 仅在双相机/传感器测量贡献足够突出时考虑 |
 | IEEE TPAMI | 经典视觉论文的表达与论证基准 | 只用于学习，不作为当前投稿目标；本项目尚无相应算法/理论创新 |
 
 官方约束：TIM 强调推进 measurement science、methods、functionality 或 applications；IEEE Access 要求实验和统计达到高技术标准且结论由数据支持；RA-L 正文 6 页、最多 8 页，附录也计入，不能用 supplemental text 绕过页数限制。
+
+三刊 2026 官方硬规则、费用、匿名方式、补充材料政策及 B2 适配门槛的唯一当前入口是 `IEEE_VENUE_RULES_AND_FIT.md`；本文件不再重复维护易变细节。
 
 ## 2. 已全文阅读的论文样本
 
@@ -168,7 +170,7 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 ## 6. 写作前通过门槛
 
-- [ ] 目标 venue 的当年 scope、模板、页数、double-anonymous 和 supplement 规则已重新核验；
+- [x] TIM、IEEE Access、RA-L 的当年 scope、模板、页数、anonymous review 和 supplement 规则已于 2026-08-14 重新核验；正式投稿前仍须复核；
 - [ ] novelty gap 至少由 8–12 篇全文论文支撑，不只看摘要；
 - [ ] `citation_sentence_ledger.csv` 中正文引用状态均为 `VERIFIED`；
 - [ ] Fig. 1 草图和 Fig. 3/E2 主图先于 Introduction 定稿；
@@ -185,3 +187,4 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 - TIM scope：<https://ieee-ims.org/publication/ieee-tim>
 - IEEE Access preparation criteria：<https://ieeeaccess.ieee.org/authors/preparing-your-article/>
 - RA-L information for authors：<https://www.ieee-ras.org/publications/ra-l/ra-l-information-for-authors/>
+- 三刊规则与适配冻结：`IEEE_VENUE_RULES_AND_FIT.md`
