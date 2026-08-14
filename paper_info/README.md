@@ -2,13 +2,17 @@
 
 This folder stores paper-facing organization materials for the B2 study. Keep
 raw experimental data, scripts, and generated analysis outputs in the existing
-`E0` to `E4`, `config`, `metadata`, and `scripts` folders.
+`E0` to `E7`, `config`, `metadata`, and `scripts` folders. E5/E6 reuse E2
+physical observations offline; E7 is simulation-only and must not be counted as
+new physical acquisition.
 
 ## Folder map
 
 - `00_planning_and_audit/`
   - Research direction, action plan, repository/data audit, and decision notes.
-  - Current files: `计划.docx`, `筛选+行动主线.html`, `信息库_B2资料审计更新版.docx`.
+  - Current direction audit:
+    `NO_REBUILD_DIRECTION_AND_DOCUMENT_AUDIT.md`. The DOCX/HTML files are
+    historical traceability sources and no longer override the v2.2 blueprint.
 
 - `01_equipment_and_methods/`
   - Equipment tables, experimental setup, hardware parameters, method notes,
@@ -16,12 +20,19 @@ raw experimental data, scripts, and generated analysis outputs in the existing
   - Current files: `B2_Equipment_Experimental_Setup.xlsx`.
 
 - `02_reproducibility/`
-  - Future home for reproduction instructions, environment notes, data
-    dictionaries, run order, script-to-output maps, and exclusion rules.
+  - Reproduction instructions, environment notes, data dictionaries, run
+    order, script-to-output maps, exclusion rules, and paper-level evidence
+    gates.
+  - Current no-rebuild gate:
+    `scripts/verify_no_rebuild_evidence.py`, which writes
+    `no_rebuild_evidence_manifest.json` after E5/E6/E7 verification.
 
 - `03_manuscript_notes/`
   - Current manuscript blueprint, claim-evidence map, figure/caption plans, and
-    result narrative. The current blueprint is `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`.
+    result narrative. The current blueprint is
+    `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.2. The current direction promotes E6
+    to the main text, uses E5 as supporting evidence, and keeps E7 in the
+    Supplement.
 
 - `04_writing_standards/`
   - Reusable IEEE writing, language/claim audit, figure/table, AI-use, and
@@ -35,7 +46,8 @@ raw experimental data, scripts, and generated analysis outputs in the existing
 ## Placement rule
 
 - Put one-off experiment data under the matching experiment folder (`E0` to
-  `E4`).
+  `E7`), while preserving each folder's physical/offline/simulation evidence
+  class.
 - Put paper-level summaries or tables here under `paper_info`.
 - Put reusable scripts under `scripts`.
 - Put camera intrinsics, board definitions, and frozen configuration under

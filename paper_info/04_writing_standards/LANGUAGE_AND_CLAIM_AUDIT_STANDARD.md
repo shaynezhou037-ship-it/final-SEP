@@ -1,6 +1,6 @@
 # B2 英文语言与主张审计标准
 
-最后更新：2026-08-13
+最后更新：2026-08-14
 
 ## 1. 审计顺序
 
@@ -22,6 +22,10 @@
 | 跨实验综合/机制相符 | suggests, supports, is consistent with | demonstrates the cause, confirms the mechanism |
 | 探索性 E4 | in the completed block, the observed endpoint error… | validates generally, establishes the robot floor |
 | 单数据集 E3 | in the tested candidate set/workspace | points are generally sufficient, universal rule |
+| paired offline E5 | under simulated effective downsampling of the saved 640 × 400 images | native sensor mode, hardware frame-rate validation |
+| physical-data offline E6 | under the tested static paired observations/five rebuilds | two cameras are universally better, end-to-end dual-camera validation |
+| E6 angle audit | the current two fixed placements do not identify a causal angle effect | angle caused, optimal angle, angle-generalized model |
+| simulation-only E7 | in the deterministic Monte Carlo simulation | experimentally validated moving-camera performance |
 
 任何 `significant/significantly` 只在有明确统计检验和定义好的 alpha 时使用；表示幅度大时改为 `substantial/large` 并给数字。
 
@@ -35,6 +39,10 @@
 - `in offline resampling of a single physical observation set`；
 - `in one completed nine-target E4 block`；
 - `exploratory end-to-end endpoint case study`。
+- `under simulated effective resolution using the saved E2 images`；
+- `under static paired observations across five physical rebuilds`；
+- `descriptive only because camera identity and view geometry are confounded`；
+- `simulation only; no physical camera motion was acquired`。
 
 ## 4. 术语冻结
 
@@ -49,6 +57,11 @@
 - `observed Oracle reference`：不是 pure robot error/floor；
 - `end-to-end robot positioning`：仅限已定义 image-to-endpoint 链；
 - `PnP/IPPE`：planar pose estimation 方法，不等同于完整 hand–eye calibration。
+- `estimate fusion`：先由两相机各自生成 board-coordinate estimate，再做 equal/LOO-weighted combination；不是 stereo triangulation；
+- `stereo parallax/triangulation`：直接使用配对像点和两投影矩阵恢复 board XYZ；不是两个结果的平均；
+- `simulated effective resolution`：对保存的 640 × 400 图像离线降采样；不是 native sensor mode；
+- `angle-identifiability audit`：量化 camera identity/geometry confounding；不是 camera-angle experiment；
+- `relocalized PnP`：仿真中用固定 landmarks 更新当前 camera pose 后再估计 target；不是与 PnP 对立的另一类算法。
 
 ## 5. 机器腔和空话清理
 
@@ -114,7 +127,9 @@
 
 - 是否重复数字而没有解释边界？
 - 是否从两个相机/一个系统跳到所有机器人？
-- 是否明确 E4、registration 和人工读数限制？
+- 是否把 estimate fusion 和 stereo parallax 混成“dual-camera method”？
+- 是否把 E5/E7 写成原生硬件/物理实验？
+- 是否明确 E6 angle confounding、no endpoint propagation，以及 E4 registration/人工读数限制？
 
 ## 10. 审计输出格式
 

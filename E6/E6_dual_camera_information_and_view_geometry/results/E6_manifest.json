@@ -1,0 +1,89 @@
+{
+  "created_at_utc": "2026-08-14T07:44:47.539437+00:00",
+  "experiment": "E6 single/dual-camera information and view-geometry pilot",
+  "script": "E6\\E6_dual_camera_information_and_view_geometry\\scripts\\e6_dual_camera_analysis.py",
+  "inputs": [
+    "E2\\E2_rebuilt\\model_comparison\\E2_predictions.csv",
+    "E2\\E2_rebuilt\\E2_all_5runs_REBUILT_clean.csv",
+    "E2\\E2_rebuilt\\model_comparison\\E2_calibration_models.json"
+  ],
+  "runs": [
+    "20260808_131913",
+    "20260808_141232",
+    "20260808_145501",
+    "20260808_151001",
+    "20260808_162715"
+  ],
+  "cameras": [
+    "ihawk1",
+    "ihawk2"
+  ],
+  "models": [
+    "Affine",
+    "Homography",
+    "PnP"
+  ],
+  "fusion_sources": [
+    "ihawk1",
+    "ihawk2",
+    "EqualFusion",
+    "LOOWeightedFusion",
+    "LOOWeightedGated"
+  ],
+  "heights_mm": [
+    0.0,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0
+  ],
+  "statistical_unit": "physical rebuild",
+  "software": {
+    "python": "3.12.10",
+    "opencv": "4.13.0",
+    "numpy": "2.4.2",
+    "matplotlib": "3.10.9",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "outputs": {
+    "weight_audit": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_leave_one_rebuild_weight_audit.csv",
+    "fusion_predictions": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_predictions.csv",
+    "fusion_run_metrics": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_run_height_metrics.csv",
+    "fusion_height_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_height_summary.csv",
+    "fusion_gain_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_gain_summary.csv",
+    "stereo_predictions": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_stereo_predictions.csv",
+    "stereo_run_metrics": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_stereo_run_height_metrics.csv",
+    "stereo_height_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_stereo_height_summary.csv",
+    "camera_geometry": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_camera_geometry.csv",
+    "pair_geometry": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pair_geometry.csv",
+    "angle_associations": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_angle_error_associations.csv",
+    "angle_identifiability_json": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_angle_identifiability_audit.json",
+    "angle_identifiability_md": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_ANGLE_IDENTIFIABILITY_AUDIT.md",
+    "summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_RESULTS_SUMMARY.md",
+    "summary_json": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_summary.json",
+    "manifest": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_manifest.json"
+  },
+  "figures": [
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_1_information_flow.pdf",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_1_information_flow.png",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_2_fusion_accuracy.pdf",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_2_fusion_accuracy.png",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_3_stereo_comparison.pdf",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_3_stereo_comparison.png",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_4_view_geometry.pdf",
+    "E6\\E6_dual_camera_information_and_view_geometry\\figures\\Fig_E6_4_view_geometry.png"
+  ],
+  "limitations": [
+    "Static paired observations; not a dynamic-scene sync validation.",
+    "Z=0 is the calibration condition.",
+    "Only two confounded view geometries are available.",
+    "Stereo projection matrices are derived from the same E2 board observations.",
+    "No dual-camera E4 endpoint validation."
+  ]
+}

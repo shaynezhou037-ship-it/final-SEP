@@ -1,0 +1,379 @@
+{
+  "created_at_utc": "2026-08-14T07:44:46.656315+00:00",
+  "verdict": "not_identifiable_from_current_E6",
+  "run_camera_rows": 10,
+  "physical_rebuilds": 5,
+  "effective_fixed_camera_placements": 2,
+  "causal_angle_levels": 0,
+  "reason": "Angle was not independently manipulated. Camera identity, distance, azimuth, marker footprint, optics, and calibration changed together.",
+  "camera_identity_audit": [
+    {
+      "geometry_variable": "distance_to_board_center_mm",
+      "camera_identity_eta_squared": 0.9997385541592057,
+      "ihawk2_minus_ihawk1_mean": -105.60085973267769,
+      "pooled_within_camera_sd": 0.954641067130489,
+      "standardized_camera_separation": -110.61839194714133,
+      "camera_ranges_overlap": false,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "mean": 630.4600264881901,
+          "sd": 0.9497262831814215,
+          "min": 629.0174048140553,
+          "max": 631.6135907433912
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "mean": 524.8591667555124,
+          "sd": 0.9595306775390143,
+          "min": 523.2500732857038,
+          "max": 525.7338324202526
+        }
+      }
+    },
+    {
+      "geometry_variable": "optical_axis_tilt_to_board_normal_deg",
+      "camera_identity_eta_squared": 0.986308483645336,
+      "ihawk2_minus_ihawk1_mean": 1.5452631518210111,
+      "pooled_within_camera_sd": 0.10177634486927005,
+      "standardized_camera_separation": 15.182930314562533,
+      "camera_ranges_overlap": false,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "mean": 61.3337184921766,
+          "sd": 0.11859964587146547,
+          "min": 61.21371488109181,
+          "max": 61.531627205698555
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "mean": 62.87898164399761,
+          "sd": 0.08155349624056694,
+          "min": 62.82376580308704,
+          "max": 63.016063167611115
+        }
+      }
+    },
+    {
+      "geometry_variable": "median_z0_marker_side_px",
+      "camera_identity_eta_squared": 0.9983821731873638,
+      "ihawk2_minus_ihawk1_mean": 7.622598940126821,
+      "pooled_within_camera_sd": 0.17153221136480837,
+      "standardized_camera_separation": 44.438294588969995,
+      "camera_ranges_overlap": false,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "mean": 27.790256040549558,
+          "sd": 0.21387147082931476,
+          "min": 27.62716147176681,
+          "max": 28.16134467323057
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "mean": 35.41285498067638,
+          "sd": 0.11447966210951252,
+          "min": 35.26480589957494,
+          "max": 35.585461181848174
+        }
+      }
+    },
+    {
+      "geometry_variable": "median_z0_marker_footprint_px2",
+      "camera_identity_eta_squared": 0.9997296415652673,
+      "ihawk2_minus_ihawk1_mean": 432.4508607153955,
+      "pooled_within_camera_sd": 3.9754880641673167,
+      "standardized_camera_separation": 108.77931306428766,
+      "camera_ranges_overlap": false,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "mean": 570.0350784934999,
+          "sd": 1.0689784714622117,
+          "min": 569.1120545662707,
+          "max": 571.2643941529968
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "mean": 1002.4859392088954,
+          "sd": 5.5196282233701135,
+          "min": 993.8653184337309,
+          "max": 1009.1956394939916
+        }
+      }
+    }
+  ],
+  "geometry_pairwise_correlations": [
+    {
+      "variable_a": "distance_to_board_center_mm",
+      "variable_b": "optical_axis_tilt_to_board_normal_deg",
+      "pearson_r": -0.9934390835800352,
+      "spearman_rho": -0.7939393939393938
+    },
+    {
+      "variable_a": "distance_to_board_center_mm",
+      "variable_b": "median_z0_marker_side_px",
+      "pearson_r": -0.9993878431449529,
+      "spearman_rho": -0.9636363636363635
+    },
+    {
+      "variable_a": "distance_to_board_center_mm",
+      "variable_b": "median_z0_marker_footprint_px2",
+      "pearson_r": -0.9998769144539968,
+      "spearman_rho": -0.7939393939393938
+    },
+    {
+      "variable_a": "optical_axis_tilt_to_board_normal_deg",
+      "variable_b": "median_z0_marker_side_px",
+      "pearson_r": 0.9963272337494982,
+      "spearman_rho": 0.8909090909090909
+    },
+    {
+      "variable_a": "optical_axis_tilt_to_board_normal_deg",
+      "variable_b": "median_z0_marker_footprint_px2",
+      "pearson_r": 0.9934052672994064,
+      "spearman_rho": 0.8545454545454544
+    },
+    {
+      "variable_a": "median_z0_marker_side_px",
+      "variable_b": "median_z0_marker_footprint_px2",
+      "pearson_r": 0.9991552813637202,
+      "spearman_rho": 0.7939393939393938
+    }
+  ],
+  "angle_error_diagnostics": [
+    {
+      "height_gt_mm": 0.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.953433587287804,
+      "pooled_spearman_rho": -0.8060606060606059,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": -0.7737771201948326,
+          "spearman_rho": 0.0
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": -0.18115717330011744,
+          "spearman_rho": -0.39999999999999997
+        }
+      }
+    },
+    {
+      "height_gt_mm": 5.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.6680810372760155,
+      "pooled_spearman_rho": -0.5757575757575757,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.8717220983025786,
+          "spearman_rho": 0.8999999999999998
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": -0.0763780511964382,
+          "spearman_rho": 0.09999999999999999
+        }
+      }
+    },
+    {
+      "height_gt_mm": 10.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.6624331681872604,
+      "pooled_spearman_rho": -0.4666666666666666,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.5095409732139382,
+          "spearman_rho": 0.3
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.5495410024149829,
+          "spearman_rho": 0.39999999999999997
+        }
+      }
+    },
+    {
+      "height_gt_mm": 15.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.7260284242961599,
+      "pooled_spearman_rho": -0.6363636363636362,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.6011062288569731,
+          "spearman_rho": 0.09999999999999999
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.62927580871813,
+          "spearman_rho": 0.8999999999999998
+        }
+      }
+    },
+    {
+      "height_gt_mm": 20.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.8438619798730164,
+      "pooled_spearman_rho": -0.6121212121212121,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.79808242499009,
+          "spearman_rho": 0.3
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.8273474927156624,
+          "spearman_rho": 0.8999999999999998
+        }
+      }
+    },
+    {
+      "height_gt_mm": 25.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.8091697294500946,
+      "pooled_spearman_rho": -0.7454545454545454,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": -0.4097429839448374,
+          "spearman_rho": -0.6
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.7428544826284081,
+          "spearman_rho": 0.09999999999999999
+        }
+      }
+    },
+    {
+      "height_gt_mm": 30.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.8489970837248748,
+      "pooled_spearman_rho": -0.6727272727272726,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.1530439569907866,
+          "spearman_rho": 0.09999999999999999
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.5766294340880113,
+          "spearman_rho": 0.6
+        }
+      }
+    },
+    {
+      "height_gt_mm": 35.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.6805398036476913,
+      "pooled_spearman_rho": -0.6969696969696969,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.8293544266935109,
+          "spearman_rho": 0.39999999999999997
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.2169277937018393,
+          "spearman_rho": 0.09999999999999999
+        }
+      }
+    },
+    {
+      "height_gt_mm": 40.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.8547970743260346,
+      "pooled_spearman_rho": -0.5878787878787878,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.4750345020512922,
+          "spearman_rho": 0.49999999999999994
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": -0.20474228284054016,
+          "spearman_rho": 0.3
+        }
+      }
+    },
+    {
+      "height_gt_mm": 45.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.4789712317763403,
+      "pooled_spearman_rho": -0.2727272727272727,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.9642408664650257,
+          "spearman_rho": 0.8999999999999998
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.16951274808428704,
+          "spearman_rho": 0.49999999999999994
+        }
+      }
+    },
+    {
+      "height_gt_mm": 50.0,
+      "pooled_n_run_camera_rows": 10,
+      "effective_fixed_placements": 2,
+      "pooled_pearson_r": -0.7413986071303843,
+      "pooled_spearman_rho": -0.5393939393939393,
+      "by_camera": {
+        "ihawk1": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.3179123246067448,
+          "pearson_r": 0.8583618244691193,
+          "spearman_rho": 0.7999999999999999
+        },
+        "ihawk2": {
+          "n_rebuilds": 5,
+          "tilt_range_deg": 0.1922973645240731,
+          "pearson_r": 0.8034502741424984,
+          "spearman_rho": 0.9999999999999999
+        }
+      }
+    }
+  ],
+  "allowed_use": "Descriptive setup characterization and confounding audit; no causal angle effect, optimal-angle recommendation, or angle-generalization claim."
+}

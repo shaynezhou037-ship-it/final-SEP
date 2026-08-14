@@ -1,0 +1,155 @@
+{
+  "created_at_utc": "2026-08-14T06:56:31.681159+00:00",
+  "experiment": "E5 simulated effective-resolution operating-envelope pilot",
+  "script": "E5\\E5_resolution_operating_envelope\\scripts\\e5_resolution_operating_envelope.py",
+  "source_csv": "E2\\E2_rebuilt\\E2_all_5runs_REBUILT_clean.csv",
+  "source_frame_root": "E2\\E2_dual_camera_height_scan",
+  "runs": [
+    "20260808_131913",
+    "20260808_141232",
+    "20260808_145501",
+    "20260808_151001",
+    "20260808_162715"
+  ],
+  "cameras": [
+    "ihawk1",
+    "ihawk2"
+  ],
+  "models": [
+    "Affine",
+    "Homography",
+    "PnP"
+  ],
+  "heights_mm": [
+    0.0,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0
+  ],
+  "resolutions": [
+    {
+      "resolution_id": "r640x400",
+      "width": 640,
+      "height": 400
+    },
+    {
+      "resolution_id": "r480x300",
+      "width": 480,
+      "height": 300
+    },
+    {
+      "resolution_id": "r320x200",
+      "width": 320,
+      "height": 200
+    },
+    {
+      "resolution_id": "r240x150",
+      "width": 240,
+      "height": 150
+    },
+    {
+      "resolution_id": "r160x100",
+      "width": 160,
+      "height": 100
+    }
+  ],
+  "detector": {
+    "dictionary": "DICT_4X4_50",
+    "parameters": "OpenCV defaults",
+    "corner_refinement": "cornerSubPix window 3x3, max_iter 30, epsilon 0.01"
+  },
+  "timing": {
+    "opencv_threads": 1,
+    "detection_repeats_per_image": 5,
+    "mapping_outer_repeats": 5,
+    "mapping_inner_repeats": 50,
+    "includes": "grayscale + marker detection + corner refinement + model mapping",
+    "excludes": "disk I/O and simulated resize"
+  },
+  "feasibility_profiles": [
+    {
+      "profile": "precision_30hz",
+      "xy_rmse_p95_limit_mm": 2.0,
+      "pipeline_p95_limit_ms": 33.3,
+      "detection_rate_min": 0.99
+    },
+    {
+      "profile": "standard_20hz",
+      "xy_rmse_p95_limit_mm": 5.0,
+      "pipeline_p95_limit_ms": 50.0,
+      "detection_rate_min": 0.99
+    },
+    {
+      "profile": "coarse_10hz",
+      "xy_rmse_p95_limit_mm": 10.0,
+      "pipeline_p95_limit_ms": 100.0,
+      "detection_rate_min": 0.95
+    }
+  ],
+  "source_image_qc": {
+    "content_mismatch_threshold_native_px": 1.0,
+    "excluded_images": 6
+  },
+  "software": {
+    "python": "3.12.10",
+    "opencv": "4.13.0",
+    "numpy": "2.4.2",
+    "matplotlib": "3.10.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+    "cpu_count": 32
+  },
+  "outputs": {
+    "preflight": "E5\\E5_resolution_operating_envelope\\results\\E5_preflight_qc.csv",
+    "detections": "E5\\E5_resolution_operating_envelope\\results\\E5_detection_observations.csv",
+    "detection_summary": "E5\\E5_resolution_operating_envelope\\results\\E5_detection_summary.csv",
+    "stability": "E5\\E5_resolution_operating_envelope\\results\\E5_stability_by_condition.csv",
+    "stability_summary": "E5\\E5_resolution_operating_envelope\\results\\E5_stability_summary.csv",
+    "calibrations": "E5\\E5_resolution_operating_envelope\\results\\E5_calibrations.json",
+    "predictions": "E5\\E5_resolution_operating_envelope\\results\\E5_predictions.csv",
+    "run_metrics": "E5\\E5_resolution_operating_envelope\\results\\E5_run_height_metrics.csv",
+    "height_summary": "E5\\E5_resolution_operating_envelope\\results\\E5_height_summary.csv",
+    "interaction_records": "E5\\E5_resolution_operating_envelope\\results\\E5_height_interaction_records.csv",
+    "interaction_summary": "E5\\E5_resolution_operating_envelope\\results\\E5_height_interaction_summary.csv",
+    "image_latency": "E5\\E5_resolution_operating_envelope\\results\\E5_image_latency.csv",
+    "mapping_latency": "E5\\E5_resolution_operating_envelope\\results\\E5_mapping_latency.csv",
+    "latency_summary": "E5\\E5_resolution_operating_envelope\\results\\E5_latency_summary.csv",
+    "feasibility_by_height": "E5\\E5_resolution_operating_envelope\\results\\E5_feasibility_by_height.csv",
+    "feasibility_summary": "E5\\E5_resolution_operating_envelope\\results\\E5_feasibility_summary.csv",
+    "summary_json": "E5\\E5_resolution_operating_envelope\\results\\E5_summary.json",
+    "summary_md": "E5\\E5_resolution_operating_envelope\\results\\E5_RESULTS_SUMMARY.md",
+    "manifest": "E5\\E5_resolution_operating_envelope\\results\\E5_manifest.json"
+  },
+  "figures": [
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_1_detection_ihawk1.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_1_detection_ihawk1.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_1_detection_ihawk2.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_1_detection_ihawk2.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_2_stability.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_2_stability.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_3_accuracy_ihawk1.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_3_accuracy_ihawk1.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_3_accuracy_ihawk2.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_3_accuracy_ihawk2.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_4_latency_ihawk1.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_4_latency_ihawk1.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_4_latency_ihawk2.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_4_latency_ihawk2.png",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_5_standard_feasibility.pdf",
+    "E5\\E5_resolution_operating_envelope\\figures\\Fig_E5_5_standard_feasibility.png"
+  ],
+  "interpretation": [
+    "Resolution levels are deterministic transforms of shared physical acquisitions.",
+    "Z=0 is reused for calibration and is not an independent planar test.",
+    "Accuracy is emitted only for complete five-marker run-height conditions.",
+    "Feasibility profiles are screening constraints, not standards.",
+    "Timing is specific to this analysis computer and software stack."
+  ]
+}

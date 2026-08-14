@@ -107,6 +107,30 @@
 - 不能支持：仅由 0.5/1 mm 网格分辨率便得到 B2 的完整 uncertainty budget；无需观察者复读便确认人工读数可靠。
 - 决定：`VERIFIED_FULLTEXT`，Methods/Limitations 的通用计量指南。
 
+## Volden et al., Monocular/Stereo Marker Positioning (2022)
+
+- DOI：<https://doi.org/10.1007/s41315-021-00193-0>。
+- 阅读重点：pipeline overview、monocular/stereo design comparison、LiDAR reference 和 field limitations。
+- 可支持：marker-based monocular 与 stereo/triangulation comparison 已有明确实场先例；双目需要 correspondence、calibrated relative geometry 和同步，单目/双目各有视场与复杂度取舍。
+- 不能支持：B2 的 stereo 数字具有外部 LiDAR traceability；B2 的静态 pair timing 足以说明动态场景；E6 是首次单/双相机比较。
+- 决定：`VERIFIED_REMOTE_FULLTEXT`，E6 related-work 与限制候选；待引用库迁移。
+
+## Popescu et al., Multi-Camera Fiducial Fusion (2020)
+
+- DOI：<https://doi.org/10.3390/s20092746>。
+- 阅读重点：multi-camera measurement fusion、adaptive Kalman setup 和 Monte Carlo evaluation。
+- 可支持：多相机 fiducial measurement fusion 与通过不确定性/权重组合多个观测不是新概念；多 camera 的目标通常包括 precision、working area 与 reliability。
+- 不能支持：简单平均必然改善精度；该工作的 Kalman fusion 等同于 B2 的 equal/LOO weighting；B2 提出了新 fusion algorithm。
+- 决定：`VERIFIED_REMOTE_FULLTEXT`，E6 fusion prior-art 候选；待引用库迁移。
+
+## Adámek et al., Planar Fiducial Pose Variance (2023)
+
+- DOI：<https://doi.org/10.3390/s23125746>。
+- 阅读重点：pose ambiguity、distance/view-angle/marker-area dependent variance 和 analytical noise model。
+- 可支持：平面 fiducial pose uncertainty 随 view geometry 与 image footprint 改变已有理论和实验基础；geometry-aware weighting 是已有方向。
+- 不能支持：B2 两个固定 camera placements 可以识别 angle causality；pooled angle/error correlation 足以给出 optimal angle；ihawk2 的差异由倾角单独造成。
+- 决定：`VERIFIED_REMOTE_FULLTEXT`，E6 angle-confounding prior-art 候选；待引用库迁移。
+
 ## 仅元数据/摘要核验的补充来源
 
 - `ISO 9283:1998`：官方页面确认标题、版本和状态；全文付费，未下载。只能用于标准背景，不宣称 B2 符合 ISO 流程。

@@ -1,0 +1,69 @@
+{
+  "generated_utc": "2026-08-14T07:20:57.083764+00:00",
+  "script": "E7\\E7_moving_camera_relocalization_simulation\\scripts\\e7_moving_camera_simulation.py",
+  "input": "E2\\E2_rebuilt\\model_comparison\\E2_calibration_models.json",
+  "python": "3.12.10",
+  "opencv": "4.13.0",
+  "numpy": "2.4.2",
+  "random_seed": 20260814,
+  "trials": 50,
+  "motion_scenarios": [
+    {
+      "tier": 0,
+      "name": "S0_nominal",
+      "translation_mm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "tier": 1,
+      "name": "S1_small",
+      "translation_mm": 5.0,
+      "rotation_deg": 0.5
+    },
+    {
+      "tier": 2,
+      "name": "S2_moderate",
+      "translation_mm": 15.0,
+      "rotation_deg": 2.0
+    },
+    {
+      "tier": 3,
+      "name": "S3_large",
+      "translation_mm": 30.0,
+      "rotation_deg": 5.0
+    }
+  ],
+  "pixel_noise_sigmas_px": [
+    0.1,
+    0.5,
+    1.0
+  ],
+  "target_heights_mm": [
+    0.0,
+    10.0,
+    25.0,
+    50.0
+  ],
+  "methods": [
+    "FrozenHomography",
+    "DynamicHomography",
+    "FrozenExtrinsicPnP",
+    "RelocalizedPnP",
+    "OracleMotionAwarePnP"
+  ],
+  "xy_p95_budgets_mm": [
+    2.0,
+    5.0,
+    10.0
+  ],
+  "minimum_success_rate": 0.99,
+  "detector_failure_model": "none; Gaussian corner noise only",
+  "outputs": [
+    "E7\\E7_moving_camera_relocalization_simulation\\results\\E7_configuration_metrics.csv",
+    "E7\\E7_moving_camera_relocalization_simulation\\results\\E7_overall_summary.csv",
+    "E7\\E7_moving_camera_relocalization_simulation\\results\\E7_operating_envelope.csv",
+    "E7\\E7_moving_camera_relocalization_simulation\\results\\E7_RESULTS_SUMMARY.md",
+    "E7\\E7_moving_camera_relocalization_simulation\\results\\E7_summary.json",
+    "E7\\E7_moving_camera_relocalization_simulation\\results\\E7_manifest.json"
+  ]
+}

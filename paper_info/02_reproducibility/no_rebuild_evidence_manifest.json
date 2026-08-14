@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-08-14T07:58:33.190767+00:00",
+  "decision": "no_physical_rebuild",
+  "scope": "offline reuse and simulation only; no new physical observations",
+  "component_verifiers": "PASS",
+  "paper_role": {
+    "E5": "main-text supporting evidence for resolution/reliability/latency constraints",
+    "E6": "main-text evidence for single-view, estimate-fusion, and stereo information flows",
+    "E6_angle": "descriptive confounding/identifiability audit only",
+    "E7": "supplementary simulation and mechanism hypothesis only"
+  },
+  "pending_claim_map_rows": [
+    {
+      "claim_id": "C19",
+      "claim": "Native 640x400 processing already met the predefined 30 Hz latency gate, while 480x300 reduced complete-frame detection reliability, especially for ihawk1.",
+      "evidence": "E5/E5_resolution_operating_envelope/results/E5_summary.json",
+      "key_result": "native complete detection 100% for both cameras; native worst pipeline P95 8.149 ms; 480x300 complete frames 78.4%/98.8%",
+      "strength": "direct within offline downsampling protocol",
+      "caveat": "not a native sensor-mode experiment; timing is computer-specific"
+    },
+    {
+      "claim_id": "C20",
+      "claim": "Downsampling imposed a camera- and method-dependent accuracy cost and did not reveal a universal height-amplification law.",
+      "evidence": "E5/E5_resolution_operating_envelope/results/E5_height_summary.csv",
+      "key_result": "ihawk2 PnP at 25 mm: 4.786/12.808/18.126 mm at 640/480/320 widths",
+      "strength": "conditional paired transformation evidence",
+      "caveat": "survivorship after detection failure; same physical images reused"
+    },
+    {
+      "claim_id": "C21",
+      "claim": "Averaging two camera-specific estimates and using calibrated stereo parallax are distinct information flows; the latter added depth information in E6.",
+      "evidence": "E6/E6_dual_camera_information_and_view_geometry/results/E6_summary.json",
+      "key_result": "PnP at 25 mm ihawk1/ihawk2/equal/LOO = 8.850/4.786/6.057/4.897 mm; stereo XY/Z = 2.752/1.772 mm",
+      "strength": "direct within five paired physical rebuilds",
+      "caveat": "static target; Z=0-derived stereo geometry; no E4 endpoint propagation"
+    },
+    {
+      "claim_id": "C22",
+      "claim": "The existing data do not identify a causal camera-angle effect.",
+      "evidence": "E6/E6_dual_camera_information_and_view_geometry/results/E6_angle_identifiability_audit.json",
+      "key_result": "10 run-camera rows but only 2 fixed placements; all audited geometry ranges are separated by camera identity",
+      "strength": "direct design/identifiability limitation",
+      "caveat": "pooled correlations are descriptive and confounded"
+    },
+    {
+      "claim_id": "C23",
+      "claim": "In simulation, per-frame relocalization prevented camera motion from making the nominal extrinsic stale.",
+      "evidence": "E7/E7_moving_camera_relocalization_simulation/results/E7_summary.json",
+      "key_result": "at 25 mm and 0.5 px noise, frozen-extrinsic PnP reached 40.612 mm under large motion; relocalized PnP stayed 6.623-6.846 mm",
+      "strength": "simulation-only mechanism evidence",
+      "caveat": "no physical motion, detector failure, blur, vibration, rolling shutter, or endpoint validation"
+    }
+  ],
+  "source_hashes_sha256": {
+    "E5/E5_resolution_operating_envelope/results/E5_summary.json": "1db4f9e7666282cd6b2f4ed68250d81fb77b4727a29146a81ba1b6c8f78eabeb",
+    "E5/E5_resolution_operating_envelope/results/E5_height_summary.csv": "71d46d826643902b4676148d5e3bc5008e90d11a4b04bf8f5509556ff55447c4",
+    "E5/E5_resolution_operating_envelope/results/E5_manifest.json": "7a4624f31ef265e613e48d29b51d3cb42c0fb7c14e43ee6bb38ec52dc32fe727",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_summary.json": "f0026ef50490211d96470e205208e23fd364f9fdd61db8c8bd4d4ce4e251bae0",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_stereo_height_summary.csv": "e4cb6db43319f6389bbb83759448b38293150f3f11117ca4864bc91575df4ed7",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_angle_identifiability_audit.json": "7d83a998a2c2f7935a2667909322c1c806f2b168a59e66996c66a98ed12daf20",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_manifest.json": "b6756319f5aecefe765f4426f74a71848e3e23da19b4281d88f1da758a6c9013",
+    "E7/E7_moving_camera_relocalization_simulation/results/E7_summary.json": "0fa99926c3c78c1cd755750be6957f59ffa26a11e2a328f7ade36ff5382fddcf",
+    "E7/E7_moving_camera_relocalization_simulation/results/E7_manifest.json": "9bb8b8d20556845c2513948dd7787dcc6c1a78b53eefaf5646ee12c5cb3b1433"
+  }
+}

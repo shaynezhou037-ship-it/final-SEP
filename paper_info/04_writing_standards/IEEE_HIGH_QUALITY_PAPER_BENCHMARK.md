@@ -72,7 +72,7 @@ IEEE 的期刊搜索页可查看当前 bibliometric scores；投稿前再核验�
 - 每一场景先给 setup，再给定量结果、可视化和场景内总结，最后才形成条件性设备建议；
 - 结论按应用距离和场景限定，不给脱离条件的统一冠军。
 
-对 B2 的直接要求：我们的原创性重点也应是公平、可审计、多层级和 geometry-conditioned，不伪装成新算法。E1–E4 的统计单位和真实采集设置必须分表说明。
+对 B2 的直接要求：我们的原创性重点也应是公平、可审计、多层级和 geometry/information-conditioned，不伪装成新算法。E1–E4 的物理单位、E5/E6 的离线复用关系和 E7 的 simulation-only 单位必须分表说明。
 
 ### E. Collins and Bartoli — IJCV, 2014（IPPE 原始论文）
 
@@ -118,9 +118,9 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 1. 实际问题：平面标定分数未必反映机器人端点；
 2. 缺口：同一系统中缺少从 planar/off-plane/coverage 到 endpoint 的公平比较；
-3. 方法与真实 n：两相机、五次 rebuild、36 planar locations、E3 offline resampling、E4 one completed block；
+3. 方法与真实 n：两相机、五次 rebuild、36 planar locations、E3 offline resampling、E5 paired downsampling、E6 paired static views、E4 one completed block；E7 不作为 physical n；
 4. 关键数字：只选 2–3 个最能回答 RQ 的结果；
-5. 条件性结论和 E4 exploratory 边界。
+5. 条件性结论、E6 no-causal-angle/no-endpoint-propagation 边界和 E4 exploratory 边界。
 
 ### Introduction
 
@@ -136,11 +136,11 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 ### Results
 
-按 RQ1–RQ4，不按脚本/日期写。每节遵循：问题 → 图/表 → 主结果 → 不确定性/跨 rebuild 差异 → 一句边界。Discussion 才解释原因，不在 Results 中制造未经验证的机制。
+按 RQ1–RQ5，不按脚本/日期写。每节遵循：问题 → 图/表 → 主结果 → 不确定性/跨 rebuild 差异 → 一句边界。Discussion 才解释原因，不在 Results 中制造未经验证的机制。E6 的 pooled angle correlation 不能用显著性语言包装成角度效应。
 
 ### Discussion and Limitations
 
-必须回答：何时 planar model 足够；何时 off-plane robustness 重要；为什么 coverage 不能简化为点数；为何视觉误差不会一比一传到端点；结果能推广到哪里。E4 early stop、registration held-out 检查有限、人工网格读数和未验证抓取成功率必须出现。
+必须回答：何时 planar model 足够；何时 off-plane robustness 重要；为什么 coverage 不能简化为点数；为什么 native resolution 在当前计算机上优于降采样取舍；为什么 estimate fusion 不等于 stereo information；为何当前 angle effect 不可识别；为何视觉误差不会一比一传到端点；结果能推广到哪里。E6 静态目标/Z=0-derived geometry/no endpoint propagation 与 E4 early stop、registration held-out 检查有限、人工网格读数和未验证抓取成功率必须出现。
 
 ## 4. 图表设计基准
 
@@ -155,11 +155,14 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 建议主图：
 
-1. **Fig. 1**：实物照片 + image-to-endpoint 坐标链 + E1–E4 证据地图；
+1. **Fig. 1**：实物照片 + single/fusion/stereo information flows + E4 image-to-endpoint 坐标链 + E1–E7 证据等级地图；
 2. **Fig. 2**：E1 paired target error/ECDF，而不是三个均值柱；
 3. **Fig. 3**：E2 两相机高度曲线，每个 rebuild 可见；跨度过大时使用分面或明确的 inset，避免用单轴压扁 PnP；
-4. **Fig. 4**：E3 `point count × distribution × model`，同时显示 failure/extreme cases；
-5. **Fig. 5**：E4 target-paired endpoint error，并分解 vision、downstream residual 和 E2E；
+4. **Fig. 4**：E3 `point count × distribution × model` 与 E5 resolution/detection/latency constraints；
+5. **Fig. 5**：E6 single-camera、estimate fusion 与 stereo parallax；角度 panel 只显示 layout confounding/identifiability；
+6. **Fig. 6**：E4 target-paired endpoint error，并分解 vision、downstream residual 和 E2E；
+
+E7 所有图只进入 Supplement，并在图内或 caption 明示 `simulation only`。
 6. **Fig. 6**：只总结数据支持的条件性模型选择，不发明普适高度阈值。
 
 ## 5. “取长补短”的执行方式
