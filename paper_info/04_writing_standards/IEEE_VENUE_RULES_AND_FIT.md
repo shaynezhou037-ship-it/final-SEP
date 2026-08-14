@@ -35,7 +35,7 @@
 
 理由：
 
-- B2 的真实优势是完整应用实验和可审计比较，而不是新算法。IEEE Access 明确接纳应用工程、新实验与测量技术，也允许用足够篇幅交代 E0–E7 的 physical/offline/simulation 单位、失败、提前停止和人工修订。E6 的 estimate fusion versus stereo parallax 区分增强了 advance，但 E5/E7 的证据等级必须显式标注。
+- B2 的真实优势是受控几何信息层级和可审计比较，而不是新算法。IEEE Access 明确接纳应用工程、新实验与测量技术，也允许用足够篇幅交代核心 E1/E2/E6 的 physical/offline 单位及其失败边界。E3/E5 作为 supporting validity checks，E4 作为 limited application-side check，E0 只进 Supplement；E7 不进入投稿包。E6 的 estimate fusion versus stereo parallax 区分是当前最清楚的 advance。
 - Supplement 可容纳全量逐目标/逐 rebuild 结果、配置、代码和数据字典，主文仍可保持自包含。
 - E4 的 one completed nine-target block 可以作为透明的 exploratory downstream case study；无需伪装成完整 manipulation 或确认性 108-trial study。
 
@@ -68,7 +68,7 @@ TIM measurement gate：
 理由：
 
 - RA-L 要求 concise account of innovative robotics/automation results；B2 当前核心是既有映射模型的条件化评价，新机器人算法/系统贡献不突出。
-- 6–8 页且禁止 supplemental text/figures，使 E0–E7 的统计边界、失败记录、仿真标记和人工读数限制难以同时透明呈现。
+- 6–8 页且禁止 supplemental text/figures，使核心 E1/E2/E6 的统计边界与 E4 人工读数限制仍难以同时透明呈现。
 - E4 只有一个完整九目标 block、人工读数且提前停止，可以收束叙事，但不足以单独承担一篇强调机器人创新的 Letter。
 
 只有同时满足以下条件才重启 RA-L：能把贡献压缩为一个真正的 robotics/automation innovation；6–8 页内仍完整交代必要证据；无需隐藏 E4 局限；核心结论不依赖正文之外的文字补充。当前项目不满足这些条件。
@@ -83,14 +83,14 @@ TIM measurement gate：
 
 ## 5. 对蓝图的直接约束
 
-1. `end-to-end` 继续使用，但严格限定为 image/board observation 到 robot endpoint 的已测链路。
-2. Appendix 默认不设。Access/TIM 的非核心全量结果进入 Separate Supplement；RA-L 路线暂停，因此不为其删减科学边界。
-3. Fig. 1 必须把 measurand、坐标链、验证层级和未覆盖的 detection/grasp/contact 清楚区分。
-4. E4 正文至少同时出现 `exploratory`、`one completed nine-target block`、`manual endpoint reading` 和 `early stop` 的事实。
-5. E5 正文必须使用 `simulated effective resolution`，同时报告 detection coverage 与 accuracy；不得称 native sensor-mode benchmark。
+1. Title、Abstract 和 Contributions 只承载 E1 → E2 → E6 的核心进程，不使用 `end-to-end`、resolution、angle 或 moving-camera 扩张主张。
+2. Appendix 默认不设。E0 及必要的 E3/E5/E6-angle 全量结果可进入 Separate Supplement；E7 不进入 manuscript、Appendix 或 Supplement。
+3. Fig. 1 必须显示从 planar 2-D mapping、single-view 3-D pose 到 estimate fusion/stereo parallax 的几何信息层级，并清楚标出验证边界。
+4. E4 只作为 limited application-side check；正文至少同时出现 `exploratory`、`one completed nine-target block`、`manual endpoint reading` 和 `early stop`，且不得称为 E6 的 endpoint validation。
+5. E5 只作 supporting validity check，必须使用 `simulated effective resolution`，同时报告 detection coverage 与 accuracy；不得称 native sensor-mode benchmark。
 6. E6 必须把 estimate fusion 与 stereo triangulation 分开，并披露 static target、Z=0-derived projection matrices 和 no E4 propagation。
-7. E6 angle 只使用 `not identifiable from the current two fixed placements`；E7 只进入 Supplement 并标 `simulation only`。
-5. 若走 TIM，Title/Abstract/Introduction 必须明确 I&M contribution；若走 Access，则强调 auditable geometry-conditioned evaluation，而不是虚构算法创新。
+7. E6 angle 只使用 `not identifiable from the current two fixed placements`；不得形成独立 RQ、贡献或主图。
+8. 若走 TIM，Title/Abstract/Introduction 必须明确 I&M contribution；若走 Access，则强调 controlled geometric-information evaluation，而不是虚构算法创新。
 
 ## 6. AI 规则
 

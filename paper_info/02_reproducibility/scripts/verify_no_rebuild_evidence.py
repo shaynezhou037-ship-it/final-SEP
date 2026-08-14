@@ -3,7 +3,9 @@
 
 This script does not create new physical observations. It checks the existing
 E5/E6/E7 derived outputs, enforces the paper-level evidence boundaries, and
-writes a hash-backed JSON manifest for the manuscript audit trail.
+writes a hash-backed JSON manifest for the audit trail. Verification preserves
+repository integrity; it does not make every verified experiment eligible for
+the current submission.
 """
 
 from __future__ import annotations
@@ -157,19 +159,20 @@ def main() -> None:
         "scope": "offline reuse and simulation only; no new physical observations",
         "component_verifiers": "PASS",
         "paper_role": {
-            "E5": "main-text supporting evidence for resolution/reliability/latency constraints",
-            "E6": "main-text evidence for single-view, estimate-fusion, and stereo information flows",
-            "E6_angle": "descriptive confounding/identifiability audit only",
-            "E7": "supplementary simulation and mechanism hypothesis only",
+            "E5": "supporting validity check for resolution/reliability/latency constraints",
+            "E6": "core evidence for single-view, estimate-fusion, and stereo information flows",
+            "E6_angle": "supplementary descriptive confounding/identifiability audit only",
+            "E7": "repository-only future-work simulation; excluded from manuscript, Appendix, and Supplement",
         },
         "pending_claim_map_rows": [
             {
                 "claim_id": "C19",
-                "claim": "Native 640x400 processing already met the predefined 30 Hz latency gate, while 480x300 reduced complete-frame detection reliability, especially for ihawk1.",
+                "claim": "Processing the saved 640x400 baseline images already met the predefined 30 Hz latency gate, while offline downsampling to 480x300 reduced complete-frame detection reliability, especially for ihawk1.",
                 "evidence": relative(e5_summary_path),
                 "key_result": "native complete detection 100% for both cameras; native worst pipeline P95 8.149 ms; 480x300 complete frames 78.4%/98.8%",
                 "strength": "direct within offline downsampling protocol",
                 "caveat": "not a native sensor-mode experiment; timing is computer-specific",
+                "submission_role": "supporting",
             },
             {
                 "claim_id": "C20",
@@ -178,6 +181,7 @@ def main() -> None:
                 "key_result": "ihawk2 PnP at 25 mm: 4.786/12.808/18.126 mm at 640/480/320 widths",
                 "strength": "conditional paired transformation evidence",
                 "caveat": "survivorship after detection failure; same physical images reused",
+                "submission_role": "supporting",
             },
             {
                 "claim_id": "C21",
@@ -186,6 +190,7 @@ def main() -> None:
                 "key_result": "PnP at 25 mm ihawk1/ihawk2/equal/LOO = 8.850/4.786/6.057/4.897 mm; stereo XY/Z = 2.752/1.772 mm",
                 "strength": "direct within five paired physical rebuilds",
                 "caveat": "static target; Z=0-derived stereo geometry; no E4 endpoint propagation",
+                "submission_role": "core",
             },
             {
                 "claim_id": "C22",
@@ -194,6 +199,7 @@ def main() -> None:
                 "key_result": "10 run-camera rows but only 2 fixed placements; all audited geometry ranges are separated by camera identity",
                 "strength": "direct design/identifiability limitation",
                 "caveat": "pooled correlations are descriptive and confounded",
+                "submission_role": "supporting limitation",
             },
             {
                 "claim_id": "C23",
@@ -202,6 +208,7 @@ def main() -> None:
                 "key_result": "at 25 mm and 0.5 px noise, frozen-extrinsic PnP reached 40.612 mm under large motion; relocalized PnP stayed 6.623-6.846 mm",
                 "strength": "simulation-only mechanism evidence",
                 "caveat": "no physical motion, detector failure, blur, vibration, rolling shutter, or endpoint validation",
+                "submission_role": "excluded future work",
             },
         ],
         "source_hashes_sha256": {relative(path): sha256(path) for path in source_paths},

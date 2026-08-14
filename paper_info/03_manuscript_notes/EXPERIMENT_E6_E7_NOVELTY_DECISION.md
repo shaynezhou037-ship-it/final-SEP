@@ -1,25 +1,28 @@
 # E6/E7 novelty decision note
 
-Status: decision implemented in `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.2. The
+Status: decision implemented in `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.3. The
 author chose **no physical rebuild** on 2026-08-14.
 
 ## Decision
 
-E6 produces a useful new result for this project and is now assigned to the
-main paper. E5 supports the deployment envelope. E7 produces a mechanism
-hypothesis but remains a simulation-only supplementary analysis; physical
-validation is no longer a prerequisite for writing because the project will
-not be rebuilt.
+The submission is now organized around one geometric-information progression:
+E1 establishes the planar anchor, E2 tests what happens when the target leaves
+that plane, and E6 tests whether a second camera contributes merely another
+biased estimate or genuinely new parallax information. E3 and E5 are
+supporting validity checks, E4 is a limited application-side check, E0 is
+Supplement-only, and E7 is excluded from the submission package. E7 remains a
+repository-only simulation for possible future work; its physical validation
+is not a prerequisite for the current paper because the project will not be
+rebuilt.
 
 The promising paper direction is not "which model wins." It is:
 
-> Which visual information is sufficient under each deployment condition —
-> planar/off-plane target, effective resolution, one/two views, and
-> fixed/relocalized camera — and where does each low-cost pipeline cease to be
-> operationally valid?
+> When a target leaves the calibration plane, which geometric information is
+> sufficient for localization, and does a second camera help by adding another
+> estimate or by adding parallax?
 
-This is broader and more defensible than reporting only Affine/Homography/PnP
-accuracy rankings.
+This is more focused and more defensible than reporting only
+Affine/Homography/PnP accuracy rankings or several co-equal deployment factors.
 
 ## E6: conclusions supported by real E2 data
 
@@ -71,21 +74,27 @@ as new algorithms by themselves:
 - PnP-based camera/marker relocalization;
 - dependence of planar-marker pose uncertainty on distance and viewing angle.
 
-What may be publishable is their controlled, deployment-oriented comparison in
-one low-cost robotic manipulation chain, with explicit failure boundaries and
-resource constraints. That is an **evaluation/methodology contribution**, not
-a new pose-estimation algorithm.
+What may be publishable is the controlled geometric-information hierarchy in
+one low-cost eye-to-hand system: planar mapping, single-view 3-D pose, two
+single-view estimates, and calibrated stereo parallax. The paper's distinctive
+finding is the separation of a second estimate from a second geometric view.
+That is an **evaluation/methodology contribution**, not a new pose-estimation,
+fusion, or stereo algorithm.
 
 ## Recommended paper placement
 
-- Keep E1-E4 as the physical baseline and task chain.
-- Use E5 as supporting evidence about the resolution/reliability/latency
-  envelope, not as a standalone novelty claim.
-- Promote E6's "fusion versus parallax" result into the main experimental
-  narrative, while explicitly stating its Z=0-derived geometry, static-target
-  timing and lack of endpoint propagation.
-- Keep E7 as supplementary simulation; do not wait for a physical moving-camera
-  experiment and do not promote its numbers to Abstract/Contribution claims.
+- Use E1 and E2 to answer the first research question: when a target leaves the
+  calibration plane, which geometric information remains sufficient?
+- Use E6 to answer the second research question: does a second camera add only
+  another board-coordinate estimate or new two-view geometry? Explicitly state
+  its Z=0-derived geometry, static-target timing, and lack of endpoint
+  propagation.
+- Use E3 and E5 only as supporting validity checks; neither receives a separate
+  research question or contribution claim.
+- Keep E4 as a limited application-side check, not the narrative climax and not
+  validation of E6.
+- Keep E0 in the Supplement and exclude E7 from the manuscript, Appendix, and
+  Supplement. Do not promote any E7 number to the submission.
 - Do not make a causal camera-angle claim from the present two placements.
 
 ## No-rebuild implementation
@@ -97,10 +106,11 @@ a new pose-estimation algorithm.
    estimate fusion and stereo triangulation in every figure and paragraph.
 3. Use `E6_ANGLE_IDENTIFIABILITY_AUDIT.md` as the only angle conclusion. The
    audit proves confounding/non-identifiability, not a preferred angle.
-4. Keep E7 in the Supplement with `simulation only` labeling and an explicit
-   list of omitted physical effects.
+4. Preserve E7 only as repository evidence for future work. It is not part of
+   the current manuscript, Appendix, or Supplement.
 5. Run `paper_info/02_reproducibility/scripts/verify_no_rebuild_evidence.py`
-   before migrating any E5–E7 number into the manuscript.
+   before migrating any E5/E6 number into the manuscript. Verification of E7
+   preserves repository integrity and does not authorize manuscript use.
 
 ## Primary references used for this decision
 

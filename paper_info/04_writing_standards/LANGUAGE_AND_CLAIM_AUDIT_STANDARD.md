@@ -25,7 +25,7 @@
 | paired offline E5 | under simulated effective downsampling of the saved 640 × 400 images | native sensor mode, hardware frame-rate validation |
 | physical-data offline E6 | under the tested static paired observations/five rebuilds | two cameras are universally better, end-to-end dual-camera validation |
 | E6 angle audit | the current two fixed placements do not identify a causal angle effect | angle caused, optimal angle, angle-generalized model |
-| simulation-only E7 | in the deterministic Monte Carlo simulation | experimentally validated moving-camera performance |
+| repository-only E7 | not used in the current submission; internal descriptions must say `simulation only` | any E7 result in manuscript/Appendix/Supplement; experimentally validated moving-camera performance |
 
 任何 `significant/significantly` 只在有明确统计检验和定义好的 alpha 时使用；表示幅度大时改为 `substantial/large` 并给数字。
 
@@ -42,7 +42,7 @@
 - `under simulated effective resolution using the saved E2 images`；
 - `under static paired observations across five physical rebuilds`；
 - `descriptive only because camera identity and view geometry are confounded`；
-- `simulation only; no physical camera motion was acquired`。
+- E7 不进入当前 manuscript、Appendix 或 Supplement；仓库内部说明必须保留 `simulation only; no physical camera motion was acquired`。
 
 ## 4. 术语冻结
 
@@ -61,7 +61,9 @@
 - `stereo parallax/triangulation`：直接使用配对像点和两投影矩阵恢复 board XYZ；不是两个结果的平均；
 - `simulated effective resolution`：对保存的 640 × 400 图像离线降采样；不是 native sensor mode；
 - `angle-identifiability audit`：量化 camera identity/geometry confounding；不是 camera-angle experiment；
-- `relocalized PnP`：仿真中用固定 landmarks 更新当前 camera pose 后再估计 target；不是与 PnP 对立的另一类算法。
+- `geometric-information hierarchy`：planar 2-D mapping → single-view 3-D pose → two estimate-level outputs/calibrated stereo parallax；
+- `core evidence`：仅 E1、E2、E6；`supporting validity checks`：E3、E5；`limited application-side check`：E4；`repository-only future work`：E7；
+- `relocalized PnP`：仅用于仓库内部 E7 描述，指仿真中用固定 landmarks 更新当前 camera pose 后再估计 target；不是与 PnP 对立的另一类算法。
 
 ## 5. 机器腔和空话清理
 
@@ -111,7 +113,7 @@
 
 - 是否单段 ≤250 words、自包含且无引用？
 - 是否只放正文确实证明的数字？
-- 是否把 E4 写成 completed block，而不是 completed study？
+- 是否只放 E1/E2/E6 的核心问题与结果，并避免把 E4/E5/E7 写成并列贡献？
 
 ### Introduction
 
@@ -128,7 +130,7 @@
 - 是否重复数字而没有解释边界？
 - 是否从两个相机/一个系统跳到所有机器人？
 - 是否把 estimate fusion 和 stereo parallax 混成“dual-camera method”？
-- 是否把 E5/E7 写成原生硬件/物理实验？
+- 是否把 E5 错写成原生硬件实验，或把已排除的 E7 写入投稿包？
 - 是否明确 E6 angle confounding、no endpoint propagation，以及 E4 registration/人工读数限制？
 
 ## 10. 审计输出格式

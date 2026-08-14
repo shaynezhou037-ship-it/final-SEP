@@ -40,7 +40,7 @@ IEEE 的期刊搜索页可查看当前 bibliometric scores；投稿前再核验�
 - 实验按 synthetic → public real-world data → real-robot high-precision targeting → ablation → application 逐级增强；
 - 高精度 targeting 被放在叙事关键位置，但作者仍明确说它只是 preliminary indication，而不是夸大为完整操作成功率。
 
-对 B2 的直接要求：Fig. 1 必须画出 image-to-endpoint 链；E4 应作为故事终点，但 caption 和正文必须写清 one completed block、9 targets、manual reading 和 early stopping。
+对 B2 的直接要求：学习其第一页信息密度，但不照搬 endpoint-centered story。Fig. 1 必须画出 planar Homography → single-view PnP → estimate fusion/stereo 的信息层级；E4 只作为 application-side supporting branch，并写清 one completed block、9 targets、manual reading 和 early stopping。
 
 ### B. Zhong et al. — IEEE RA-L, 2020
 
@@ -51,7 +51,7 @@ IEEE 的期刊搜索页可查看当前 bibliometric scores；投稿前再核验�
 - 仿真、真实机器人平台和下游 needle handover case study 形成证据梯度；
 - 方法局限在 Conclusion 中明确列出，没有用未来工作掩盖当前边界。
 
-对 B2 的直接要求：Introduction 要从“平面成绩是否能传到机器人端点”这一真实问题切入；end-to-end 的每个组成环节都要定义，未覆盖的检测/抓取/接触不能暗示已经验证。
+对 B2 的直接要求：Introduction 要从“目标离开标定平面后需要什么几何信息”切入，并在第一页引出“第二个估计不等于第二视图几何”。E4 的 downstream chain 只在 supporting application check 中定义，未覆盖的检测/抓取/接触不能暗示已经验证。
 
 ### C. Wu et al. — IEEE TIM, 2020
 
@@ -72,7 +72,7 @@ IEEE 的期刊搜索页可查看当前 bibliometric scores；投稿前再核验�
 - 每一场景先给 setup，再给定量结果、可视化和场景内总结，最后才形成条件性设备建议；
 - 结论按应用距离和场景限定，不给脱离条件的统一冠军。
 
-对 B2 的直接要求：我们的原创性重点也应是公平、可审计、多层级和 geometry/information-conditioned，不伪装成新算法。E1–E4 的物理单位、E5/E6 的离线复用关系和 E7 的 simulation-only 单位必须分表说明。
+对 B2 的直接要求：原创性重点是共享观测下的 controlled geometric-information hierarchy，不伪装成新算法。E1/E2/E6 是 core；E3/E5/E4 是 supporting；E0 是 Supplement；E7 excluded。分级必须在 Table II 明示。
 
 ### E. Collins and Bartoli — IJCV, 2014（IPPE 原始论文）
 
@@ -118,13 +118,13 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 1. 实际问题：平面标定分数未必反映机器人端点；
 2. 缺口：同一系统中缺少从 planar/off-plane/coverage 到 endpoint 的公平比较；
-3. 方法与真实 n：两相机、五次 rebuild、36 planar locations、E3 offline resampling、E5 paired downsampling、E6 paired static views、E4 one completed block；E7 不作为 physical n；
+3. 方法与真实 n：36 planar locations、两相机、五次 physical rebuild 和 E6 paired static views；
 4. 关键数字：只选 2–3 个最能回答 RQ 的结果；
-5. 条件性结论、E6 no-causal-angle/no-endpoint-propagation 边界和 E4 exploratory 边界。
+5. 条件性结论与 E6 static-target/Z=0-derived geometry/no-endpoint-propagation 边界。E3/E5/E4/E7 不在摘要中扩展为并列结果。
 
 ### Introduction
 
-固定为五段：任务后果 → 方法选择缺口 → 现有评价为什么不够 → 我们的 end-to-end evaluation design → 三项可核验贡献。禁止从“近年来人工智能快速发展”开始。
+固定为五段：任务后果 → planar-to-off-plane 信息缺口 → second estimate versus second-view geometry 缺口 → 我们的 controlled evaluation design → 两项可核验贡献。禁止从“近年来人工智能快速发展”开始。
 
 ### Related Work
 
@@ -136,17 +136,17 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 ### Results
 
-按 RQ1–RQ5，不按脚本/日期写。每节遵循：问题 → 图/表 → 主结果 → 不确定性/跨 rebuild 差异 → 一句边界。Discussion 才解释原因，不在 Results 中制造未经验证的机制。E6 的 pooled angle correlation 不能用显著性语言包装成角度效应。
+按 RQ1–RQ2 组织两个核心结果节，再设一个简短 `Supporting Validity Checks` 和一个 `Exploratory Application-Side Check`；不按 E 编号逐项写项目报告。每节遵循：问题 → 图/表 → 主结果 → 不确定性 → 一句边界。
 
 ### Discussion and Limitations
 
-必须回答：何时 planar model 足够；何时 off-plane robustness 重要；为什么 coverage 不能简化为点数；为什么 native resolution 在当前计算机上优于降采样取舍；为什么 estimate fusion 不等于 stereo information；为何当前 angle effect 不可识别；为何视觉误差不会一比一传到端点；结果能推广到哪里。E6 静态目标/Z=0-derived geometry/no endpoint propagation 与 E4 early stop、registration held-out 检查有限、人工网格读数和未验证抓取成功率必须出现。
+必须优先回答：目标离面后为何二维平面信息不足；为什么 estimate fusion 不等于 stereo information；结果只适用于哪些静态 low-cost eye-to-hand 条件。随后用较短篇幅说明 calibration coverage、saved-image downsampling、angle confounding 和 E4 measurement-chain 限制。E7 只可作为 future work 名称，不报告仿真数字。
 
 ## 4. 图表设计基准
 
 统一规则：
 
-- 每张主图只回答一个 RQ；caption 自包含并写 n、误差定义、误差带和 exploratory/confirmatory；
+- 每张核心结果图只回答一个 RQ；系统图和 E4 supporting 图必须有单一明确目的；caption 自包含并写 n、误差定义、误差带和 exploratory/confirmatory；
 - 模型颜色全篇固定，camera/rebuild 用线型或透明度编码；使用色盲友好配色；
 - 连续高度数据不用柱状图；E2 显示每个 rebuild 细线和跨 rebuild 汇总粗线；
 - 不用 3-D 柱图、彩虹色图、仅靠颜色区分、没有单位的轴、被截断且未标识的 y 轴；
@@ -155,15 +155,12 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 建议主图：
 
-1. **Fig. 1**：实物照片 + single/fusion/stereo information flows + E4 image-to-endpoint 坐标链 + E1–E7 证据等级地图；
-2. **Fig. 2**：E1 paired target error/ECDF，而不是三个均值柱；
-3. **Fig. 3**：E2 两相机高度曲线，每个 rebuild 可见；跨度过大时使用分面或明确的 inset，避免用单轴压扁 PnP；
-4. **Fig. 4**：E3 `point count × distribution × model` 与 E5 resolution/detection/latency constraints；
-5. **Fig. 5**：E6 single-camera、estimate fusion 与 stereo parallax；角度 panel 只显示 layout confounding/identifiability；
-6. **Fig. 6**：E4 target-paired endpoint error，并分解 vision、downstream residual 和 E2E；
+1. **Fig. 1**：实物照片、坐标系与 planar Homography → single-view PnP → estimate fusion/stereo hierarchy；E4 仅作小型 supporting branch；
+2. **Fig. 2**：E1 planar paired errors + E2 两相机 height curves，合并回答 RQ1；
+3. **Fig. 3**：E6 single-camera/equal/LOO-weighted PnP 与 stereo XY/Z，回答 RQ2；不放 angle panel；
+4. **Fig. 4**：E4 target-paired endpoint error，明确 `not an E6 endpoint validation`。
 
-E7 所有图只进入 Supplement，并在图内或 caption 明示 `simulation only`。
-6. **Fig. 6**：只总结数据支持的条件性模型选择，不发明普适高度阈值。
+E0/E3/E5/angle 图进入 Supplement；E7 不进入投稿图表资产。
 
 ## 5. “取长补短”的执行方式
 
@@ -176,8 +173,8 @@ E7 所有图只进入 Supplement，并在图内或 caption 明示 `simulation on
 - [x] TIM、IEEE Access、RA-L 的当年 scope、模板、页数、anonymous review 和 supplement 规则已于 2026-08-14 重新核验；正式投稿前仍须复核；
 - [ ] novelty gap 至少由 8–12 篇全文论文支撑，不只看摘要；
 - [ ] `citation_sentence_ledger.csv` 中正文引用状态均为 `VERIFIED`；
-- [ ] Fig. 1 草图和 Fig. 3/E2 主图先于 Introduction 定稿；
-- [ ] 关键数字与 `claim_evidence_map_v2.csv` 一致；
+- [ ] Fig. 1 information hierarchy、Fig. 2 E1+E2 和 Fig. 3 E6 在 Introduction 定稿前冻结；
+- [ ] 核心数字与冻结源文件及 `no_rebuild_evidence_manifest.json` 一致；`claim_evidence_map_v2.csv` 的旧 RQ/图号角色在使用前完成迁移；
 - [ ] 作者签认 end-to-end 定义和所有 E4 限制；
 - [ ] AI 使用日志已持续记录，引用列表未交给生成式 AI 自动改写。
 

@@ -9,8 +9,8 @@
 1. `../03_manuscript_notes/PAPER_WRITING_MASTER_PLAN.md`；
 2. `../03_manuscript_notes/PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`；
 3. `NO_REBUILD_DIRECTION_AND_DOCUMENT_AUDIT.md`（本轮方向变化、文档影响与剩余迁移）；
-4. `../03_manuscript_notes/claim_evidence_map_v2.csv`；
-5. `../02_reproducibility/no_rebuild_evidence_manifest.json`（E5–E7 待迁移主张与 hash-backed evidence gate）；
+4. `../03_manuscript_notes/claim_evidence_map_v2.csv`（迁移完成前只读取冻结数字与源路径；其中旧 RQ/图号角色不得覆盖 v2.3 蓝图）；
+5. `../02_reproducibility/no_rebuild_evidence_manifest.json`（E5–E7 派生结果与 hash-backed evidence gate；不代表全部进入投稿稿件）；
 6. 当前任务对应的 `../04_writing_standards/` 标准；
 7. 引用任务再读 `../05_literature_library/citation_sentence_ledger.csv`。
 
@@ -20,7 +20,7 @@
 
 | 阶段 | 助手负责 | 作者必须复核/决定 | 通过门槛 |
 |---|---|---|---|
-| 1 故事与边界 | 汇总数据、红队、定义 RQ/claim/禁止表述 | 认可 end-to-end 限定定义、E5/E6/E7 证据等级和 no-rebuild 边界 | 蓝图、manifest 与 claim map 签认 |
+| 1 故事与边界 | 汇总数据、红队、定义 RQ/claim/禁止表述 | 认可两项 RQ、两项贡献和 core/supporting/excluded 分级 | 蓝图、manifest 与 claim map 签认 |
 | 2 文献与 venue | 搜索官方页面、下载全文、筛选、BibTeX/句子绑定 | 目标期刊优先级；是否接受预印本；相关工作是否遗漏作者熟悉的论文 | 核心引用全文 VERIFIED；novelty gap 经检索 |
 | 3 图表 | 从冻结数据生成图、caption 和数字审计 | 图是否忠实反映实验；照片/示意是否可公开 | 每张图能回答一个 RQ；正文数字可追溯 |
 | 4 正文 | 依 evidence 写候选英文、维护引用和术语 | 科学判断、措辞强度、作者声音、未公开信息 | 每节通过 claim/citation/number audit |
@@ -56,13 +56,14 @@
 
 ## 5. 作者复核与方向决策记录（2026-08-13 至 2026-08-14）
 
-- **R1 — 已被 R7 的方向调整取代**：原题 `From Calibration Accuracy to End-to-End Robot Positioning` 不再是推荐题目；end-to-end 的窄定义继续有效；
+- **R1 — 已被 R9 的收束决定取代**：原题 `From Calibration Accuracy to End-to-End Robot Positioning` 不再是推荐题目；end-to-end 的窄定义只在 E4 内继续有效；
 - **R2 — 通过**：E4 在叙事中使用一张主图/完整小节，但统计上仍为 exploratory、one completed nine-target block；
 - **R3 — 2026-08-13 通过的检索起点，已完成**：按 TIM / IEEE Access / RA-L 三路线检索；其后形成的当前路线建议见 R6；
 - **R4 — 通过**：暂留 Acuna 预印本作为 E3 线索，同时继续寻找同行评审替代；
 - **R5 — 暂缓决定**：实际 AI 使用范围与披露文字在正文形成后再决定；期间继续保留事实日志，不预写最终披露结论。
-- **R7 — 2026-08-14 通过**：不重新搭建物理系统。E6 的 single/estimate-fusion/stereo comparison 进入主文；E5 作为分辨率/可靠性/时延支撑；E7 保持 simulation-only Supplement；不再等待控制角度、真实移动相机或 E6 endpoint propagation。
+- **R7 — 已被 R9 进一步收束**：不重新搭建物理系统的决定继续有效；原先“E7 进入 Supplement”已取消。
 - **R8 — 由当前设计强制**：现有角度数据只支持 confounding/identifiability audit。10 个 run-camera rows 来自两个固定布局；不得用 pooled correlation 声称角度因果或最优角度。
+- **R9 — 2026-08-14 通过**：严格 IEEE reviewer audit 后，投稿主线收束为 E1→E2→E6；只保留 RQ1 planar-to-off-plane information sufficiency 与 RQ2 second estimate versus stereo geometry。E3/E5 supporting，E4 limited application-side check，E0 Supplement，E7 excluded。
 
 ## 6. 已执行删除（2026-08-13）
 
@@ -95,7 +96,7 @@
 ## 9. Git 基线与三刊规则冻结（2026-08-14）
 
 - 当前公开 Git 基线为 commit `704bdda9b2dc97e0bb72facbd53c3c4eb08fb17a`（short `704bdda`），已推送到 `final-SEP` 的 `main`，本地与 `origin/main` 一致。
-- 公开基线 `704bdda` 只覆盖当时的 E0–E4；当前 E5–E7 与 v2.2 文档尚属于后续未提交工作，不能描述成该公开 commit 已包含。第三方论文 PDF 所在的 `05_literature_library/final_papers/` 仍仅本机保留，不公开再分发。
+- 公开基线 `704bdda` 只覆盖当时的 E0–E4；当前 E5–E7 与 v2.3 文档尚属于后续未提交工作，不能描述成该公开 commit 已包含。第三方论文 PDF 所在的 `05_literature_library/final_papers/` 仍仅本机保留，不公开再分发。
 - TIM、IEEE Access、RA-L 的官方规则已冻结到 `../04_writing_standards/IEEE_VENUE_RULES_AND_FIT.md`。
 - **R6 — 待作者签认**：默认按 IEEE Access Research Article 推进；TIM 作为通过 measurement gate 后的冲刺路线；RA-L 暂停。
 - 在 R6 签认前，可以继续做不依赖模板的统计/图表冻结，但不建立三套正文副本。
@@ -104,5 +105,5 @@
 
 - 允许：复用冻结 CSV/JSON/保存图像；paired downsampling；LOO weighting/gating；stereo triangulation；统计单位与混杂审计；明确标注的 Monte Carlo simulation；自动图表与一致性校验。
 - 不允许：补造 angle levels、原生 sensor modes、真实 camera motion、动态同步或 E6 robot endpoint observations；把 offline/simulation rows 计作 physical n。
-- 任何 E5/E6/E7 正文数字必须先通过 `../02_reproducibility/scripts/verify_no_rebuild_evidence.py`；该脚本会先运行三套 component verifiers，再生成带 SHA-256 的 paper-level manifest。
-- `claim_evidence_map_v2.csv` 在专用表格组件可用后迁移 manifest 中的 C19–C23；迁移前正文不得出现超出 manifest 的新数字或强结论。
+- 任何 E5/E6/E7 派生数字在使用前必须通过 `../02_reproducibility/scripts/verify_no_rebuild_evidence.py`；E7 被校验和保留不等于进入投稿稿件。
+- `claim_evidence_map_v2.csv` 在专用表格组件可用后迁移 manifest 中的 C19–C23，但只有 C21 属于新增核心 claim；C19/C20/C22 是 supporting limitations，C23 标为 excluded/future-work evidence。

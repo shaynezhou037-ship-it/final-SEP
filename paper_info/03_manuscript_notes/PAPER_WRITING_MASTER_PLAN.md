@@ -4,7 +4,7 @@
 
 ## 总目标
 
-基于 E0–E4 正式物理数据、E5/E6 的离线复用分析和 E7 的仿真补充，完成一篇具有可追溯引用、正式图表、透明统计边界和完整复现资产的英文实验论文。主问题是任务几何、标定覆盖、有效分辨率与单/双视图信息流如何限定低成本定位管线的可用范围；受限的 E4 end-to-end robot positioning 链作为下游收束。不得暗示 E6 已传播到机器人端点，也不得把 E7 写成真实移动相机验证。内部规划与审计文档使用中文；在目标期刊/会议尚未确定前，正文按通用 IEEE 风格和 IMRaD 结构准备。
+基于 E1/E2/E6 的共享物理观测证据，完成一篇围绕“目标离开标定平面后需要多少几何信息，以及第二台相机何时真正增加信息”的英文实验论文。E1→E2→E6 是唯一核心链：planar mapping → single-view PnP → estimate fusion versus stereo parallax。E3/E5 是 supporting validity checks，E4 是有限 application-side check，E0 只进 Supplement，E7 不进入投稿稿件。内部规划与审计文档使用中文；正文按通用 IEEE 风格和 IMRaD 结构准备。
 
 ## 五阶段工作流
 
@@ -13,15 +13,15 @@
 产出：
 
 - 论文题目与一句话主张；
-- RQ1-RQ5；
-- 主要贡献；
-- E0-E7 在正文/Supplement 中的角色；
+- RQ1-RQ2；
+- 两项主要贡献；
+- E0–E7 的 core/supporting/supplement/excluded 角色；
 - 正文和补充材料边界；
 - 主张-证据映射；
 - 明确禁止声称的结论；
 - 图表清单和章节骨架。
 
-状态：2026-08-14 作者决定不重搭系统后，蓝图已在原文件内更新为 v2.2。E6 的 single/estimate-fusion/stereo information-flow comparison 进入主文；E5 作为 resolution/reliability/latency 支撑证据；E7 保持 simulation-only Supplement；E4 仍是叙事终点和探索性 endpoint validation。唯一当前方向基准是 `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`；`claim_evidence_map_v2.csv` 的 E0–E4 部分仍有效，E5–E7 待迁移主张已冻结在 `../02_reproducibility/no_rebuild_evidence_manifest.json`。
+状态：2026-08-14 作者决定不重搭系统，并在严格 IEEE reviewer audit 后将蓝图更新为 v2.3。E1/E2 合并回答 planar-to-off-plane information sufficiency，E6 回答 second estimate versus second-view geometry；E3/E5/E4 不再各设 RQ，E7 退出投稿包。唯一当前方向基准是 `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`；旧 claim map 的数字仍有效，但正文只提升与两个 RQ 直接相关的核心主张。
 
 ### 阶段 2：写作基准、文献检索与引用核验
 
@@ -37,13 +37,13 @@
 
 在 Introduction 动笔前，`citation_sentence_ledger.csv` 的正文引用必须完成全文核验，最接近本研究的 novelty gap 必须被验证而不是假设；目标 venue 的最新 scope、页数、模板、double-anonymous、AI 和 supplement 规则必须重新冻结。
 
-状态：阶段 2 已正式开启。2A 已完成首轮；2B 在原有 endpoint/measurement 审计上增加 marker-based monocular/stereo、multi-camera fiducial fusion 和 view-geometry uncertainty 的近邻工作。当前不能声称首次 end-to-end calibration、首次双相机融合或首次角度效应；可守新意是共享物理数据协议下的 geometry/resource/information-conditioned、auditable multilevel evaluation，尤其是“estimate fusion 与 stereo parallax 不是同一种双相机信息”。2026-08-14 已冻结 TIM / IEEE Access / RA-L 官方硬规则；当前建议顺序仍为 IEEE Access 默认、TIM 通过 measurement gate 后冲刺、RA-L 暂停。
+状态：阶段 2 已正式开启。当前不能声称首次 end-to-end calibration、首次双相机融合或首次角度效应；可守新意收束为：在共享 paired physical observations 上建立 planar mapping → single-view PnP → estimate fusion/stereo 的几何信息层级，并实证区分“第二个估计”与“第二视图几何”。2026-08-14 已冻结 TIM / IEEE Access / RA-L 官方硬规则；当前建议顺序仍为 IEEE Access 默认、TIM 通过 measurement gate 后冲刺、RA-L 暂停。
 
 ### 阶段 3：正式图表
 
-所有正文图表必须由冻结 CSV/JSON 自动生成，不手工抄数。计划包括系统/信息流/证据等级图、E1 平面比较、E2 高度退化、E3+E5 标定与分辨率约束、E6 single/fusion/stereo comparison、E6 angle-identifiability limitation 和 E4 endpoint transfer。E7 图只进入 Supplement 并显式标 `simulation only`。输出同时保留矢量格式和高分辨率位图。
+所有正文图表必须由冻结 CSV/JSON 自动生成，不手工抄数。正文只计划四张主图：系统与 geometric-information hierarchy；E1+E2 planar-to-off-plane；E6 second estimate versus stereo parallax；E4 exploratory application-side transfer。E0/E3/E5/angle 完整结果进 Supplement，E7 不生成投稿图。输出同时保留矢量格式和高分辨率位图。
 
-Fig. 1 优先完成，必须同时定义 E4 的 end-to-end 边界与 E6 的 vision-only 双相机分支；E4 使用一张完整主图收束全文，E6 使用一张主图回答“second view adds what information”。具体标准见 `../04_writing_standards/IEEE_HIGH_QUALITY_PAPER_BENCHMARK.md`。
+Fig. 1 优先完成，必须让读者在 30 秒内看出 planar Homography、single-view PnP、estimate fusion 与 stereo parallax 的信息差异。Fig. 3/E6 是全文论证峰值；E4 图明确标为 supporting check，而不是 E6 endpoint validation。
 
 ### 阶段 4：完整正文
 
@@ -65,7 +65,7 @@ Fig. 1 优先完成，必须同时定义 E4 的 end-to-end 边界与 E6 的 visi
 - E5 simulated effective resolution、检测失败与 survivorship boundary 同时披露；
 - E6 estimate fusion/stereo、静态同步、Z=0-derived geometry 和 no endpoint propagation 边界同时披露；
 - E6 角度结果只作为 identifiability/confounding audit，不出现 causal angle claim；
-- E7 全部结果标为 simulation only，不把 Monte Carlo trials 当 physical n；
+- E7 不出现在投稿正文、Appendix 或 Supplement inventory；
 - 图、表、正文数字完全一致；
 - 结论没有超出硬件、工作区和实验条件；
 - 统计单位、样本数、置信区间和 exploratory/confirmatory 标签一致。
@@ -95,9 +95,9 @@ Fig. 1 优先完成，必须同时定义 E4 的 end-to-end 边界与 E6 的 visi
 
 每次恢复论文任务时，先读取本文件，再读取当前阶段的最新版文件。未经明确讨论，不改变以下冻结原则：
 
-1. B2 的主线是 geometry/resource/information-conditioned operating-envelope evaluation；Affine/Homography/PnP 比较是其中的 mapping baseline，不再是单独的“模型排名”主线。
-2. 实际 E0–E7 的内容优先于早期《计划.docx》中的旧实验编号；E5/E6 是 E2 物理数据的离线扩展，E7 是仿真，不能混成新增物理实验。
-3. E1–E3 是 mapping/geometry/calibration 主体，E5 是分辨率与时延支撑证据，E6 是单/双视图信息流主证据，E0 是误差解释基础，E4 是全文叙事终点和探索性 end-to-end endpoint validation；E7 只进入 Supplement。叙事地位突出不等于证据等级升级。
+1. B2 的唯一主线是 geometric-information sufficiency：E1/E2 的 planar-to-off-plane transition 加上 E6 的 second estimate versus stereo parallax。
+2. 实际 E0–E7 内容优先于早期《计划.docx》，但“仓库中存在”不等于“投稿稿件必须包含”。
+3. E1/E2/E6 是 core；E3/E5 是 supporting validity checks；E4 是有限 application-side check；E0 只进 Supplement；E7 excluded from submission。
 4. 不编造未完成实验，不把 E4 写成完成 108 次。
 5. 不把 Oracle 称为纯机械臂误差。
 6. 不把离线重采样称为独立物理重复。
@@ -106,9 +106,10 @@ Fig. 1 优先完成，必须同时定义 E4 的 end-to-end 边界与 E6 的 visi
 9. E4 Oracle 只称为该次实验中的 observed downstream reference；由于 registration 的独立检查有限且误差较大，不称为稳定的“误差地板”。
 10. “12–16 个点趋于饱和”只作为当前数据集的条件性观察，不写成普适设计定律。
 11. E4 现有照片覆盖不完整，无法执行系统性的照片盲复读或双观察者复读；该项不再作为阶段 2/正文写作门槛。人工网格读数的分辨率、修订记录和潜在观察者误差必须作为 measurement-chain limitation 披露，不能用缺失照片补造复读结果。
-12. 不重新搭建物理系统；当前新增工作只允许复用冻结数据、补充审计/统计、生成图表和进行明确标注的仿真。任何需要新角度、真实相机移动、原生分辨率模式或 E6 endpoint propagation 的主张均保留为 future work。
+12. 不重新搭建物理系统；任何需要新角度、真实相机移动、原生分辨率模式或 E6 endpoint propagation 的主张均保留为 future work，不再用仿真填入本稿。
 13. 两相机 angle/geometry 数据只有两个固定布局。`E6_ANGLE_IDENTIFIABILITY_AUDIT.md` 是唯一角度结论入口；禁止把 pooled correlation 写成 angle causality 或 optimal view recommendation。
 14. E6 可说 calibrated parallax 增加了几何信息；不可说 two cameras are universally better。E6 未进入 E4，因此不可说 dual-camera end-to-end validation。
+15. 标题、摘要和贡献只出现 E1/E2/E6 的核心信息链；E3/E5/E4 不能重新膨胀成并列故事，E7 不进入投稿包。
 
 ## 人机协作与文件控制
 

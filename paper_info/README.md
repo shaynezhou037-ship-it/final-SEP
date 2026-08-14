@@ -12,7 +12,7 @@ new physical acquisition.
   - Research direction, action plan, repository/data audit, and decision notes.
   - Current direction audit:
     `NO_REBUILD_DIRECTION_AND_DOCUMENT_AUDIT.md`. The DOCX/HTML files are
-    historical traceability sources and no longer override the v2.2 blueprint.
+    historical traceability sources and no longer override the v2.3 blueprint.
 
 - `01_equipment_and_methods/`
   - Equipment tables, experimental setup, hardware parameters, method notes,
@@ -30,9 +30,11 @@ new physical acquisition.
 - `03_manuscript_notes/`
   - Current manuscript blueprint, claim-evidence map, figure/caption plans, and
     result narrative. The current blueprint is
-    `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.2. The current direction promotes E6
-    to the main text, uses E5 as supporting evidence, and keeps E7 in the
-    Supplement.
+    `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.3. The submission follows one core
+    progression, E1 → E2 → E6: planar mapping, off-plane single-view pose, and
+    second-estimate versus second-view geometry. E3/E5 are supporting validity
+    checks, E4 is a limited application-side check, E0 is Supplement-only, and
+    E7 is excluded from the manuscript package.
 
 - `04_writing_standards/`
   - Reusable IEEE writing, language/claim audit, figure/table, AI-use, and
@@ -48,6 +50,9 @@ new physical acquisition.
 - Put one-off experiment data under the matching experiment folder (`E0` to
   `E7`), while preserving each folder's physical/offline/simulation evidence
   class.
+- Repository presence does not imply manuscript inclusion. In particular, E7
+  remains reproducible repository-only future work and contributes no result to
+  the current manuscript, Appendix, or Supplement.
 - Put paper-level summaries or tables here under `paper_info`.
 - Put reusable scripts under `scripts`.
 - Put camera intrinsics, board definitions, and frozen configuration under
