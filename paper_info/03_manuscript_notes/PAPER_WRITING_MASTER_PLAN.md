@@ -4,7 +4,7 @@
 
 ## 总目标
 
-基于 E1/E2/E6 的共享物理观测证据，完成一篇围绕“目标离开标定平面后需要多少几何信息，以及第二台相机何时真正增加信息”的英文实验论文。E1→E2→E6 是唯一核心链：planar mapping → single-view PnP → estimate fusion versus stereo parallax。E3/E5 是 supporting validity checks，E4 是有限 application-side check，E0 只进 Supplement，E7 不进入投稿稿件。内部规划与审计文档使用中文；正文按通用 IEEE 风格和 IMRaD 结构准备。
+基于 E1/E2/E6 的共享物理观测证据，完成一篇围绕“目标离开标定平面后需要多少几何信息，以及第二台相机何时真正增加信息”的英文实验论文。E1→E2→E6 是唯一核心链：planar mapping → single-view PnP → estimate fusion versus stereo parallax。E6 的核心比较统一输出 board XYZ，并以五次 physical rebuild 做 paired contrasts。E3/E5 是 supporting validity checks，E4 是有限 application-side check，E0 完整结果进 Supplement 但关键 limitation 留正文，E7 不进入投稿稿件。内部规划与审计文档使用中文；正文按通用 IEEE 风格和 IMRaD 结构准备。
 
 ## 五阶段工作流
 
@@ -21,7 +21,7 @@
 - 明确禁止声称的结论；
 - 图表清单和章节骨架。
 
-状态：2026-08-14 作者决定不重搭系统，并在严格 IEEE reviewer audit 后将蓝图更新为 v2.3。E1/E2 合并回答 planar-to-off-plane information sufficiency，E6 回答 second estimate versus second-view geometry；E3/E5/E4 不再各设 RQ，E7 退出投稿包。唯一当前方向基准是 `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`；旧 claim map 的数字仍有效，但正文只提升与两个 RQ 直接相关的核心主张。
+状态：2026-08-14 作者决定不重搭系统，并在严格 IEEE reviewer audit 后将蓝图更新为 v2.4。E1/E2 合并回答 planar-to-off-plane information sufficiency，E6 回答 second estimate versus second-view geometry；针对审稿意见已补 single-PnP XYZ、equal/LOO XYZ 与 stereo 的同维度消融及 rebuild-level paired contrasts。E3/E5/E4 不再各设 RQ，E7 退出投稿包。唯一当前方向基准是 `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`；旧 claim map 的数字仍有效，但正文只提升与两个 RQ 直接相关的核心主张。
 
 ### 阶段 2：写作基准、文献检索与引用核验
 
@@ -43,7 +43,7 @@
 
 所有正文图表必须由冻结 CSV/JSON 自动生成，不手工抄数。正文只计划四张主图：系统与 geometric-information hierarchy；E1+E2 planar-to-off-plane；E6 second estimate versus stereo parallax；E4 exploratory application-side transfer。E0/E3/E5/angle 完整结果进 Supplement，E7 不生成投稿图。输出同时保留矢量格式和高分辨率位图。
 
-Fig. 1 优先完成，必须让读者在 30 秒内看出 planar Homography、single-view PnP、estimate fusion 与 stereo parallax 的信息差异。Fig. 3/E6 是全文论证峰值；E4 图明确标为 supporting check，而不是 E6 endpoint validation。
+Fig. 1 优先完成，必须让读者在 30 秒内看出 planar Homography、single-view PnP、estimate fusion 与 stereo parallax 的信息差异。Fig. 3/E6 是全文论证峰值：左侧 XY height curves，右侧 strict same-output XYZ/3-D ablation，并在 caption/表中给 paired rebuild sign counts；E4 图明确标为 supporting check，而不是 E6 endpoint validation。
 
 ### 阶段 4：完整正文
 
@@ -64,6 +64,7 @@ Fig. 1 优先完成，必须让读者在 30 秒内看出 planar Homography、sin
 - E4 提前停止和人工读数修订透明披露；
 - E5 simulated effective resolution、检测失败与 survivorship boundary 同时披露；
 - E6 estimate fusion/stereo、静态同步、Z=0-derived geometry 和 no endpoint propagation 边界同时披露；
+- E6 的 single PnP、estimate fusion 与 stereo 使用统一 XYZ 输出和 XY/Z/3-D 指标，统计单位保持为 physical rebuild；
 - E6 角度结果只作为 identifiability/confounding audit，不出现 causal angle claim；
 - E7 不出现在投稿正文、Appendix 或 Supplement inventory；
 - 图、表、正文数字完全一致；
@@ -97,7 +98,7 @@ Fig. 1 优先完成，必须让读者在 30 秒内看出 planar Homography、sin
 
 1. B2 的唯一主线是 geometric-information sufficiency：E1/E2 的 planar-to-off-plane transition 加上 E6 的 second estimate versus stereo parallax。
 2. 实际 E0–E7 内容优先于早期《计划.docx》，但“仓库中存在”不等于“投稿稿件必须包含”。
-3. E1/E2/E6 是 core；E3/E5 是 supporting validity checks；E4 是有限 application-side check；E0 只进 Supplement；E7 excluded from submission。
+3. E1/E2/E6 是 core；E3/E5 是 supporting validity checks；E4 是有限 application-side check；E0 完整诊断进 Supplement 且关键 limitation 留正文；E7 excluded from submission。
 4. 不编造未完成实验，不把 E4 写成完成 108 次。
 5. 不把 Oracle 称为纯机械臂误差。
 6. 不把离线重采样称为独立物理重复。
@@ -110,6 +111,8 @@ Fig. 1 优先完成，必须让读者在 30 秒内看出 planar Homography、sin
 13. 两相机 angle/geometry 数据只有两个固定布局。`E6_ANGLE_IDENTIFIABILITY_AUDIT.md` 是唯一角度结论入口；禁止把 pooled correlation 写成 angle causality 或 optimal view recommendation。
 14. E6 可说 calibrated parallax 增加了几何信息；不可说 two cameras are universally better。E6 未进入 E4，因此不可说 dual-camera end-to-end validation。
 15. 标题、摘要和贡献只出现 E1/E2/E6 的核心信息链；E3/E5/E4 不能重新膨胀成并列故事，E7 不进入投稿包。
+16. E2 PnP 不使用真实高度标签或额外高度先验；真实高度只用于评分。未预定义应用容差时，不从 height curve 事后命名“失效阈值”。
+17. E6 不要求加入 `fusion + stereo`：它不是独立信息条件，会复用同一图像对并引入额外融合规则；如未来研究该算法，必须另行定义训练与验证协议。
 
 ## 人机协作与文件控制
 

@@ -1,6 +1,6 @@
 # E6 camera-angle identifiability audit
 
-Generated: 2026-08-14T07:44:46.656315+00:00
+Generated: 2026-08-14T10:04:59.015966+00:00
 
 ## Verdict
 

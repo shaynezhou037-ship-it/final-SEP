@@ -9,15 +9,15 @@
 
 > 当目标离开标定平面时，二维平面映射、single-view PnP 与 stereo 分别提供什么几何信息；第二个 camera-specific estimate 是否等同于第二视图的 parallax information？
 
-这条路线比旧路线更有区分度，因为 E6 给出了项目内的新结论：**两个 camera-specific estimates 的平均/加权，不等于利用两视图 parallax 获得新的几何信息。** 25 mm 高度下，PnP 的 ihawk1/ihawk2/equal/LOO-weighted XY RMSE 为 8.850/4.786/6.057/4.897 mm，结果融合没有超过较强单相机；stereo triangulation 的 XY/Z RMSE 为 2.752/1.772 mm。
+这条路线比旧路线更有区分度，因为 E6 给出了项目内的新结论：**两个 camera-specific estimates 的平均/加权，不等于利用两视图 parallax 获得新的几何信息。** 严格同维度 XYZ 消融中，25 mm 高度下 ihawk1/ihawk2/equal/LOO-weighted/stereo 的 3-D RMSE 为 10.348/6.144/7.431/6.351/3.342 mm；stereo 在 5/5 paired rebuilds 中低于 ihawk2。50 mm 时 ihawk2/stereo 为 6.002/4.897 mm，但 stereo 只在 4/5 rebuilds 中更低，因此结果支持 conditional aggregate advantage，不支持 universal dominance。
 
-论文仍不是新算法论文。最合理的投稿定位仍是 IEEE Access 风格的 controlled applied evaluation。标题、摘要和贡献只围绕 E1/E2/E6；E3/E5/E4 只检查边界，E0 进 Supplement，E7 不进投稿包。
+论文仍不是新算法论文。最合理的投稿定位仍是 IEEE Access 风格的 controlled applied evaluation。标题、摘要和贡献只围绕 E1/E2/E6；E3/E5/E4 只检查边界，E0 完整结果进 Supplement 且关键 limitation 留正文，E7 不进投稿包。
 
 ## 2. 新的证据层级
 
 | 实验 | 使用位置 | 证据类型 | 允许主张 | 禁止外推 |
 |---|---|---|---|---|
-| E0 | Supplement | physical diagnostics | 静态波动量级、路径控制理由 | 完整 uncertainty budget、robot-only cause |
+| E0 | Main-text limitation + Supplement diagnostics | physical diagnostics | 静态波动量级、路径控制理由 | 完整 uncertainty budget、robot-only cause |
 | E1 | 核心 RQ1 planar anchor | physical held-out spatial data | planar Homography/PnP comparison | 36 次独立部署 |
 | E2 | 核心 RQ1 height transition | 5 physical rebuilds | off-plane robustness | 普适必要高度 |
 | E3 | Supporting validity check | offline resampling | coverage/count sensitivity | 独立 RQ；100 次物理重标定 |
@@ -60,7 +60,7 @@ python paper_info/02_reproducibility/scripts/verify_no_rebuild_evidence.py
 它依次运行 E5/E6/E7 三套 component verifier，并检查：
 
 - E5 source/QC cardinality、480 × 300 detection loss、native P95 latency 与 ihawk2 PnP resolution cost；
-- E6 PnP fusion ordering、stereo 25 mm XY/Z headline 和 angle-identifiability verdict；
+- E6 PnP fusion ordering、strict XYZ ablation、rebuild-level paired contrasts、stereo 25 mm XY/Z headline 和 angle-identifiability verdict；
 - E7 必须保持 `simulation_only`，并核对 frozen/relocalized PnP headline；
 - 参与论文新主张的 JSON/CSV 的 SHA-256。
 
@@ -70,7 +70,7 @@ python paper_info/02_reproducibility/scripts/verify_no_rebuild_evidence.py
 
 | 文件 | 处理 | 原因/结果 |
 |---|---|---|
-| `03_manuscript_notes/PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` | 已重改为 v2.3 | 两个 RQ、两项贡献、四张主图；E1/E2/E6 core；E7 excluded |
+| `03_manuscript_notes/PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` | 已重改为 v2.4 | 两个 RQ、两项贡献、四张主图；E6 strict XYZ ablation；E1/E2/E6 core；E7 excluded |
 | `03_manuscript_notes/PAPER_WRITING_MASTER_PLAN.md` | 已重改 | 长期目标改为 geometric-information sufficiency；冻结 core/supporting/excluded 分级 |
 | `03_manuscript_notes/EXPERIMENT_E6_E7_NOVELTY_DECISION.md` | 已更新 | 从“待决定”改为“已执行”；删除必须重搭的 follow-up gate |
 | `00_planning_and_audit/PAPER_COLLABORATION_WORKFLOW.md` | 已更新 | 新权威入口、R9 scope-tightening decision、no-rebuild 数据边界 |
@@ -90,7 +90,7 @@ python paper_info/02_reproducibility/scripts/verify_no_rebuild_evidence.py
 
 ## 6. 写作时的最终取舍
 
-正文只保留四张主图：system/information hierarchy、E1+E2 planar-to-off-plane、E6 second estimate versus stereo、E4 limited application-side transfer。E3/E5/angle 完整图进入 Supplement；E7 完全退出投稿包。
+正文只保留四张主图：system/information hierarchy、E1+E2 planar-to-off-plane、E6 second estimate versus stereo（XY curves + strict XYZ/3-D ablation）、E4 limited application-side transfer。E3/E5/angle 完整图进入 Supplement；E7 完全退出投稿包。
 
 主文只允许两项贡献：
 

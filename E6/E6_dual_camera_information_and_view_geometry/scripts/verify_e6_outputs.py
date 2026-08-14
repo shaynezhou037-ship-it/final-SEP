@@ -17,6 +17,12 @@ EXPECTED_ROWS = {
     "E6_fusion_run_height_metrics.csv": 825,
     "E6_fusion_height_summary.csv": 165,
     "E6_fusion_gain_summary.csv": 99,
+    "E6_pnp3d_leave_one_rebuild_weight_audit.csv": 5,
+    "E6_pnp3d_estimate_predictions.csv": 1100,
+    "E6_pnp3d_run_height_metrics.csv": 220,
+    "E6_pnp3d_height_summary.csv": 44,
+    "E6_pnp3d_paired_contrasts.csv": 220,
+    "E6_pnp3d_contrast_summary.csv": 44,
     "E6_stereo_predictions.csv": 275,
     "E6_stereo_run_height_metrics.csv": 55,
     "E6_stereo_height_summary.csv": 11,
@@ -62,6 +68,24 @@ def main():
     }
     if not (pnp25["ihawk2"] < pnp25["LOOWeightedFusion"] < pnp25["EqualFusion"] < pnp25["ihawk1"]):
         raise RuntimeError("PnP fusion ordering invariant failed")
+    pnp3d = load("E6_pnp3d_height_summary.csv")
+    pnp3d25 = {
+        row["source"]: float(row["error3d_rmse_mean_mm"])
+        for row in pnp3d if float(row["height_gt_mm"]) == 25.0
+    }
+    stereo3d25 = float(at25["error3d_rmse_mean_mm"])
+    if not (
+        stereo3d25 < pnp3d25["ihawk2"] < pnp3d25["LOOWeightedXYZ"]
+        < pnp3d25["EqualXYZ"] < pnp3d25["ihawk1"]
+    ):
+        raise RuntimeError("Strict XYZ ablation ordering invariant failed at 25 mm")
+    contrasts = load("E6_pnp3d_contrast_summary.csv")
+    contrast25 = next(
+        row for row in contrasts
+        if float(row["height_gt_mm"]) == 25.0 and row["estimate_source"] == "ihawk2"
+    )
+    if int(contrast25["n_paired_rebuilds"]) != 5:
+        raise RuntimeError("Strict XYZ paired contrast lost a physical rebuild")
     expected_stems = {
         "Fig_E6_1_information_flow",
         "Fig_E6_2_fusion_accuracy",

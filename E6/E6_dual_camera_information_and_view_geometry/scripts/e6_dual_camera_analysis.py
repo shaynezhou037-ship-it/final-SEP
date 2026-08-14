@@ -41,6 +41,7 @@ FUSION_SOURCES = (
     "LOOWeightedFusion",
     "LOOWeightedGated",
 )
+PNP3D_SOURCES = ("ihawk1", "ihawk2", "EqualXYZ", "LOOWeightedXYZ")
 HEIGHTS = tuple(float(x) for x in range(0, 51, 5))
 MARKER_IDS = tuple(range(5))
 
@@ -63,6 +64,12 @@ OUT = {
     "fusion_run_metrics": RESULTS / "E6_fusion_run_height_metrics.csv",
     "fusion_height_summary": RESULTS / "E6_fusion_height_summary.csv",
     "fusion_gain_summary": RESULTS / "E6_fusion_gain_summary.csv",
+    "pnp3d_weight_audit": RESULTS / "E6_pnp3d_leave_one_rebuild_weight_audit.csv",
+    "pnp3d_predictions": RESULTS / "E6_pnp3d_estimate_predictions.csv",
+    "pnp3d_run_metrics": RESULTS / "E6_pnp3d_run_height_metrics.csv",
+    "pnp3d_height_summary": RESULTS / "E6_pnp3d_height_summary.csv",
+    "pnp3d_paired_contrasts": RESULTS / "E6_pnp3d_paired_contrasts.csv",
+    "pnp3d_contrast_summary": RESULTS / "E6_pnp3d_contrast_summary.csv",
     "stereo_predictions": RESULTS / "E6_stereo_predictions.csv",
     "stereo_run_metrics": RESULTS / "E6_stereo_run_height_metrics.csv",
     "stereo_height_summary": RESULTS / "E6_stereo_height_summary.csv",
@@ -409,6 +416,133 @@ def main() -> None:
                 )
     write_csv(OUT["fusion_gain_summary"], fusion_gain_summary)
 
+    # Same-output-dimensionality ablation for the core E6 question.  Unlike the
+    # legacy XY fusion table above, every condition below returns board XYZ and
+    # is scored with the same XY, Z, and 3-D metrics.  Weights are learned only
+    # from the other four physical rebuilds at the Z=0 calibration condition.
+    pnp3d_weight_configs = {}
+    pnp3d_weight_audit = []
+    for held_out_run in runs:
+        training_runs = [run for run in runs if run != held_out_run]
+        mse3d = {}
+        for camera in CAMERAS:
+            squared = []
+            for run in training_runs:
+                for marker_id in MARKER_IDS:
+                    row = pred_index[(run, 0.0, marker_id, "PnP", camera)]
+                    squared.append(float(row["error_3d_mm"]) ** 2)
+            mse3d[camera] = mean(squared)
+        inv1 = 1.0 / max(mse3d["ihawk1"], 1e-12)
+        inv2 = 1.0 / max(mse3d["ihawk2"], 1e-12)
+        weight1 = inv1 / (inv1 + inv2)
+        weight2 = 1.0 - weight1
+        pnp3d_weight_configs[held_out_run] = (weight1, weight2)
+        pnp3d_weight_audit.append(
+            {
+                "held_out_run": held_out_run,
+                "training_runs": "|".join(training_runs),
+                "training_z0_3d_mse_ihawk1_mm2": mse3d["ihawk1"],
+                "training_z0_3d_mse_ihawk2_mm2": mse3d["ihawk2"],
+                "weight_ihawk1": weight1,
+                "weight_ihawk2": weight2,
+                "n_training_marker_pairs": len(training_runs) * len(MARKER_IDS),
+            }
+        )
+    write_csv(OUT["pnp3d_weight_audit"], pnp3d_weight_audit)
+
+    pnp3d_predictions = []
+    for run in runs:
+        weight1, weight2 = pnp3d_weight_configs[run]
+        for height in HEIGHTS:
+            for marker_id in MARKER_IDS:
+                row1 = pred_index[(run, height, marker_id, "PnP", "ihawk1")]
+                row2 = pred_index[(run, height, marker_id, "PnP", "ihawk2")]
+                p1 = np.array(
+                    [float(row1["pred_x_mm"]), float(row1["pred_y_mm"]), float(row1["pred_z_mm"])]
+                )
+                p2 = np.array(
+                    [float(row2["pred_x_mm"]), float(row2["pred_y_mm"]), float(row2["pred_z_mm"])]
+                )
+                gt = np.array(
+                    [float(row1["gt_x_mm"]), float(row1["gt_y_mm"]), float(row1["gt_z_mm"])]
+                )
+                source_predictions = {
+                    "ihawk1": p1,
+                    "ihawk2": p2,
+                    "EqualXYZ": (p1 + p2) / 2.0,
+                    "LOOWeightedXYZ": weight1 * p1 + weight2 * p2,
+                }
+                for source, estimate in source_predictions.items():
+                    delta = estimate - gt
+                    pnp3d_predictions.append(
+                        {
+                            "run_id": run,
+                            "height_gt_mm": height,
+                            "marker_id": marker_id,
+                            "board_position": row1["board_position"],
+                            "source": source,
+                            "weight_ihawk1": weight1 if "XYZ" in source else "",
+                            "weight_ihawk2": weight2 if "XYZ" in source else "",
+                            "pred_x_mm": float(estimate[0]),
+                            "pred_y_mm": float(estimate[1]),
+                            "pred_z_mm": float(estimate[2]),
+                            "gt_x_mm": float(gt[0]),
+                            "gt_y_mm": float(gt[1]),
+                            "gt_z_mm": float(gt[2]),
+                            "error_xy_mm": float(np.linalg.norm(delta[:2])),
+                            "error_z_signed_mm": float(delta[2]),
+                            "error_3d_mm": float(np.linalg.norm(delta)),
+                        }
+                    )
+    write_csv(OUT["pnp3d_predictions"], pnp3d_predictions)
+
+    pnp3d_run_metrics = []
+    for run in runs:
+        for height in HEIGHTS:
+            for source in PNP3D_SOURCES:
+                rr = [
+                    row for row in pnp3d_predictions
+                    if row["run_id"] == run and float(row["height_gt_mm"]) == height
+                    and row["source"] == source
+                ]
+                pnp3d_run_metrics.append(
+                    {
+                        "run_id": run,
+                        "height_gt_mm": height,
+                        "source": source,
+                        "n_markers": len(rr),
+                        "xy_rmse_mm": rmse(float(row["error_xy_mm"]) for row in rr),
+                        "z_rmse_mm": rmse(float(row["error_z_signed_mm"]) for row in rr),
+                        "error3d_rmse_mm": rmse(float(row["error_3d_mm"]) for row in rr),
+                    }
+                )
+    write_csv(OUT["pnp3d_run_metrics"], pnp3d_run_metrics)
+
+    pnp3d_height_summary = []
+    for height in HEIGHTS:
+        for source in PNP3D_SOURCES:
+            rr = [
+                row for row in pnp3d_run_metrics
+                if float(row["height_gt_mm"]) == height and row["source"] == source
+            ]
+            pnp3d_height_summary.append(
+                {
+                    "height_gt_mm": height,
+                    "source": source,
+                    "n_independent_rebuilds": len(rr),
+                    "xy_rmse_mean_mm": mean(float(row["xy_rmse_mm"]) for row in rr),
+                    "xy_rmse_sd_mm": sd(float(row["xy_rmse_mm"]) for row in rr),
+                    "z_rmse_mean_mm": mean(float(row["z_rmse_mm"]) for row in rr),
+                    "z_rmse_sd_mm": sd(float(row["z_rmse_mm"]) for row in rr),
+                    "error3d_rmse_mean_mm": mean(float(row["error3d_rmse_mm"]) for row in rr),
+                    "error3d_rmse_sd_mm": sd(float(row["error3d_rmse_mm"]) for row in rr),
+                    "error3d_rmse_p95_mm": pct(
+                        (float(row["error3d_rmse_mm"]) for row in rr), 95
+                    ),
+                }
+            )
+    write_csv(OUT["pnp3d_height_summary"], pnp3d_height_summary)
+
     # True two-view triangulation from paired frame centers.
     clean_index = {
         (
@@ -515,6 +649,80 @@ def main() -> None:
             }
         )
     write_csv(OUT["stereo_height_summary"], stereo_height_summary)
+
+    # Paired, rebuild-level contrasts avoid treating marker rows as independent
+    # replicates. Positive differences mean that stereo has the lower error.
+    pnp3d_metric_index = {
+        (row["run_id"], float(row["height_gt_mm"]), row["source"]): row
+        for row in pnp3d_run_metrics
+    }
+    stereo_metric_index = {
+        (row["run_id"], float(row["height_gt_mm"])): row for row in stereo_run_metrics
+    }
+    pnp3d_paired_contrasts = []
+    for run in runs:
+        for height in HEIGHTS:
+            stereo_metric = stereo_metric_index[(run, height)]
+            for source in PNP3D_SOURCES:
+                estimate_metric = pnp3d_metric_index[(run, height, source)]
+                xy_difference = (
+                    float(estimate_metric["xy_rmse_mm"]) - float(stereo_metric["xy_rmse_mm"])
+                )
+                z_difference = (
+                    float(estimate_metric["z_rmse_mm"]) - float(stereo_metric["z_rmse_mm"])
+                )
+                difference3d = (
+                    float(estimate_metric["error3d_rmse_mm"])
+                    - float(stereo_metric["error3d_rmse_mm"])
+                )
+                pnp3d_paired_contrasts.append(
+                    {
+                        "run_id": run,
+                        "height_gt_mm": height,
+                        "estimate_source": source,
+                        "estimate_xy_rmse_mm": float(estimate_metric["xy_rmse_mm"]),
+                        "stereo_xy_rmse_mm": float(stereo_metric["xy_rmse_mm"]),
+                        "estimate_minus_stereo_xy_mm": xy_difference,
+                        "estimate_z_rmse_mm": float(estimate_metric["z_rmse_mm"]),
+                        "stereo_z_rmse_mm": float(stereo_metric["z_rmse_mm"]),
+                        "estimate_minus_stereo_z_mm": z_difference,
+                        "estimate_3d_rmse_mm": float(estimate_metric["error3d_rmse_mm"]),
+                        "stereo_3d_rmse_mm": float(stereo_metric["error3d_rmse_mm"]),
+                        "estimate_minus_stereo_3d_mm": difference3d,
+                        "stereo_lower_3d_error": int(difference3d > 0.0),
+                    }
+                )
+    write_csv(OUT["pnp3d_paired_contrasts"], pnp3d_paired_contrasts)
+
+    pnp3d_contrast_summary = []
+    for height in HEIGHTS:
+        for source in PNP3D_SOURCES:
+            rr = [
+                row for row in pnp3d_paired_contrasts
+                if float(row["height_gt_mm"]) == height and row["estimate_source"] == source
+            ]
+            differences3d = [float(row["estimate_minus_stereo_3d_mm"]) for row in rr]
+            pnp3d_contrast_summary.append(
+                {
+                    "height_gt_mm": height,
+                    "estimate_source": source,
+                    "n_paired_rebuilds": len(rr),
+                    "estimate_minus_stereo_xy_mean_mm": mean(
+                        float(row["estimate_minus_stereo_xy_mm"]) for row in rr
+                    ),
+                    "estimate_minus_stereo_z_mean_mm": mean(
+                        float(row["estimate_minus_stereo_z_mm"]) for row in rr
+                    ),
+                    "estimate_minus_stereo_3d_mean_mm": mean(differences3d),
+                    "estimate_minus_stereo_3d_sd_mm": sd(differences3d),
+                    "estimate_minus_stereo_3d_min_mm": min(differences3d),
+                    "estimate_minus_stereo_3d_max_mm": max(differences3d),
+                    "stereo_lower_3d_error_n": sum(
+                        int(row["stereo_lower_3d_error"]) for row in rr
+                    ),
+                }
+            )
+    write_csv(OUT["pnp3d_contrast_summary"], pnp3d_contrast_summary)
 
     # Camera and pair geometry diagnostics.
     camera_geometry = []
@@ -856,37 +1064,44 @@ def main() -> None:
     fig, axes = plt.subplots(1, 2, figsize=(11.0, 4.1))
     for source, data in pnp_single.items():
         data.sort(key=lambda row: float(row["height_gt_mm"]))
-        axes[0].plot(
+        axes[0].errorbar(
             [float(row["height_gt_mm"]) for row in data],
             [float(row["xy_rmse_mean_mm"]) for row in data],
-            marker="o", markersize=3, label=source
+            yerr=[float(row["xy_rmse_sd_mm"]) for row in data],
+            marker="o", markersize=3, capsize=2, linewidth=1.4, label=source
         )
-    axes[0].plot(
+    axes[0].errorbar(
         [float(row["height_gt_mm"]) for row in stereo_height_summary],
         [float(row["xy_rmse_mean_mm"]) for row in stereo_height_summary],
-        marker="D", color="black", linewidth=2, label="StereoTriangulation"
+        yerr=[float(row["xy_rmse_sd_mm"]) for row in stereo_height_summary],
+        marker="D", color="black", linewidth=2, capsize=2, label="StereoTriangulation"
     )
     axes[0].set_ylabel("XY RMSE mean (mm)")
     axes[0].set_xlabel("Height (mm)")
     axes[0].grid(alpha=0.25)
     axes[0].legend(fontsize=8)
     axes[0].set_title("XY localization")
-    axes[1].plot(
-        [float(row["height_gt_mm"]) for row in stereo_height_summary],
-        [float(row["z_rmse_mean_mm"]) for row in stereo_height_summary],
-        marker="o", label="Stereo Z RMSE"
-    )
-    axes[1].plot(
+    for source in PNP3D_SOURCES:
+        data = [row for row in pnp3d_height_summary if row["source"] == source]
+        data.sort(key=lambda row: float(row["height_gt_mm"]))
+        axes[1].errorbar(
+            [float(row["height_gt_mm"]) for row in data],
+            [float(row["error3d_rmse_mean_mm"]) for row in data],
+            yerr=[float(row["error3d_rmse_sd_mm"]) for row in data],
+            marker="o", markersize=3, capsize=2, linewidth=1.4, label=source
+        )
+    axes[1].errorbar(
         [float(row["height_gt_mm"]) for row in stereo_height_summary],
         [float(row["error3d_rmse_mean_mm"]) for row in stereo_height_summary],
-        marker="s", label="Stereo 3D RMSE"
+        yerr=[float(row["error3d_rmse_sd_mm"]) for row in stereo_height_summary],
+        marker="D", color="black", linewidth=2, capsize=2, label="StereoTriangulation"
     )
-    axes[1].set_ylabel("RMSE mean (mm)")
+    axes[1].set_ylabel("3-D RMSE mean (mm)")
     axes[1].set_xlabel("Height (mm)")
     axes[1].grid(alpha=0.25)
     axes[1].legend(fontsize=8)
-    axes[1].set_title("Stereo depth and 3-D")
-    fig.suptitle("E6 independent PnP estimates versus true two-view geometry")
+    axes[1].set_title("Strict same-output XYZ ablation")
+    fig.suptitle("E6 independent PnP estimates, estimate fusion, and two-view geometry")
     save_figure(fig, "Fig_E6_3_stereo_comparison")
 
     fig, axes = plt.subplots(1, 3, figsize=(13.2, 4.0))
@@ -932,6 +1147,19 @@ def main() -> None:
     def stereo_row(height):
         return next(row for row in stereo_height_summary if float(row["height_gt_mm"]) == float(height))
 
+    def pnp3d_row(height, source):
+        return next(
+            row for row in pnp3d_height_summary
+            if float(row["height_gt_mm"]) == float(height) and row["source"] == source
+        )
+
+    def contrast_row(height, source):
+        return next(
+            row for row in pnp3d_contrast_summary
+            if float(row["height_gt_mm"]) == float(height)
+            and row["estimate_source"] == source
+        )
+
     geometry_means = {
         camera: {
             "distance": mean(
@@ -967,6 +1195,14 @@ def main() -> None:
             for model in MODELS
         },
         "stereo_key_heights": {str(height): stereo_row(height) for height in key_heights},
+        "pnp3d_key_heights": {
+            str(height): {source: pnp3d_row(height, source) for source in PNP3D_SOURCES}
+            for height in key_heights
+        },
+        "pnp3d_stereo_contrasts_key_heights": {
+            str(height): {source: contrast_row(height, source) for source in PNP3D_SOURCES}
+            for height in key_heights
+        },
         "angle_identifiability": {
             "verdict": angle_identifiability["verdict"],
             "run_camera_rows": angle_identifiability["run_camera_rows"],
@@ -992,8 +1228,9 @@ def main() -> None:
         "- A dedicated identifiability audit confirmed that the ten run-camera rows represent only two fixed placements; angle was never independently manipulated. Pooled angle/error correlations therefore cannot support a causal angle claim.",
         f"- At 25 mm, equal PnP fusion had {float(fusion_row(25, 'PnP', 'EqualFusion')['xy_rmse_mean_mm']):.3f} mm XY RMSE versus {float(fusion_row(25, 'PnP', 'ihawk1')['xy_rmse_mean_mm']):.3f}/{float(fusion_row(25, 'PnP', 'ihawk2')['xy_rmse_mean_mm']):.3f} mm for ihawk1/ihawk2. Naive averaging therefore worsened the stronger camera.",
         f"- Leave-one-rebuild-out PnP weighting reduced the damage ({float(fusion_row(25, 'PnP', 'LOOWeightedFusion')['xy_rmse_mean_mm']):.3f} mm at 25 mm) but did not beat ihawk2 ({float(fusion_row(25, 'PnP', 'ihawk2')['xy_rmse_mean_mm']):.3f} mm). A second biased estimate is not automatically useful.",
-        f"- Stereo triangulation was materially different: XY RMSE was {float(stereo_row(0)['xy_rmse_mean_mm']):.3f}, {float(stereo_row(5)['xy_rmse_mean_mm']):.3f}, {float(stereo_row(25)['xy_rmse_mean_mm']):.3f}, and {float(stereo_row(50)['xy_rmse_mean_mm']):.3f} mm at 0/5/25/50 mm. It outperformed ihawk1 PnP throughout and was competitive with or better than ihawk2 PnP over most tested heights.",
-        "- The new defensible conclusion is not 'two cameras are always better.' It is that estimate averaging and two-view geometry are different information flows: averaging preserves systematic bias, while calibrated parallax can add genuine depth information.",
+        f"- In the strict XYZ ablation at 25 mm, 3-D RMSE was {float(pnp3d_row(25, 'ihawk1')['error3d_rmse_mean_mm']):.3f}/{float(pnp3d_row(25, 'ihawk2')['error3d_rmse_mean_mm']):.3f}/{float(pnp3d_row(25, 'EqualXYZ')['error3d_rmse_mean_mm']):.3f}/{float(pnp3d_row(25, 'LOOWeightedXYZ')['error3d_rmse_mean_mm']):.3f}/{float(stereo_row(25)['error3d_rmse_mean_mm']):.3f} mm for ihawk1/ihawk2/equal XYZ/LOO XYZ/stereo. Estimate fusion did not beat the stronger single camera on the rebuild mean.",
+        f"- At 25 mm, the ihawk2-minus-stereo paired 3-D difference was {float(contrast_row(25, 'ihawk2')['estimate_minus_stereo_3d_mean_mm']):.3f} mm on average (range {float(contrast_row(25, 'ihawk2')['estimate_minus_stereo_3d_min_mm']):.3f} to {float(contrast_row(25, 'ihawk2')['estimate_minus_stereo_3d_max_mm']):.3f} mm), with stereo lower in {int(contrast_row(25, 'ihawk2')['stereo_lower_3d_error_n'])}/5 rebuilds. At 50 mm it was {float(contrast_row(50, 'ihawk2')['estimate_minus_stereo_3d_mean_mm']):.3f} mm (range {float(contrast_row(50, 'ihawk2')['estimate_minus_stereo_3d_min_mm']):.3f} to {float(contrast_row(50, 'ihawk2')['estimate_minus_stereo_3d_max_mm']):.3f} mm), with stereo lower in only {int(contrast_row(50, 'ihawk2')['stereo_lower_3d_error_n'])}/5; the aggregate advantage is therefore not rebuild-universal.",
+        "- The defensible conclusion is not 'two cameras are always better.' Independent-estimate fusion and calibrated stereo are distinct information flows: the former adds redundancy but can preserve bias; the latter adds parallax-based depth observability, with a benefit that still varies by rebuild and height.",
         "",
         "## Key XY RMSE results (mean across five rebuilds)",
         "",
@@ -1026,12 +1263,34 @@ def main() -> None:
     lines.extend(
         [
             "",
+            "## Strict same-output XYZ ablation",
+            "",
+            "All rows below estimate board XYZ and use the same five physical rebuilds as the statistical unit. PnP fusion weights are learned from the other four rebuilds at Z=0.",
+            "",
+            "| Height | ihawk1 PnP 3-D | ihawk2 PnP 3-D | Equal XYZ | LOO weighted XYZ | Stereo 3-D | Stereo lower than ihawk2 (paired rebuilds) |",
+            "|---:|---:|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for height in key_heights:
+        lines.append(
+            f"| {height} mm | {fmt(pnp3d_row(height, 'ihawk1')['error3d_rmse_mean_mm'])} | "
+            f"{fmt(pnp3d_row(height, 'ihawk2')['error3d_rmse_mean_mm'])} | "
+            f"{fmt(pnp3d_row(height, 'EqualXYZ')['error3d_rmse_mean_mm'])} | "
+            f"{fmt(pnp3d_row(height, 'LOOWeightedXYZ')['error3d_rmse_mean_mm'])} | "
+            f"{fmt(stereo_row(height)['error3d_rmse_mean_mm'])} | "
+            f"{int(contrast_row(height, 'ihawk2')['stereo_lower_3d_error_n'])}/5 |"
+        )
+    lines.extend(
+        [
+            "",
             "## Required interpretation",
             "",
             "- `LOOWeightedGated` errors are conditional on accepted markers and must always be read with coverage.",
             "- The angle analysis is descriptive because only two camera placements were tested and several geometric factors change together.",
             "- `E6_ANGLE_IDENTIFIABILITY_AUDIT.md` quantifies this confounding; it does not estimate an optimal view angle.",
             "- Stereo uses Z=0-derived projection matrices and is not an independent metrology system.",
+            "- `fusion + stereo` is intentionally excluded from the core ablation: it reuses the same image pair in correlated estimators, adds a new fusion rule, and is not a separate information condition.",
+            "- With only five independent rebuilds, paired differences, SD/range, and sign counts are descriptive; marker rows are not treated as independent replicates.",
             "- No dual-camera result has been propagated through E4 robot endpoint execution.",
             "",
         ]
@@ -1051,6 +1310,7 @@ def main() -> None:
         "cameras": list(CAMERAS),
         "models": list(MODELS),
         "fusion_sources": list(FUSION_SOURCES),
+        "strict_xyz_sources": list(PNP3D_SOURCES) + ["StereoTriangulation"],
         "heights_mm": list(HEIGHTS),
         "statistical_unit": "physical rebuild",
         "software": {

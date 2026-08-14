@@ -9,7 +9,7 @@ It separates three questions that must not be conflated:
 1. Does naive or reliability-weighted averaging improve Affine, Homography, or
    PnP XY estimates?
 2. Does a genuine two-view geometric method (stereo triangulation) improve 3-D
-   localization?
+   localization when every condition is scored on the same XYZ output?
 3. Are the different camera results descriptively consistent with their view
    distance, marker footprint, and view angle?
 
@@ -52,6 +52,11 @@ The leave-one-rebuild-out design prevents a rebuild from choosing its own
 weights, but Z=0 is still the model-calibration condition rather than an
 independent deployment-validation plane.
 
+The core same-output-dimensionality ablation additionally compares `ihawk1`
+PnP XYZ, `ihawk2` PnP XYZ, `EqualXYZ`, and `LOOWeightedXYZ`. The XYZ weights use
+inverse 3-D MSE learned from the other four rebuilds at Z=0. Every condition is
+scored with XY RMSE, Z RMSE, and 3-D RMSE.
+
 ### Dual-view triangulation
 
 `paired image centers + two frozen projection matrices -> homogeneous stereo triangulation -> board XYZ`
@@ -59,6 +64,14 @@ independent deployment-validation plane.
 This is not an average of two estimates. It uses parallax and the calibrated
 relative geometry of the two views. Each synchronized frame pair is
 triangulated, then the three frame-level 3-D points are averaged.
+
+`fusion + stereo` is intentionally not a core condition. It would combine
+correlated estimators derived from the same image pair, introduce another
+fusion rule, and no longer isolate “another estimate” from “stereo geometry.”
+
+The strict ablation is paired by physical rebuild. Per height it reports the
+estimate-minus-stereo difference, SD/range, and the number of rebuilds in which
+stereo has lower 3-D error; marker rows are not treated as independent trials.
 
 ## View-geometry diagnostics
 
@@ -91,6 +104,10 @@ python E6/E6_dual_camera_information_and_view_geometry/scripts/verify_e6_outputs
 The main angle-specific outputs are
 `results/E6_angle_identifiability_audit.json` and
 `results/E6_ANGLE_IDENTIFIABILITY_AUDIT.md`.
+
+The strict XYZ outputs are `results/E6_pnp3d_height_summary.csv` and
+`results/E6_pnp3d_contrast_summary.csv`; detailed predictions, run metrics, and
+the leave-one-rebuild-out weight audit are generated alongside them.
 
 ## Interpretation limits
 

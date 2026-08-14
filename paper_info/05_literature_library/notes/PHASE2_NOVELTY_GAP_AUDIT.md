@@ -34,12 +34,12 @@
 
 - E1：planar Affine/Homography/PnP 在 held-out locations 上的共同基线；
 - E2：同一系统离开 calibration plane 后，planar mapping 与 single-view PnP 的差异；
-- E6：相同 paired observations 上 single-camera estimate、estimate-level fusion 与 calibrated stereo parallax 的区别；
+- E6：相同 paired observations 上、统一 board XYZ 输出及 XY/Z/3-D 指标下，single-camera estimate、estimate-level fusion 与 calibrated stereo parallax 的区别；
 - 明确统一的 calibration/validation split、workspace ground truth、physical rebuild 和统计单位边界。
 
 因此当前贡献应写成 **a controlled geometric-information hierarchy for low-cost eye-to-hand localization**。主线只回答两个问题：目标离开标定平面时需要什么几何信息，以及第二个相机是只增加一个估计，还是通过 parallax 增加新的几何约束。E6 最有区分度的项目级结论是：**two camera-specific estimates are not equivalent to two-view geometric information**；简单/加权平均可保留系统偏置，而 calibrated parallax 可增加 depth constraint。它仍是 evaluation finding，不是新 fusion 或 stereo algorithm。
 
-证据角色固定为三层：E1、E2、E6 是核心证据；E3 和 E5 是 supporting validity checks；E4 只是 limited application-side check，E0 只进 Supplement。E5 不能单独承担创新性：其核心结论是当前分析机对保存的 640 × 400 基准图像处理已满足 30 Hz gate，降低分辨率的速度收益不抵检测/accuracy 损失；这不是 native sensor-mode 实验。E7 只用 simulation 支持 stale calibration versus per-frame relocalization 的机制解释，现已退出本次 manuscript、Appendix 和 Supplement，只保留为 repository-only future work。
+证据角色固定为三层：E1、E2、E6 是核心证据；E3 和 E5 是 supporting validity checks；E4 只是 limited application-side check；E0 完整诊断进 Supplement，但关键 measurement-chain limitation 必须留在正文。E5 不能单独承担创新性：其核心结论是当前分析机对保存的 640 × 400 基准图像处理已满足 30 Hz gate，降低分辨率的速度收益不抵检测/accuracy 损失；这不是 native sensor-mode 实验。E7 只用 simulation 支持 stale calibration versus per-frame relocalization 的机制解释，现已退出本次 manuscript、Appendix 和 Supplement，只保留为 repository-only future work。
 
 ## 相机角度的可识别性结论
 

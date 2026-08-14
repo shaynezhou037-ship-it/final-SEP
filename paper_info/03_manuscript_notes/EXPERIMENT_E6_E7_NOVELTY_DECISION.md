@@ -1,6 +1,6 @@
 # E6/E7 novelty decision note
 
-Status: decision implemented in `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.3. The
+Status: decision implemented in `PHASE1_PAPER_BLUEPRINT_V2_IEEE.md` v2.4. The
 author chose **no physical rebuild** on 2026-08-14.
 
 ## Decision
@@ -9,8 +9,8 @@ The submission is now organized around one geometric-information progression:
 E1 establishes the planar anchor, E2 tests what happens when the target leaves
 that plane, and E6 tests whether a second camera contributes merely another
 biased estimate or genuinely new parallax information. E3 and E5 are
-supporting validity checks, E4 is a limited application-side check, E0 is
-Supplement-only, and E7 is excluded from the submission package. E7 remains a
+supporting validity checks, E4 is a limited application-side check, E0 has one
+main-text limitation summary plus full Supplement diagnostics, and E7 is excluded from the submission package. E7 remains a
 repository-only simulation for possible future work; its physical validation
 is not a prerequisite for the current paper because the project will not be
 rebuilt.
@@ -31,12 +31,14 @@ Affine/Homography/PnP accuracy rankings or several co-equal deployment factors.
    (4.786 mm). Leave-one-rebuild-out weighting reached 4.897 mm and still did
    not beat the stronger camera.
 2. **Estimate fusion and two-view geometry are different information flows.**
-   Stereo triangulation reached 2.752 mm XY RMSE and 1.772 mm Z RMSE at 25 mm.
-   At 50 mm it reached 4.386 mm XY RMSE, compared with 10.630/4.544 mm for the
-   two single-camera PnP pipelines.
-3. **The defensible claim is conditional, not universal.** A second camera is
-   valuable when its parallax is actually used; naive averaging can preserve
-   systematic bias and worsen the better single-camera result.
+   In the strict same-output XYZ ablation at 25 mm, ihawk1/ihawk2/equal
+   XYZ/LOO-weighted XYZ/stereo had 10.348/6.144/7.431/6.351/3.342 mm 3-D RMSE.
+   Stereo was lower than ihawk2 in all five paired rebuilds at this height.
+3. **The defensible claim is conditional, not universal.** At 50 mm, ihawk2
+   and stereo had 6.002/4.897 mm mean 3-D RMSE, but stereo was lower in only
+   4/5 paired rebuilds. A second camera is useful when its calibrated parallax
+   supplies depth observability; the magnitude and rebuild consistency of that
+   benefit still depend on the tested condition.
 4. **There is no causal view-angle conclusion.** The two cameras had
    similar optical-axis tilt (about 61-63 degrees). Distance, azimuth, marker
    footprint, camera identity, and calibration also changed together. ihawk2's
@@ -93,8 +95,9 @@ fusion, or stereo algorithm.
   research question or contribution claim.
 - Keep E4 as a limited application-side check, not the narrative climax and not
   validation of E6.
-- Keep E0 in the Supplement and exclude E7 from the manuscript, Appendix, and
-  Supplement. Do not promote any E7 number to the submission.
+- Keep E0's full diagnostics in the Supplement while retaining its key
+  measurement-chain limitation in the main text. Exclude E7 from the
+  manuscript, Appendix, and Supplement; do not promote any E7 number.
 - Do not make a causal camera-angle claim from the present two placements.
 
 ## No-rebuild implementation
@@ -104,6 +107,9 @@ fusion, or stereo algorithm.
    claims.
 2. Freeze E6 as five-rebuild physical-data reuse; separate single-camera,
    estimate fusion and stereo triangulation in every figure and paragraph.
+   The core comparison must use common board XYZ outputs, XY/Z/3-D metrics and
+   rebuild-level paired contrasts. `fusion + stereo` is not an independent
+   information condition and is not required for this ablation.
 3. Use `E6_ANGLE_IDENTIFIABILITY_AUDIT.md` as the only angle conclusion. The
    audit proves confounding/non-identifiability, not a preferred angle.
 4. Preserve E7 only as repository evidence for future work. It is not part of

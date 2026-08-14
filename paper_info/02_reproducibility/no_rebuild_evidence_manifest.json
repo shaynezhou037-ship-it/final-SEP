@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-14T08:48:13.316001+00:00",
+  "generated_at_utc": "2026-08-14T10:05:00.976986+00:00",
   "decision": "no_physical_rebuild",
   "scope": "offline reuse and simulation only; no new physical observations",
   "component_verifiers": "PASS",
@@ -32,7 +32,7 @@
       "claim_id": "C21",
       "claim": "Averaging two camera-specific estimates and using calibrated stereo parallax are distinct information flows; the latter added depth information in E6.",
       "evidence": "E6/E6_dual_camera_information_and_view_geometry/results/E6_summary.json",
-      "key_result": "PnP at 25 mm ihawk1/ihawk2/equal/LOO = 8.850/4.786/6.057/4.897 mm; stereo XY/Z = 2.752/1.772 mm",
+      "key_result": "strict XYZ ablation at 25 mm: ihawk1/ihawk2/equal/LOO/stereo 3-D RMSE = 10.348/6.144/7.431/6.351/3.342 mm; stereo lower than ihawk2 in 5/5 rebuilds (4/5 at 50 mm)",
       "strength": "direct within five paired physical rebuilds",
       "caveat": "static target; Z=0-derived stereo geometry; no E4 endpoint propagation",
       "submission_role": "core"
@@ -60,10 +60,12 @@
     "E5/E5_resolution_operating_envelope/results/E5_summary.json": "1db4f9e7666282cd6b2f4ed68250d81fb77b4727a29146a81ba1b6c8f78eabeb",
     "E5/E5_resolution_operating_envelope/results/E5_height_summary.csv": "71d46d826643902b4676148d5e3bc5008e90d11a4b04bf8f5509556ff55447c4",
     "E5/E5_resolution_operating_envelope/results/E5_manifest.json": "7a4624f31ef265e613e48d29b51d3cb42c0fb7c14e43ee6bb38ec52dc32fe727",
-    "E6/E6_dual_camera_information_and_view_geometry/results/E6_summary.json": "f0026ef50490211d96470e205208e23fd364f9fdd61db8c8bd4d4ce4e251bae0",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_summary.json": "17dbf12a9a338fd14e516cb30a408ccf37ffe655dcd354e68a45ccf626f4ed84",
     "E6/E6_dual_camera_information_and_view_geometry/results/E6_stereo_height_summary.csv": "e4cb6db43319f6389bbb83759448b38293150f3f11117ca4864bc91575df4ed7",
-    "E6/E6_dual_camera_information_and_view_geometry/results/E6_angle_identifiability_audit.json": "7d83a998a2c2f7935a2667909322c1c806f2b168a59e66996c66a98ed12daf20",
-    "E6/E6_dual_camera_information_and_view_geometry/results/E6_manifest.json": "b6756319f5aecefe765f4426f74a71848e3e23da19b4281d88f1da758a6c9013",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_pnp3d_height_summary.csv": "35130f862ef7fe52ff60c4ccc0ee41f7bbd754db98d45822b8798275a71c0355",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_pnp3d_contrast_summary.csv": "8281e8890637d6216cbdfbf5f4fa7a1d6fe4b137cacd2da61646cde86716fc2a",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_angle_identifiability_audit.json": "075c8f85e95ab3ee44df5a161231163a6b6fe60260cbed806f68467b1ed90724",
+    "E6/E6_dual_camera_information_and_view_geometry/results/E6_manifest.json": "3af9d0b876698ca74e230b4d8f9ce29e803710230982e6ec0723dad4bbfb22e1",
     "E7/E7_moving_camera_relocalization_simulation/results/E7_summary.json": "0fa99926c3c78c1cd755750be6957f59ffa26a11e2a328f7ade36ff5382fddcf",
     "E7/E7_moving_camera_relocalization_simulation/results/E7_manifest.json": "9bb8b8d20556845c2513948dd7787dcc6c1a78b53eefaf5646ee12c5cb3b1433"
   }

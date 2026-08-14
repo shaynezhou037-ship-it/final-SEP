@@ -122,6 +122,17 @@ def main() -> None:
         raise RuntimeError("E6 PnP fusion ordering changed")
     close(e6["stereo_key_heights"]["25"]["xy_rmse_mean_mm"], 2.7521386895985205)
     close(e6["stereo_key_heights"]["25"]["z_rmse_mean_mm"], 1.7718476758354282)
+    pnp3d25 = e6["pnp3d_key_heights"]["25"]
+    close(pnp3d25["ihawk2"]["error3d_rmse_mean_mm"], 6.144212828130747)
+    close(pnp3d25["EqualXYZ"]["error3d_rmse_mean_mm"], 7.431398224022177)
+    close(pnp3d25["LOOWeightedXYZ"]["error3d_rmse_mean_mm"], 6.350689231127146)
+    close(e6["stereo_key_heights"]["25"]["error3d_rmse_mean_mm"], 3.341760741375508)
+    contrast25 = e6["pnp3d_stereo_contrasts_key_heights"]["25"]["ihawk2"]
+    contrast50 = e6["pnp3d_stereo_contrasts_key_heights"]["50"]["ihawk2"]
+    if int(contrast25["stereo_lower_3d_error_n"]) != 5:
+        raise RuntimeError("E6 25-mm paired XYZ contrast changed")
+    if int(contrast50["stereo_lower_3d_error_n"]) != 4:
+        raise RuntimeError("E6 50-mm paired XYZ contrast changed")
     if e6_angle["verdict"] != "not_identifiable_from_current_E6":
         raise RuntimeError("E6 angle evidence boundary changed")
     if e6_angle["effective_fixed_camera_placements"] != 2:
@@ -148,6 +159,8 @@ def main() -> None:
         E5_ROOT / "results" / "E5_manifest.json",
         e6_summary_path,
         E6_ROOT / "results" / "E6_stereo_height_summary.csv",
+        E6_ROOT / "results" / "E6_pnp3d_height_summary.csv",
+        E6_ROOT / "results" / "E6_pnp3d_contrast_summary.csv",
         e6_angle_path,
         E6_ROOT / "results" / "E6_manifest.json",
         e7_summary_path,
@@ -187,7 +200,7 @@ def main() -> None:
                 "claim_id": "C21",
                 "claim": "Averaging two camera-specific estimates and using calibrated stereo parallax are distinct information flows; the latter added depth information in E6.",
                 "evidence": relative(e6_summary_path),
-                "key_result": "PnP at 25 mm ihawk1/ihawk2/equal/LOO = 8.850/4.786/6.057/4.897 mm; stereo XY/Z = 2.752/1.772 mm",
+                "key_result": "strict XYZ ablation at 25 mm: ihawk1/ihawk2/equal/LOO/stereo 3-D RMSE = 10.348/6.144/7.431/6.351/3.342 mm; stereo lower than ihawk2 in 5/5 rebuilds (4/5 at 50 mm)",
                 "strength": "direct within five paired physical rebuilds",
                 "caveat": "static target; Z=0-derived stereo geometry; no E4 endpoint propagation",
                 "submission_role": "core",

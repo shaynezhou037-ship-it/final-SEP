@@ -9,7 +9,7 @@
 1. `../03_manuscript_notes/PAPER_WRITING_MASTER_PLAN.md`；
 2. `../03_manuscript_notes/PHASE1_PAPER_BLUEPRINT_V2_IEEE.md`；
 3. `NO_REBUILD_DIRECTION_AND_DOCUMENT_AUDIT.md`（本轮方向变化、文档影响与剩余迁移）；
-4. `../03_manuscript_notes/claim_evidence_map_v2.csv`（迁移完成前只读取冻结数字与源路径；其中旧 RQ/图号角色不得覆盖 v2.3 蓝图）；
+4. `../03_manuscript_notes/claim_evidence_map_v2.csv`（迁移完成前只读取冻结数字与源路径；其中旧 RQ/图号角色不得覆盖 v2.4 蓝图）；
 5. `../02_reproducibility/no_rebuild_evidence_manifest.json`（E5–E7 派生结果与 hash-backed evidence gate；不代表全部进入投稿稿件）；
 6. 当前任务对应的 `../04_writing_standards/` 标准；
 7. 引用任务再读 `../05_literature_library/citation_sentence_ledger.csv`。
@@ -64,6 +64,7 @@
 - **R7 — 已被 R9 进一步收束**：不重新搭建物理系统的决定继续有效；原先“E7 进入 Supplement”已取消。
 - **R8 — 由当前设计强制**：现有角度数据只支持 confounding/identifiability audit。10 个 run-camera rows 来自两个固定布局；不得用 pooled correlation 声称角度因果或最优角度。
 - **R9 — 2026-08-14 通过**：严格 IEEE reviewer audit 后，投稿主线收束为 E1→E2→E6；只保留 RQ1 planar-to-off-plane information sufficiency 与 RQ2 second estimate versus stereo geometry。E3/E5 supporting，E4 limited application-side check，E0 Supplement，E7 excluded。
+- **R10 — 2026-08-14 证据核验后执行**：接受“E6 必须分离 another estimate 与 stereo geometry”的审稿要求，并补做统一 XYZ 输出、XY/Z/3-D 指标及 rebuild-level paired contrasts；拒绝把 E2 PnP 写成使用高度先验、从现有曲线事后挑 application failure threshold，或把 `fusion + stereo` 当作完整消融的必要条件。E0 完整诊断进 Supplement，但关键 limitation 在正文保留。
 
 ## 6. 已执行删除（2026-08-13）
 
@@ -95,8 +96,8 @@
 
 ## 9. Git 基线与三刊规则冻结（2026-08-14）
 
-- 当前公开 Git 基线为 commit `704bdda9b2dc97e0bb72facbd53c3c4eb08fb17a`（short `704bdda`），已推送到 `final-SEP` 的 `main`，本地与 `origin/main` 一致。
-- 公开基线 `704bdda` 只覆盖当时的 E0–E4；当前 E5–E7 与 v2.3 文档尚属于后续未提交工作，不能描述成该公开 commit 已包含。第三方论文 PDF 所在的 `05_literature_library/final_papers/` 仍仅本机保留，不公开再分发。
+- 当前公开 Git 基线见 `metadata/RoArm_commit.txt`；任何公开状态表述必须以当时的 `git status`/remote 核验为准，不沿用过期的本地同步判断。
+- 公开基线只覆盖当时已提交内容；当前 E5–E7、E6 strict XYZ 派生分析与 v2.4 文档在提交前均不能描述成公开 commit 已包含。第三方论文 PDF 所在的 `05_literature_library/final_papers/` 仍仅本机保留，不公开再分发。
 - TIM、IEEE Access、RA-L 的官方规则已冻结到 `../04_writing_standards/IEEE_VENUE_RULES_AND_FIT.md`。
 - **R6 — 待作者签认**：默认按 IEEE Access Research Article 推进；TIM 作为通过 measurement gate 后的冲刺路线；RA-L 暂停。
 - 在 R6 签认前，可以继续做不依赖模板的统计/图表冻结，但不建立三套正文副本。

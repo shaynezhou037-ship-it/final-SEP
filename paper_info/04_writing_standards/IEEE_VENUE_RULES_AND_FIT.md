@@ -35,7 +35,7 @@
 
 理由：
 
-- B2 的真实优势是受控几何信息层级和可审计比较，而不是新算法。IEEE Access 明确接纳应用工程、新实验与测量技术，也允许用足够篇幅交代核心 E1/E2/E6 的 physical/offline 单位及其失败边界。E3/E5 作为 supporting validity checks，E4 作为 limited application-side check，E0 只进 Supplement；E7 不进入投稿包。E6 的 estimate fusion versus stereo parallax 区分是当前最清楚的 advance。
+- B2 的真实优势是受控几何信息层级和可审计比较，而不是新算法。IEEE Access 明确接纳应用工程、新实验与测量技术，也允许用足够篇幅交代核心 E1/E2/E6 的 physical/offline 单位及其失败边界。E3/E5 作为 supporting validity checks，E4 作为 limited application-side check，E0 完整诊断进 Supplement 且关键 limitation 留正文；E7 不进入投稿包。E6 的 strict same-output XYZ estimate-fusion versus stereo-parallax 区分是当前最清楚的 advance。
 - Supplement 可容纳全量逐目标/逐 rebuild 结果、配置、代码和数据字典，主文仍可保持自包含。
 - E4 的 one completed nine-target block 可以作为透明的 exploratory downstream case study；无需伪装成完整 manipulation 或确认性 108-trial study。
 

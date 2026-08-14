@@ -72,7 +72,7 @@ IEEE 的期刊搜索页可查看当前 bibliometric scores；投稿前再核验�
 - 每一场景先给 setup，再给定量结果、可视化和场景内总结，最后才形成条件性设备建议；
 - 结论按应用距离和场景限定，不给脱离条件的统一冠军。
 
-对 B2 的直接要求：原创性重点是共享观测下的 controlled geometric-information hierarchy，不伪装成新算法。E1/E2/E6 是 core；E3/E5/E4 是 supporting；E0 是 Supplement；E7 excluded。分级必须在 Table II 明示。
+对 B2 的直接要求：原创性重点是共享观测下的 controlled geometric-information hierarchy，不伪装成新算法。E1/E2/E6 是 core；E3/E5/E4 是 supporting；E0 的完整诊断进 Supplement 且关键 limitation 留正文；E7 excluded。分级必须在 Table II 明示。
 
 ### E. Collins and Bartoli — IJCV, 2014（IPPE 原始论文）
 
@@ -157,7 +157,7 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 1. **Fig. 1**：实物照片、坐标系与 planar Homography → single-view PnP → estimate fusion/stereo hierarchy；E4 仅作小型 supporting branch；
 2. **Fig. 2**：E1 planar paired errors + E2 两相机 height curves，合并回答 RQ1；
-3. **Fig. 3**：E6 single-camera/equal/LOO-weighted PnP 与 stereo XY/Z，回答 RQ2；不放 angle panel；
+3. **Fig. 3**：E6 左 panel 为 single-camera/equal/LOO-weighted PnP 与 stereo 的 XY height curves，右 panel 为统一 XYZ 输出的 ihawk1/ihawk2/equal/LOO-weighted/stereo 3-D RMSE；caption/表给出 paired rebuild sign counts，回答 RQ2；不放 angle panel；
 4. **Fig. 4**：E4 target-paired endpoint error，明确 `not an E6 endpoint validation`。
 
 E0/E3/E5/angle 图进入 Supplement；E7 不进入投稿图表资产。

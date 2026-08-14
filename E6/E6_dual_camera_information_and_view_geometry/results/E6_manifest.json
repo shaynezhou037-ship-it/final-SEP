@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-08-14T07:44:47.539437+00:00",
+  "created_at_utc": "2026-08-14T10:05:00.287946+00:00",
   "experiment": "E6 single/dual-camera information and view-geometry pilot",
   "script": "E6\\E6_dual_camera_information_and_view_geometry\\scripts\\e6_dual_camera_analysis.py",
   "inputs": [
@@ -30,6 +30,13 @@
     "LOOWeightedFusion",
     "LOOWeightedGated"
   ],
+  "strict_xyz_sources": [
+    "ihawk1",
+    "ihawk2",
+    "EqualXYZ",
+    "LOOWeightedXYZ",
+    "StereoTriangulation"
+  ],
   "heights_mm": [
     0.0,
     5.0,
@@ -57,6 +64,12 @@
     "fusion_run_metrics": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_run_height_metrics.csv",
     "fusion_height_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_height_summary.csv",
     "fusion_gain_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_fusion_gain_summary.csv",
+    "pnp3d_weight_audit": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pnp3d_leave_one_rebuild_weight_audit.csv",
+    "pnp3d_predictions": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pnp3d_estimate_predictions.csv",
+    "pnp3d_run_metrics": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pnp3d_run_height_metrics.csv",
+    "pnp3d_height_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pnp3d_height_summary.csv",
+    "pnp3d_paired_contrasts": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pnp3d_paired_contrasts.csv",
+    "pnp3d_contrast_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_pnp3d_contrast_summary.csv",
     "stereo_predictions": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_stereo_predictions.csv",
     "stereo_run_metrics": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_stereo_run_height_metrics.csv",
     "stereo_height_summary": "E6\\E6_dual_camera_information_and_view_geometry\\results\\E6_stereo_height_summary.csv",
