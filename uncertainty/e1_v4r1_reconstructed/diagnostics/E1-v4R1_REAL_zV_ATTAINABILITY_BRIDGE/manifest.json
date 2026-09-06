@@ -1,0 +1,456 @@
+{
+  "artifact": "E1-v4R1_REAL_zV_ATTAINABILITY_BRIDGE",
+  "diagnostic_only": true,
+  "core_model_modified": false,
+  "E2_connected": false,
+  "dmin_run": false,
+  "phase_map_run": false,
+  "perfect_zG_run": false,
+  "restoration_regression_rerun": false,
+  "geometry_selection_used_E1_metrics": false,
+  "real_images_only": true,
+  "selected_view_count": 9,
+  "selected_view_count_scope": "per camera",
+  "selection_frozen_before_E1_metrics": true,
+  "selection_file_sha256_at_metric_start": "24d43eb193f74fe268ebc8baabc706be31a1e62f493cc0d58797575c3ff212e6",
+  "selection_payload_sha256": "b060fe2cb8485b29c91f52da50eabc0dd7041c84c2a68234b374cf0cb584cc67",
+  "selected_camera": [
+    "camera_overhead_B242",
+    "camera_side_B479"
+  ],
+  "calibrations": {
+    "camera_overhead_B242": {
+      "camera_id": "camera_overhead_B242",
+      "calibration_id": "camera_overhead_B242:6500bf7c4c0b785597dbae6bad0ed9ec3f676e39de300a6aa49f52cd7581145d",
+      "calibration_file": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\intrinsic_output\\camera_intrinsics.json",
+      "calibration_file_sha256": "6500bf7c4c0b785597dbae6bad0ed9ec3f676e39de300a6aa49f52cd7581145d",
+      "image_directory": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\intrinsic_images",
+      "accepted_image_count": 42,
+      "accepted_image_ids": [
+        "Color_flat_001.bmp",
+        "Color_flat_002.bmp",
+        "Color_flat_003.bmp",
+        "Color_flat_004.bmp",
+        "Color_flat_005.bmp",
+        "Color_flat_006.bmp",
+        "Color_flat_007.bmp",
+        "Color_flat_008.bmp",
+        "Color_flat_009.bmp",
+        "Color_flat_010.bmp",
+        "Color_flat_011.bmp",
+        "Color_flat_012.bmp",
+        "Color_flat_013.bmp",
+        "Color_flat_014.bmp",
+        "Color_flat_015.bmp",
+        "Color_flat_016.bmp",
+        "Color_flat_017.bmp",
+        "Color_flat_018.bmp",
+        "Color_flat_019.bmp",
+        "Color_flat_020.bmp",
+        "Color_flat_021.bmp",
+        "Color_flat_022.bmp",
+        "Color_tilt_001.bmp",
+        "Color_tilt_002.bmp",
+        "Color_tilt_004.bmp",
+        "Color_tilt_005.bmp",
+        "Color_tilt_006.bmp",
+        "Color_tilt_007.bmp",
+        "Color_tilt_008.bmp",
+        "Color_tilt_009.bmp",
+        "Color_tilt_010.bmp",
+        "Color_tilt_011.bmp",
+        "Color_tilt_012.bmp",
+        "Color_tilt_013.bmp",
+        "Color_tilt_014.bmp",
+        "Color_tilt_015.bmp",
+        "Color_tilt_016.bmp",
+        "Color_tilt_017.bmp",
+        "Color_tilt_018.bmp",
+        "Color_tilt_019.bmp",
+        "Color_tilt_020.bmp",
+        "Color_tilt_021.bmp"
+      ],
+      "K": [
+        [
+          402.68419783736783,
+          0.0,
+          320.65608777126454
+        ],
+        [
+          0.0,
+          402.8661657950663,
+          204.12211088684393
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        0.01865811182268223,
+        -0.04790715572964584,
+        -0.00027276537922026506,
+        -0.00010615928361129637,
+        0.026360804405568934
+      ],
+      "image_resolution": [
+        640,
+        400
+      ],
+      "board_geometry": {
+        "inner_corners": [
+          8,
+          6
+        ],
+        "square_size_m": 0.025
+      }
+    },
+    "camera_side_B479": {
+      "camera_id": "camera_side_B479",
+      "calibration_id": "camera_side_B479:fcd6ef4ef2d6eb06f593164fdaeda9056d2a03a6aa363ff2403d6649a13b84be",
+      "calibration_file": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\intrinsic_output\\camera_intrinsics.json",
+      "calibration_file_sha256": "fcd6ef4ef2d6eb06f593164fdaeda9056d2a03a6aa363ff2403d6649a13b84be",
+      "image_directory": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\intrinsic_images",
+      "accepted_image_count": 48,
+      "accepted_image_ids": [
+        "Color_flat_001.bmp",
+        "Color_flat_002.bmp",
+        "Color_flat_003.bmp",
+        "Color_flat_004.bmp",
+        "Color_flat_005.bmp",
+        "Color_flat_006.bmp",
+        "Color_flat_007.bmp",
+        "Color_flat_008.bmp",
+        "Color_flat_009.bmp",
+        "Color_flat_010.bmp",
+        "Color_flat_011.bmp",
+        "Color_flat_012.bmp",
+        "Color_flat_013.bmp",
+        "Color_flat_014.bmp",
+        "Color_flat_015.bmp",
+        "Color_flat_016.bmp",
+        "Color_flat_017.bmp",
+        "Color_flat_018.bmp",
+        "Color_flat_019.bmp",
+        "Color_flat_020.bmp",
+        "Color_flat_021.bmp",
+        "Color_flat_022.bmp",
+        "Color_flat_023.bmp",
+        "Color_flat_024.bmp",
+        "Color_flat_025.bmp",
+        "Color_flat_026.bmp",
+        "Color_tilt_001.bmp",
+        "Color_tilt_002.bmp",
+        "Color_tilt_003.bmp",
+        "Color_tilt_004.bmp",
+        "Color_tilt_005.bmp",
+        "Color_tilt_006.bmp",
+        "Color_tilt_007.bmp",
+        "Color_tilt_008.bmp",
+        "Color_tilt_009.bmp",
+        "Color_tilt_010.bmp",
+        "Color_tilt_011.bmp",
+        "Color_tilt_012.bmp",
+        "Color_tilt_013.bmp",
+        "Color_tilt_014.bmp",
+        "Color_tilt_015.bmp",
+        "Color_tilt_016.bmp",
+        "Color_tilt_017.bmp",
+        "Color_tilt_018.bmp",
+        "Color_tilt_019.bmp",
+        "Color_tilt_020.bmp",
+        "Color_tilt_021.bmp",
+        "Color_tilt_022.bmp"
+      ],
+      "K": [
+        [
+          402.28410461744414,
+          0.0,
+          317.6323302869204
+        ],
+        [
+          0.0,
+          402.02515535806447,
+          200.7827024910489
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        0.024408559656773868,
+        -0.09666832723857993,
+        -0.0013378832403892434,
+        -0.002780143803559201,
+        0.09504498759834198
+      ],
+      "image_resolution": [
+        640,
+        400
+      ],
+      "board_geometry": {
+        "inner_corners": [
+          8,
+          6
+        ],
+        "square_size_m": 0.025
+      }
+    }
+  },
+  "board_geometry": {
+    "inner_corners": [
+      8,
+      6
+    ],
+    "square_size_m": 0.025
+  },
+  "train_heldout_split": {
+    "declaration_timing": "frozen_with_geometry selection before any real E1 metric calculation",
+    "indexing": "row-major 8 columns x 6 rows, zero-based",
+    "training_indices": [
+      0,
+      5,
+      47,
+      42,
+      20,
+      23,
+      9,
+      24,
+      33,
+      12,
+      35,
+      44
+    ],
+    "heldout_indices": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      43,
+      45,
+      46
+    ],
+    "rule": "fixed index-based spatially distributed 12-point training set; complement held out; no outcome tuning"
+  },
+  "exact_selected_image_ids": {
+    "camera_overhead_B242": [
+      "Color_tilt_013.bmp",
+      "Color_tilt_016.bmp",
+      "Color_tilt_019.bmp",
+      "Color_flat_003.bmp",
+      "Color_tilt_012.bmp",
+      "Color_tilt_007.bmp",
+      "Color_flat_016.bmp",
+      "Color_flat_010.bmp",
+      "Color_tilt_021.bmp"
+    ],
+    "camera_side_B479": [
+      "Color_flat_020.bmp",
+      "Color_tilt_016.bmp",
+      "Color_tilt_003.bmp",
+      "Color_tilt_013.bmp",
+      "Color_tilt_006.bmp",
+      "Color_flat_008.bmp",
+      "Color_tilt_018.bmp",
+      "Color_tilt_019.bmp",
+      "Color_tilt_005.bmp"
+    ]
+  },
+  "camera_results": {
+    "camera_overhead_B242": {
+      "spectra": {
+        "before_pose_nuisance_raw_native": {
+          "singular_values": [
+            1079.3152373206228,
+            18.101715380178188,
+            17.43792606350238,
+            4.410465450917284,
+            2.0906873763698797
+          ],
+          "rank": 5,
+          "condition_number_full": 516.2489856301083
+        },
+        "after_pose_nuisance_raw_native_JV": {
+          "singular_values": [
+            138.9132921803868,
+            0.9729339213107698,
+            0.24915928963455122,
+            0.24307291036521356,
+            0.07579254186513751
+          ],
+          "rank": 5,
+          "condition_number_full": 1832.8095187461065
+        },
+        "before_pose_nuisance_whitened_scaled": {
+          "singular_values": [
+            196.6506847054423,
+            175.2056996377995,
+            148.12876574317926,
+            79.67460251132992,
+            25.974582247166673
+          ],
+          "rank": 5,
+          "condition_number_full": 7.570889219090063
+        },
+        "after_pose_nuisance_whitened_scaled_JV": {
+          "singular_values": [
+            23.07517287104289,
+            17.826690363618205,
+            2.359303386323641,
+            2.320649359597729,
+            0.9261331854835008
+          ],
+          "rank": 5,
+          "condition_number_full": 24.91560958265001
+        }
+      },
+      "post_nuisance_smallest_whitened_scaled_singular_value": 0.9261331854835008,
+      "improvement_over_G0": 13801929.760184623,
+      "P_C_deg": 3.673281608691386,
+      "P_T_deg": 3.674154795575699,
+      "P_R_deg": 3.77178972833397,
+      "dangerous_direction_severity_coordinates": {
+        "dfx": 0.9356485927833762,
+        "dfy": 0.3042007861500941,
+        "dcx": -0.08117598933140324,
+        "dcy": -0.1526107944674104,
+        "dk1": 0.04630331193604743
+      },
+      "retained_norm_fraction": 0.012042981751629815,
+      "screening_label": "strong real-geometry recovery",
+      "global_nuisance_rank": 6
+    },
+    "camera_side_B479": {
+      "spectra": {
+        "before_pose_nuisance_raw_native": {
+          "singular_values": [
+            707.4870737347838,
+            18.026611532848893,
+            17.280050132131237,
+            3.0314284401963207,
+            2.121993629638113
+          ],
+          "rank": 5,
+          "condition_number_full": 333.4067849465879
+        },
+        "after_pose_nuisance_raw_native_JV": {
+          "singular_values": [
+            75.99310026226715,
+            0.6993456905103036,
+            0.2135635449834659,
+            0.17512407807081284,
+            0.08553298656954388
+          ],
+          "rank": 5,
+          "condition_number_full": 888.4654132880046
+        },
+        "before_pose_nuisance_whitened_scaled": {
+          "singular_values": [
+            173.68896162500081,
+            171.57065752044446,
+            107.54282148871864,
+            70.44397770643496,
+            21.11269397368762
+          ],
+          "rank": 5,
+          "condition_number_full": 8.226755043267634
+        },
+        "after_pose_nuisance_whitened_scaled_JV": {
+          "singular_values": [
+            18.975675741699114,
+            8.58264253326149,
+            2.0059116659203466,
+            1.687360065641816,
+            1.0369313867117966
+          ],
+          "rank": 5,
+          "condition_number_full": 18.29983737098816
+        }
+      },
+      "post_nuisance_smallest_whitened_scaled_singular_value": 1.0369313867117966,
+      "improvement_over_G0": 15453127.465738589,
+      "P_C_deg": 3.98869114396503,
+      "P_T_deg": 3.9895836085484095,
+      "P_R_deg": 4.129882216506725,
+      "dangerous_direction_severity_coordinates": {
+        "dfx": 0.860290881230085,
+        "dfy": 0.29374495595838374,
+        "dcx": 0.403078790476119,
+        "dcy": 0.059341084783631225,
+        "dk1": 0.08729046251671603
+      },
+      "retained_norm_fraction": 0.010925178148997749,
+      "screening_label": "strong real-geometry recovery",
+      "global_nuisance_rank": 6
+    }
+  },
+  "core_hashes_before": {
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "results/restored_operators.npz": "0b4338a921f2e52c0e14dda56ef4994386503bead7823c1931df1bb08c728ff2",
+    "results/restoration_regression.json": "edb5a9900796a18acf8574c0c57acba3ecc7f0a1bdf6db6a9380f0f8b9fbbdc6"
+  },
+  "core_hashes_after": {
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "results/restored_operators.npz": "0b4338a921f2e52c0e14dda56ef4994386503bead7823c1931df1bb08c728ff2",
+    "results/restoration_regression.json": "edb5a9900796a18acf8574c0c57acba3ecc7f0a1bdf6db6a9380f0f8b9fbbdc6"
+  },
+  "core_unchanged": true,
+  "synthetic_G0_smallest_post_nuisance_whitened_scaled_sv": 6.710171704794361e-08,
+  "outputs_sha256": {
+    "REPORT.md": "38280ddfdefbf237d73dfeff5420ac472e9a0a4fba57a5ddb8f0edfdc58b0ec1",
+    "real_view_geometry_all.csv": "15753bd949782203b2c1a2e271865783d91465ad0f576278fc0eaed5f98b36e0",
+    "real_vs_synthetic_geometry.csv": "1f7f4bcdf5ea2cb81cb263fcd8c8146abf2e03676cde00c302915611f18551cc",
+    "real_9view_selection.json": "24d43eb193f74fe268ebc8baabc706be31a1e62f493cc0d58797575c3ff212e6",
+    "real_zV_singular_values.csv": "da3a518c1047777bd02cbd7a44f3d2822412f8a84c636f44d933c56cd6dfafd6",
+    "real_zV_dangerous_direction.csv": "663f1bb28bdf2a0c8327c37fd4905329ce2713d46d9f1fdec843b1a746d9c047",
+    "real_zV_principal_angles.csv": "d1eaa329648d5982d67f2865b20cc672a3577054abad2aa3d4463fec932473c0"
+  }
+}

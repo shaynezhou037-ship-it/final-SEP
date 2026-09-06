@@ -1,0 +1,7 @@
+transform,physical_meaning,source,measured_at_runtime?,independently_calibrated?,mechanically_defined/indexed?,fixed_but_unknown?,estimated_jointly?,fault_bearing?,uncertainty_known?,historical_provenance_status
+T_BF_robot=fk(q),indexed nominal robot base-to-flange pose,ur5_model.py fk; evidence_zG.py,no,no evidence,indexed robot model,not applicable,no,R joint-zero,indexing marginal only,reconstruction input
+T_BF_true=fk(q+dq),physical flange pose under joint-zero fault,evidence_zG.py:33,inferred,no,robot kinematics,no,no,R,relative marginal,reconstruction choice
+T_FM,flange-to-flange-marker transform,e1_v4r1_config.yaml; evidence_zG.py,no,not documented,configured fixed transform,possible,T fault,T,no separate anchor covariance,reconstruction config
+X_B=exp(xb),left base-side transform in residual,evidence_zG.py:49 then geometry_evidence.py:65-69,no,no evidence,base marker asserted reference only,unresolved,would be global nuisance,nuisance,none,RECONSTRUCTION_CHOICE; columns explicitly suppressed
+X_F=exp(xf),right flange-side fixed transform,evidence_zG.py:49; geometry_evidence.py:69,no,no evidence,fixed flange-side term,yes in implemented model,global nuisance,nuisance,"free nuisance, no finite prior",recovered fixed-X nuisance
+T_BF_vision,vision-inferred base-to-flange relation,evidence_zG.py:44-50,"modelled, not protocol documented",no evidence,claims base-fixed/flange-fixed fiducials,base anchor unresolved,depends on X_B/X_F,"P,T,R",relative marginal only,RECONSTRUCTION_CHOICE_zG_JACOBIAN

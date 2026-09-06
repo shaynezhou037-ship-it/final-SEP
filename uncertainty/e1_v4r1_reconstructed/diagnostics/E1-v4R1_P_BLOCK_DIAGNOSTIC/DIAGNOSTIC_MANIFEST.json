@@ -1,0 +1,43 @@
+{
+  "artifact": "E1-v4R1_P_BLOCK_DIAGNOSTIC",
+  "diagnostic_only": true,
+  "core_hashes_before": {
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "results/restored_operators.npz": "0b4338a921f2e52c0e14dda56ef4994386503bead7823c1931df1bb08c728ff2",
+    "results/restoration_regression.json": "edb5a9900796a18acf8574c0c57acba3ecc7f0a1bdf6db6a9380f0f8b9fbbdc6"
+  },
+  "core_hashes_after": {
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "results/restored_operators.npz": "0b4338a921f2e52c0e14dda56ef4994386503bead7823c1931df1bb08c728ff2",
+    "results/restoration_regression.json": "edb5a9900796a18acf8574c0c57acba3ecc7f0a1bdf6db6a9380f0f8b9fbbdc6"
+  },
+  "core_unchanged": true,
+  "E2_connected": false,
+  "regression_rerun": false,
+  "outputs_sha256": {
+    "REPORT.md": "6349e63f0184084eb8e199df1c9beb39d905fa621f7b4b2024bbf93ed86c4739",
+    "diagnostic.json": "42e9eae0ac1f169d37055a7c96e0d84ae87354fb7e49d0d393bc33608118ec96",
+    "dangerous_direction_channel_norms.csv": "89f354955bdfc99fe31e7374c43e2c06d43827aaf8792ca84c47d976811b697a",
+    "zV_nuisance_before_after.csv": "1df78d739e97d6d31e179f2c405a938bb18df06e0e3916acaed8535311829b7f",
+    "P_mode_ablation.csv": "f4392cc0bc9eba377dbe3ed96e95af09af25ffc9de553654195726e7c85ef0b7",
+    "gauge_stage_channel_norms.csv": "52353a88fff486179fee2c8fc7e0a5ff405a7ab44836fd36dc49297bc7241600",
+    "gauge_stage_residuals.csv": "db6033b820d70208221a37658e702c756493bc48de0c210615634d1b13715a17",
+    "nuisance_rank_sources.csv": "f4b1d2680e4360d1780de6b3d02d06ba94b4c36cd5e05647a28643399ef67444"
+  }
+}

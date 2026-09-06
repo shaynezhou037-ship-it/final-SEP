@@ -1,0 +1,436 @@
+{
+  "artifact": "E1-v4R1_REAL_zV_ATTAINABILITY_BRIDGE_GEOMETRY_SELECTION",
+  "selection_phase": "completed_before_any_real_zV_singular_value_or_principal_angle_calculation",
+  "geometry_selection_used_E1_metrics": false,
+  "selected_view_count_per_camera": 9,
+  "real_checkerboard_split": {
+    "declaration_timing": "frozen_with_geometry selection before any real E1 metric calculation",
+    "indexing": "row-major 8 columns x 6 rows, zero-based",
+    "training_indices": [
+      0,
+      5,
+      47,
+      42,
+      20,
+      23,
+      9,
+      24,
+      33,
+      12,
+      35,
+      44
+    ],
+    "heldout_indices": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      43,
+      45,
+      46
+    ],
+    "rule": "fixed index-based spatially distributed 12-point training set; complement held out; no outcome tuning"
+  },
+  "source_calibrations": {
+    "camera_overhead_B242": {
+      "camera_id": "camera_overhead_B242",
+      "calibration_id": "camera_overhead_B242:6500bf7c4c0b785597dbae6bad0ed9ec3f676e39de300a6aa49f52cd7581145d",
+      "calibration_file": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\intrinsic_output\\camera_intrinsics.json",
+      "calibration_file_sha256": "6500bf7c4c0b785597dbae6bad0ed9ec3f676e39de300a6aa49f52cd7581145d",
+      "image_directory": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_overhead_B242\\intrinsic_images",
+      "accepted_image_count": 42,
+      "accepted_image_ids": [
+        "Color_flat_001.bmp",
+        "Color_flat_002.bmp",
+        "Color_flat_003.bmp",
+        "Color_flat_004.bmp",
+        "Color_flat_005.bmp",
+        "Color_flat_006.bmp",
+        "Color_flat_007.bmp",
+        "Color_flat_008.bmp",
+        "Color_flat_009.bmp",
+        "Color_flat_010.bmp",
+        "Color_flat_011.bmp",
+        "Color_flat_012.bmp",
+        "Color_flat_013.bmp",
+        "Color_flat_014.bmp",
+        "Color_flat_015.bmp",
+        "Color_flat_016.bmp",
+        "Color_flat_017.bmp",
+        "Color_flat_018.bmp",
+        "Color_flat_019.bmp",
+        "Color_flat_020.bmp",
+        "Color_flat_021.bmp",
+        "Color_flat_022.bmp",
+        "Color_tilt_001.bmp",
+        "Color_tilt_002.bmp",
+        "Color_tilt_004.bmp",
+        "Color_tilt_005.bmp",
+        "Color_tilt_006.bmp",
+        "Color_tilt_007.bmp",
+        "Color_tilt_008.bmp",
+        "Color_tilt_009.bmp",
+        "Color_tilt_010.bmp",
+        "Color_tilt_011.bmp",
+        "Color_tilt_012.bmp",
+        "Color_tilt_013.bmp",
+        "Color_tilt_014.bmp",
+        "Color_tilt_015.bmp",
+        "Color_tilt_016.bmp",
+        "Color_tilt_017.bmp",
+        "Color_tilt_018.bmp",
+        "Color_tilt_019.bmp",
+        "Color_tilt_020.bmp",
+        "Color_tilt_021.bmp"
+      ],
+      "K": [
+        [
+          402.68419783736783,
+          0.0,
+          320.65608777126454
+        ],
+        [
+          0.0,
+          402.8661657950663,
+          204.12211088684393
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        0.01865811182268223,
+        -0.04790715572964584,
+        -0.00027276537922026506,
+        -0.00010615928361129637,
+        0.026360804405568934
+      ],
+      "image_resolution": [
+        640,
+        400
+      ],
+      "board_geometry": {
+        "inner_corners": [
+          8,
+          6
+        ],
+        "square_size_m": 0.025
+      }
+    },
+    "camera_side_B479": {
+      "camera_id": "camera_side_B479",
+      "calibration_id": "camera_side_B479:fcd6ef4ef2d6eb06f593164fdaeda9056d2a03a6aa363ff2403d6649a13b84be",
+      "calibration_file": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\intrinsic_output\\camera_intrinsics.json",
+      "calibration_file_sha256": "fcd6ef4ef2d6eb06f593164fdaeda9056d2a03a6aa363ff2403d6649a13b84be",
+      "image_directory": "C:\\BerxelWork\\calibration\\eyetohand_dual_0802\\camera_side_B479\\intrinsic_images",
+      "accepted_image_count": 48,
+      "accepted_image_ids": [
+        "Color_flat_001.bmp",
+        "Color_flat_002.bmp",
+        "Color_flat_003.bmp",
+        "Color_flat_004.bmp",
+        "Color_flat_005.bmp",
+        "Color_flat_006.bmp",
+        "Color_flat_007.bmp",
+        "Color_flat_008.bmp",
+        "Color_flat_009.bmp",
+        "Color_flat_010.bmp",
+        "Color_flat_011.bmp",
+        "Color_flat_012.bmp",
+        "Color_flat_013.bmp",
+        "Color_flat_014.bmp",
+        "Color_flat_015.bmp",
+        "Color_flat_016.bmp",
+        "Color_flat_017.bmp",
+        "Color_flat_018.bmp",
+        "Color_flat_019.bmp",
+        "Color_flat_020.bmp",
+        "Color_flat_021.bmp",
+        "Color_flat_022.bmp",
+        "Color_flat_023.bmp",
+        "Color_flat_024.bmp",
+        "Color_flat_025.bmp",
+        "Color_flat_026.bmp",
+        "Color_tilt_001.bmp",
+        "Color_tilt_002.bmp",
+        "Color_tilt_003.bmp",
+        "Color_tilt_004.bmp",
+        "Color_tilt_005.bmp",
+        "Color_tilt_006.bmp",
+        "Color_tilt_007.bmp",
+        "Color_tilt_008.bmp",
+        "Color_tilt_009.bmp",
+        "Color_tilt_010.bmp",
+        "Color_tilt_011.bmp",
+        "Color_tilt_012.bmp",
+        "Color_tilt_013.bmp",
+        "Color_tilt_014.bmp",
+        "Color_tilt_015.bmp",
+        "Color_tilt_016.bmp",
+        "Color_tilt_017.bmp",
+        "Color_tilt_018.bmp",
+        "Color_tilt_019.bmp",
+        "Color_tilt_020.bmp",
+        "Color_tilt_021.bmp",
+        "Color_tilt_022.bmp"
+      ],
+      "K": [
+        [
+          402.28410461744414,
+          0.0,
+          317.6323302869204
+        ],
+        [
+          0.0,
+          402.02515535806447,
+          200.7827024910489
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        0.024408559656773868,
+        -0.09666832723857993,
+        -0.0013378832403892434,
+        -0.002780143803559201,
+        0.09504498759834198
+      ],
+      "image_resolution": [
+        640,
+        400
+      ],
+      "board_geometry": {
+        "inner_corners": [
+          8,
+          6
+        ],
+        "square_size_m": 0.025
+      }
+    }
+  },
+  "per_camera": {
+    "camera_overhead_B242": {
+      "selected_image_ids": [
+        "Color_tilt_013.bmp",
+        "Color_tilt_016.bmp",
+        "Color_tilt_019.bmp",
+        "Color_flat_003.bmp",
+        "Color_tilt_012.bmp",
+        "Color_tilt_007.bmp",
+        "Color_flat_016.bmp",
+        "Color_flat_010.bmp",
+        "Color_tilt_021.bmp"
+      ],
+      "selection_algorithm": "deterministic standardized-descriptor farthest-point sampling; centroid-nearest start; lexical image_id tie-break",
+      "descriptor_definition": [
+        "depth_m",
+        "tilt_deg",
+        "normalized_center_u",
+        "normalized_center_v",
+        "log_board_footprint_px2"
+      ],
+      "normalization_definition": "per-camera population z-score over all accepted usable views (ddof=0); natural log footprint before standardization",
+      "normalization_mean": {
+        "depth_m": 0.5070092376198672,
+        "tilt_deg": 47.19087430305463,
+        "normalized_center_u": 0.5511575263170969,
+        "normalized_center_v": 0.6576954332135972,
+        "log_board_footprint_px2": 9.740905378838765
+      },
+      "normalization_std": {
+        "depth_m": 0.07705025370978692,
+        "tilt_deg": 18.427452664077705,
+        "normalized_center_u": 0.20385861898153984,
+        "normalized_center_v": 0.1467661655618088,
+        "log_board_footprint_px2": 0.38465426979353984
+      },
+      "distance": "Euclidean in standardized descriptor space",
+      "seed": null,
+      "selection_trace": [
+        {
+          "step": 1,
+          "image_id": "Color_tilt_013.bmp",
+          "criterion": "closest_to_standardized_centroid",
+          "score": 1.1495914163804035
+        },
+        {
+          "step": 2,
+          "image_id": "Color_tilt_016.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 4.025190670509096
+        },
+        {
+          "step": 3,
+          "image_id": "Color_tilt_019.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 3.203377428547086
+        },
+        {
+          "step": 4,
+          "image_id": "Color_flat_003.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 3.150142136828465
+        },
+        {
+          "step": 5,
+          "image_id": "Color_tilt_012.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 3.0426488843508452
+        },
+        {
+          "step": 6,
+          "image_id": "Color_tilt_007.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 2.4971878432394643
+        },
+        {
+          "step": 7,
+          "image_id": "Color_flat_016.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 2.22340579245881
+        },
+        {
+          "step": 8,
+          "image_id": "Color_flat_010.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 2.1990292571114294
+        },
+        {
+          "step": 9,
+          "image_id": "Color_tilt_021.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 2.0658270877404092
+        }
+      ]
+    },
+    "camera_side_B479": {
+      "selected_image_ids": [
+        "Color_flat_020.bmp",
+        "Color_tilt_016.bmp",
+        "Color_tilt_003.bmp",
+        "Color_tilt_013.bmp",
+        "Color_tilt_006.bmp",
+        "Color_flat_008.bmp",
+        "Color_tilt_018.bmp",
+        "Color_tilt_019.bmp",
+        "Color_tilt_005.bmp"
+      ],
+      "selection_algorithm": "deterministic standardized-descriptor farthest-point sampling; centroid-nearest start; lexical image_id tie-break",
+      "descriptor_definition": [
+        "depth_m",
+        "tilt_deg",
+        "normalized_center_u",
+        "normalized_center_v",
+        "log_board_footprint_px2"
+      ],
+      "normalization_definition": "per-camera population z-score over all accepted usable views (ddof=0); natural log footprint before standardization",
+      "normalization_mean": {
+        "depth_m": 0.5428726750261262,
+        "tilt_deg": 48.16371630394681,
+        "normalized_center_u": 0.4927932992577553,
+        "normalized_center_v": 0.6414903433372577,
+        "log_board_footprint_px2": 9.488835613118484
+      },
+      "normalization_std": {
+        "depth_m": 0.1395695664004501,
+        "tilt_deg": 20.48088103342421,
+        "normalized_center_u": 0.16487797523323014,
+        "normalized_center_v": 0.14847776983814182,
+        "log_board_footprint_px2": 0.45258140348521614
+      },
+      "distance": "Euclidean in standardized descriptor space",
+      "seed": null,
+      "selection_trace": [
+        {
+          "step": 1,
+          "image_id": "Color_flat_020.bmp",
+          "criterion": "closest_to_standardized_centroid",
+          "score": 1.0191198649953395
+        },
+        {
+          "step": 2,
+          "image_id": "Color_tilt_016.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 4.704641583794406
+        },
+        {
+          "step": 3,
+          "image_id": "Color_tilt_003.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 3.717367598905089
+        },
+        {
+          "step": 4,
+          "image_id": "Color_tilt_013.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 3.5137424091426634
+        },
+        {
+          "step": 5,
+          "image_id": "Color_tilt_006.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 3.30989544767367
+        },
+        {
+          "step": 6,
+          "image_id": "Color_flat_008.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 2.5377071129347004
+        },
+        {
+          "step": 7,
+          "image_id": "Color_tilt_018.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 2.268513416608069
+        },
+        {
+          "step": 8,
+          "image_id": "Color_tilt_019.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 1.8849384763312147
+        },
+        {
+          "step": 9,
+          "image_id": "Color_tilt_005.bmp",
+          "criterion": "maximum_minimum_euclidean_distance",
+          "score": 1.8607430883962945
+        }
+      ]
+    }
+  },
+  "selection_payload_sha256": "b060fe2cb8485b29c91f52da50eabc0dd7041c84c2a68234b374cf0cb584cc67"
+}

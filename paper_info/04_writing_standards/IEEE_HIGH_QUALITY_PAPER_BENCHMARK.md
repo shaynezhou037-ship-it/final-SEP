@@ -124,7 +124,27 @@ IEEE 通用要求：单段、≤250 words、自包含、无引用/脚注/未定�
 
 ### Introduction
 
-固定为五段：任务后果 → planar-to-off-plane 信息缺口 → second estimate versus second-view geometry 缺口 → 我们的 controlled evaluation design → 两项可核验贡献。禁止从“近年来人工智能快速发展”开始。
+Introduction 的核心任务不是泛泛介绍领域，而是建立一条可检验的论证链，回答“为什么这个问题值得研究”。应用价值是其中的重要证据：它说明一个几何、估计或测量问题会影响哪些真实任务，以及问题解决后谁会受益；但应用场景不能替代研究缺口，也不能暗示尚未验证的系统能力。
+
+通用功能主线为：**背景（context） → 为什么重要（application/why it matters） → 已有方法（what is known） → 尚存缺口（gap） → 研究问题（research question） → 研究路径（approach） → 可核验贡献（contributions）**。具体写作时应完成以下功能：
+
+1. **背景 / Context**：界定问题空间、对象和任务层级，例如 homography、planar pose estimation 及其在计算机视觉与机器人系统中的位置；避免从“近年来人工智能快速发展”等空泛宏观叙述起笔。
+2. **应用 / Why it matters**：用与本文证据边界一致的任务说明实际后果，例如 fiducial-marker pose estimation、AR、robot localization、camera calibration 和 planar tracking。应用段必须回答“这个问题会影响什么”，而不是简单罗列场景；若本文只验证静态定位或 supporting application check，不得扩写为完整检测、抓取或操控性能。
+3. **已有方法 / What people already know**：概括现有方法如何处理该问题、已建立哪些结论，并只保留导向本文缺口所必需的文献脉络；详细分类与比较移至 Related Work。
+4. **缺口 / Problem or gap**：明确指出现有知识为何不足。例如，已知 control-point configuration 会影响 homography 或 pose estimation，但不同 configuration 下的 robustness 如何变化仍缺乏系统、受控且公平的分析。缺口必须由已核验文献支持，不能只靠“研究较少”之类判断。
+5. **研究问题 / Research question**：把缺口收束为本文实际能够回答的问题，并与后文 RQ、指标、实验和图表一一对应。
+6. **研究路径 / Approach**：用少量句子预告如何回答问题，例如分析 conditioning/robustness、比较不同 control-point configurations，并用 simulation、real experiment 或受控重建验证；不在 Introduction 展开方法细节。
+7. **贡献 / Contributions**：列出具体、可核验且彼此区分的技术或实证贡献。贡献应写成“建立了什么比较/证据/结论”，而不是“进行了大量实验”，也不得把应用动机写成已验证贡献。
+
+对 B2 正文，上述七项功能压缩并固定为五段，而不是机械写成七段：
+
+1. **任务后果与应用价值**：从真实任务中误差传播或失败后果切入，建立 planar mapping/pose 与 robot positioning、calibration 等应用的联系，回答 why it matters。
+2. **第一层已有认识与缺口**：交代 planar 方法已能解决什么，随后指出 planar-to-off-plane 的信息缺口。
+3. **第二层已有认识与缺口**：区分 second estimate 与真正的 second-view geometry，说明现有处理为什么仍不能回答本文问题。
+4. **研究问题与 controlled evaluation design**：明确本文比较什么、在什么条件下比较、使用什么证据回答 RQ；只做方法预告。
+5. **两项可核验贡献**：贡献与 RQ、核心结果和证据边界直接对应，不把 E4 supporting branch 或未覆盖的 downstream chain 提升为核心贡献。
+
+自检时用一句话复述全文入口：**背景 → 为什么重要 → 现在做到哪了 → 还缺什么 → 我研究什么 → 我怎么研究 → 我贡献什么**。若其中任一箭头无法自然成立，说明 Introduction 仍存在跳步、应用堆砌或贡献越界。
 
 ### Related Work
 

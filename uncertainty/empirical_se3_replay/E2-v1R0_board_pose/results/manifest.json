@@ -1,0 +1,151 @@
+{
+  "analysis_id": "E2-v1R0_board_pose",
+  "created_at_utc": "2026-09-06T01:28:24.253153+00:00",
+  "status": "BOARD_LEVEL_PRIMARY_NO_TOTAL_SUM",
+  "geometry": {
+    "board_mm": [
+      210.0,
+      297.0
+    ],
+    "marker_mm": 50.0,
+    "outer_margin_mm": 10.0,
+    "actual_marker_centres_mm": {
+      "TL": [
+        -70.0,
+        113.5
+      ],
+      "TR": [
+        70.0,
+        113.5
+      ],
+      "C": [
+        0.0,
+        0.0
+      ],
+      "BL": [
+        -70.0,
+        -113.5
+      ],
+      "BR": [
+        70.0,
+        -113.5
+      ]
+    },
+    "acquisition_logged_centres_rejected_mm": {
+      "TL": [
+        -80.0,
+        123.5
+      ],
+      "TR": [
+        80.0,
+        123.5
+      ],
+      "C": [
+        0.0,
+        0.0
+      ],
+      "BL": [
+        -80.0,
+        -123.5
+      ],
+      "BR": [
+        80.0,
+        -123.5
+      ]
+    },
+    "evidence": {
+      "actual_margin10/ihawk1": {
+        "n": 165,
+        "median_px": 0.5794111526283507,
+        "mean_px": 0.6022901377114455,
+        "max_px": 1.4573881790374774
+      },
+      "actual_margin10/ihawk2": {
+        "n": 165,
+        "median_px": 0.5589001645987939,
+        "mean_px": 0.5771055065217525,
+        "max_px": 1.0305130655217953
+      },
+      "logged_edge_aligned/ihawk1": {
+        "n": 165,
+        "median_px": 1.8633203238341844,
+        "mean_px": 1.8882278575157332,
+        "max_px": 2.3178888629039975
+      },
+      "logged_edge_aligned/ihawk2": {
+        "n": 165,
+        "median_px": 2.267908984629319,
+        "mean_px": 2.2801335665840283,
+        "max_px": 2.6491645537012958
+      },
+      "paired_result": {
+        "actual_lower_n": 330,
+        "paired_frames_n": 330,
+        "conclusion": "confirmed actual centres ±70,±113.5 mm; logged ±80,±123.5 mm rejected"
+      }
+    }
+  },
+  "primary_measurement": "20-corner rigid-board SOLVEPNP_IPPE best branch, followed by LM refinement",
+  "single_marker_role": "unclipped IPPE_SQUARE failure-mode comparator only",
+  "hierarchy": {
+    "Sigma_within": "short-term random board-pose measurement residual covariance",
+    "b_pose": "stable height-conditioned error mean after each run's height-0 baseline",
+    "b_run": "empirical bank only; baseline placement and condition residual vectors; no Gaussian fit",
+    "total_sum": "not produced and not authorized"
+  },
+  "branch_flags": {
+    "board_groups_with_selected_branch_switch": 0,
+    "board_groups_total": 110,
+    "single_marker_groups_with_selected_branch_switch": 12,
+    "single_marker_groups_with_large_mode_jump_gt_0p25rad": 12,
+    "single_marker_groups_total": 550,
+    "clipped_observations": 0
+  },
+  "se3": {
+    "residual": "Log(inv(T_bar) @ T_i)",
+    "xi_order": [
+      "rho_x_mm",
+      "rho_y_mm",
+      "rho_z_mm",
+      "omega_x_rad",
+      "omega_y_rad",
+      "omega_z_rad"
+    ],
+    "covariance": "sample covariance; pooled within uses sum_g(n_g-1) denominator"
+  },
+  "source_files": [
+    {
+      "path": "E2/E2_dual_camera_height_scan/run_20260808_131913/raw/E2_dual_height_raw_20260808_131913.csv",
+      "sha256": "78d6574b834fff8822cc59e55e62cdc041b292255365d4d2d9fc57e413cabcdf"
+    },
+    {
+      "path": "E2/E2_dual_camera_height_scan/run_20260808_141232/raw/E2_dual_height_raw_20260808_141232.csv",
+      "sha256": "1e17dbca07486c044cb175f23058cdee77d9d8ff53c4cd5a975d1fb4eed91bd1"
+    },
+    {
+      "path": "E2/E2_dual_camera_height_scan/run_20260808_145501/raw/E2_dual_height_raw_20260808_145501.csv",
+      "sha256": "696ff47c63ea3d91a8ff4247b57bdf488eca5d679e19e716ecad5271f7aad305"
+    },
+    {
+      "path": "E2/E2_dual_camera_height_scan/run_20260808_151001/raw/E2_dual_height_raw_20260808_151001.csv",
+      "sha256": "ff76009c69cfea0e72f23d8a762019fb000161de7ae902522189908885d59c8e"
+    },
+    {
+      "path": "E2/E2_dual_camera_height_scan/run_20260808_162715/raw/E2_dual_height_raw_20260808_162715.csv",
+      "sha256": "82572f9eab053a1acc3cb2e8d8fb6afcb5b0784e8452cf31744493b2008f3f24"
+    },
+    {
+      "path": "E2/E2_rebuilt/E2_REBUILD_MANIFEST.json",
+      "sha256": "daa68cd706e050d30433c6501e5a2b2328b8c7eddc5ab4ccebadcf4d2bbd8683"
+    },
+    {
+      "path": "uncertainty/empirical_se3_replay/build_e2_board_pose_v1.py",
+      "sha256": "060df9eea122eb3c9d05282dad16b4de68b7d4c197c2bc642baa0d848efa343f"
+    },
+    {
+      "path": "uncertainty/empirical_se3_replay/build_empirical_components.py",
+      "sha256": "c5fb2eb4a71d164b7ae6169bc9b408c1bbc92aa570f8eb3c74e2b01de4da58fe"
+    }
+  ],
+  "formal_e1_v4_input_status": "candidate camera-side input; E1-v4 executable artifact still must be recovered"
+}

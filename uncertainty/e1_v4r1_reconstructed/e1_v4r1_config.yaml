@@ -1,0 +1,92 @@
+name: E1-v4R1_reconstructed
+contract_sha256: 7F510224A57C2989BDF0C1521C0143EC1686046BC20F2427CDF06FE0CE027488
+reconstruction_seed: 20260906  # RECONSTRUCTION_CHOICE: original seed was not recovered.
+
+conventions:
+  twist_order: [tx, ty, tz, wx, wy, wz]
+  perturbation: right
+  transform_notation: T_parent_child
+  fault_order: [P, C, T, R]
+
+camera:
+  width_px: 640
+  height_px: 480
+  intrinsics: [600.0, 600.0, 320.0, 240.0, -0.05]
+  # RECONSTRUCTION_CHOICE constrained by the recovered "camera/base yaw"
+  # gauge: the camera centre lies on the Joint-1 axis and optical z is
+  # collinear with base z. Height keeps the full target inside the image.
+  position_B_m: [0.0, 0.0, 2.0]
+  look_at_B_m: [0.0, 0.0, 0.18]
+
+flange_marker:
+  translation_m: [0.0, 0.0, 0.05]
+  rotation_vector_rad: [0.0, 0.0, 0.0]
+
+marker:
+  # RECONSTRUCTION_CHOICE: deterministic planar calibration target.
+  grid_shape: [5, 5]
+  spacing_m: 0.025
+  training_indices: [0, 4, 20, 24, 2, 10, 14, 22]
+
+noise:
+  baseline:
+    pixel_px: 0.17
+    pose_translation_m: 0.00103
+    pose_rotation_rad: 0.01254818073
+    relative_translation_m: 0.00146
+    relative_rotation_rad: 0.01780235837
+    indexing_rad: 0.000872664626
+  camera_pixel_sweep_px: [1.0, 0.5, 0.17, 0.08, 0.03]
+  relative_noise_factor_sweep: [1.0, 0.5, 0.4, 0.3, 0.25]
+  indexing_sweep_deg: [0.005, 0.05, 0.1, 0.5, 1.0]
+
+severity:
+  equivalent_rms_m: 0.005
+  rotation_lever_arm_m: 0.1
+
+thresholds:
+  practical_feasibility_dmin: 3.0
+  svd_rtol: 1.0e-10
+
+# RECONSTRUCTION_CHOICE: exact old pose list was not recovered. These nine
+# fixed-orientation poses are deterministic IK solutions at nominal and the
+# eight +/-10 mm x/y offsets requested by the recovered routine-geometry note.
+task_poses_rad:
+  - [-1.57, -1.2, 1.8, -2.17, -1.57, 0.0]
+  - [-1.5874982577957266, -1.2036520716901844, 1.8053781797274309, -2.171712296329167, -1.5700140555290378, -0.017498257601642902]
+  - [-1.5525604100856265, -1.1960125973702445, 1.7941113995816638, -2.1681128102135863, -1.569986234186636, 0.017439590107157045]
+  - [-1.5700136734475596, -1.1800623226774458, 1.7703674148299806, -2.160305081264617, -1.57000001088856, -0.000013673447586464664]
+  - [-1.5699858403298736, -1.21994505583175, 1.829218474484544, -2.1792734299290837, -1.569999988724314, 0.000014159670100987987]
+  - [-1.5872105914356032, -1.1836515456375505, 1.7757288424168864, -2.162063710138999, -1.5700138225118685, -0.017210591247426275]
+  - [-1.5528724539444183, -1.176142366754492, 1.764496321199963, -2.1583677097026785, -1.5699864783435455, 0.017127546241002267]
+  - [-1.5877962029478236, -1.2236658483788285, 1.8346171448461812, -2.180937251722495, -1.570014296940287, -0.017796202747619266]
+  - [-1.5522373298474368, -1.2158838856711613, 1.8233082753239485, -2.1774386594216857, -1.5699859814772452, 0.017762670352999478]
+
+historical_fingerprints:
+  principal_angles_deg:
+    P-C: 0.572
+    P-T: 0.572
+    P-R: 1.142
+    C-R: 0.386
+    T-R: 0.573
+  nearby_stress_ranges_deg:
+    P-C: [0.52, 0.62]
+    P-T: [0.52, 0.62]
+    P-R: [1.09, 1.24]
+    C-R: [0.059, 0.424]
+    T-R: [0.53, 0.69]
+  gauge_sigma:
+    C_yaw_vs_q1: 0.95
+    T_yaw_vs_q6: 4.18
+  relative_noise_C_yaw_vs_q1_sigma:
+    '1.0': 0.95
+    '0.5': 1.85
+    '0.4': 2.26
+    '0.3': 2.90
+    '0.25': 3.35
+  camera_pixel_P_C_angle_deg:
+    '1.0': 0.32
+    '0.5': 0.41
+    '0.17': 0.57
+    '0.08': 0.97
+    '0.03': 2.41

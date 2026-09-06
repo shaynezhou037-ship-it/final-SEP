@@ -1,0 +1,105 @@
+{
+  "artifact": "E1-v4R1_CR_INFORMATION_ACCOUNTING_AUDIT",
+  "diagnostic_only": true,
+  "core_model_modified": false,
+  "E2_connected": false,
+  "dmin_run": false,
+  "phase_map_run": false,
+  "perfect_zG_run": false,
+  "noise_magnitudes_changed": false,
+  "nuisance_model_changed": false,
+  "core_hashes_before": {
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "results/restored_operators.npz": "0b4338a921f2e52c0e14dda56ef4994386503bead7823c1931df1bb08c728ff2",
+    "results/restoration_regression.json": "edb5a9900796a18acf8574c0c57acba3ecc7f0a1bdf6db6a9380f0f8b9fbbdc6"
+  },
+  "core_hashes_after": {
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "results/restored_operators.npz": "0b4338a921f2e52c0e14dda56ef4994386503bead7823c1931df1bb08c728ff2",
+    "results/restoration_regression.json": "edb5a9900796a18acf8574c0c57acba3ecc7f0a1bdf6db6a9380f0f8b9fbbdc6"
+  },
+  "core_unchanged": true,
+  "reference_diagnostics": {
+    "C_R_minimum_principal_angle_deg": 0.6046057059732669,
+    "C_wz_to_q1_before_nuisance": 8.356037154486954,
+    "C_wz_to_q1_after_nuisance": 0.2823231243826977,
+    "T_wz_to_q6_before_nuisance": 1.1824519375508746,
+    "T_wz_to_q6_after_nuisance": 1.15269534389817,
+    "nuisance_rank": 6,
+    "zR_pair_list": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        8
+      ]
+    ],
+    "zG_pose_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "covariance_rank": 462,
+  "covariance_dimension": 462,
+  "discarded_null_directions": 0,
+  "whitening_tolerance": 2.89e-14,
+  "whitening_check_max_abs_error": 6.292744103575387e-13,
+  "classification": "NUISANCE_SEMANTICS_BLOCKER",
+  "outputs_sha256": {
+    "REPORT.md": "2de19a93965ed3be1097a80a1a61e72601bb77e099de9d9493635a4638abaa87",
+    "primitive_dependency_map.md": "4cf451fe8856b1e07bd60a8976db106e937c57685b8e15acece385dc2806c871",
+    "covariance_structure.csv": "9ef13d42d78e1fded4849d19d49a420fc6ae9f0ba5d643c50fbbea74e866008d",
+    "dependency_effect.csv": "cbffb2cef1d74cf6139e76cb7b386dc65961c1e07164119eecb1c729c22ddc50",
+    "nuisance_semantics_audit.md": "8b12c801ce588b189cac856295d0483ad5f803b869048e899a627286d61dcf6e",
+    "nuisance_absorption.csv": "a38e8a78d9721ab01e862c526726bddf407b18b8d1a76570bd172b0d83eaa345"
+  }
+}

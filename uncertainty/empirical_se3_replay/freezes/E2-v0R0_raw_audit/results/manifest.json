@@ -1,0 +1,455 @@
+{
+  "analysis": "empirical pixel and SE(3) covariance components",
+  "se3_convention": {
+    "transform": "X_camera = T_camera_from_object X_object",
+    "residual": "xi_i = Log(inv(T_bar) @ T_i)",
+    "xi_order": [
+      "rho_x_mm",
+      "rho_y_mm",
+      "rho_z_mm",
+      "omega_x_rad",
+      "omega_y_rad",
+      "omega_z_rad"
+    ],
+    "translation_note": "rho is the SE(3)-log translation coordinate, not raw tvec subtraction",
+    "mean": "iterative right-invariant Frechet/Karcher mean",
+    "covariance": "sample covariance, ddof=1"
+  },
+  "inclusion": {
+    "E0-A": "latest complete formal run (50 rows/camera) per position",
+    "E4": "all calibration and held-out point samples for pixel covariance; calibration PnP frames require >=8 and held-out frames >=6 non-collinear ChArUco points",
+    "E2": "original raw CSV rows whose height_step_index is retained by E2_REBUILD_MANIFEST"
+  },
+  "identifiability": {
+    "E0-A_pnp": "not identifiable: no four corners or pose fields",
+    "E4_between_run": "only a two-stage temporal contrast is identifiable; both stages share one frozen physical setup and are not independent physical rebuilds",
+    "E2_hierarchy": "identified: 5 formal physical runs, 5 poses, 11 heights, 3 within-pose frames",
+    "E2_group_covariance": "rank <= 2 because each 6-D pose/height/run group has n=3; do not invert as a full-rank Gaussian",
+    "planar_pnp": "may be multi-modal; empirical residual vectors are retained for replay",
+    "E1_v4_replay": "blocked: no E1-v4 artifact or d_min,emp^cross definition exists in repository"
+  },
+  "no_refit_statement": "No E1 model was loaded, modified, fitted, or tuned.",
+  "e0_rejected_incomplete_files": [
+    "E0\\E0_A_camera_static\\raw\\E0A_formal_left_20260807_184915.csv",
+    "E0\\E0_A_camera_static\\raw\\E0A_formal_right_20260807_184919.csv"
+  ],
+  "e4_pnp_audit": {
+    "20260811_191758": {
+      "points_per_used_frame": {
+        "ihawk1": [
+          9,
+          10,
+          10,
+          10,
+          10,
+          11,
+          10,
+          10,
+          10,
+          11,
+          12,
+          9,
+          10,
+          10,
+          9,
+          9,
+          10,
+          10,
+          10,
+          10
+        ],
+        "ihawk2": [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "reprojection_rmse_px": {
+        "ihawk1": [
+          0.41734456459533803,
+          0.43843529380591895,
+          0.4664616757897584,
+          0.765505664221106,
+          0.7479979361675458,
+          0.44551266275485724,
+          0.7292985278887816,
+          0.7346325178605625,
+          0.44968142278776835,
+          0.4601543217832383,
+          0.4311044054426035,
+          0.7765383839212738,
+          0.7257993183577035,
+          0.37097512297334545,
+          0.3686136903686731,
+          0.42063620322936546,
+          0.4224859044022276,
+          0.4561593227608518,
+          0.42780104043926326,
+          0.4606883594057978
+        ],
+        "ihawk2": [
+          0.29233268476475954,
+          0.30335922143575844,
+          0.28976470084753675,
+          0.290715602539973,
+          0.2972627637424016,
+          0.29939657524222185,
+          0.3003307279556268,
+          0.2947942572935611,
+          0.28552039331896306,
+          0.29767793353867006,
+          0.30038396968545433,
+          0.30454563235569526,
+          0.2804268050291866,
+          0.2974095632673606,
+          0.2934524140544575,
+          0.28836312868206704,
+          0.28397265172658204,
+          0.28909413860255284,
+          0.2835585170786369,
+          0.28562276281575816
+        ]
+      }
+    },
+    "20260811_192958": {
+      "points_per_used_frame": {
+        "ihawk1": [
+          9,
+          8,
+          9,
+          9,
+          8,
+          9,
+          8,
+          8,
+          9,
+          8,
+          9,
+          9,
+          8,
+          9,
+          8,
+          8,
+          9,
+          9,
+          9,
+          8
+        ],
+        "ihawk2": [
+          9,
+          9,
+          7,
+          7,
+          9,
+          9,
+          8,
+          7,
+          8,
+          7,
+          8,
+          7,
+          7,
+          6,
+          6,
+          7,
+          8,
+          8,
+          9,
+          8
+        ]
+      },
+      "reprojection_rmse_px": {
+        "ihawk1": [
+          0.43010639001689854,
+          0.4579455546093093,
+          0.44181560167763784,
+          0.43738514386141514,
+          0.3852485678296642,
+          0.43786263074537546,
+          0.38679185218739937,
+          0.37158476730744305,
+          0.4297383022779695,
+          0.39259775110997613,
+          0.40983312478646955,
+          0.4068424015205525,
+          0.45552124066744454,
+          0.42771631613912836,
+          0.38592038545900453,
+          0.3896798477882456,
+          0.4423894631117701,
+          0.42984871981698564,
+          0.42777841994892607,
+          0.3837514456828066
+        ],
+        "ihawk2": [
+          0.29085274342588324,
+          0.3141184413263269,
+          0.3347704873121792,
+          0.33117008619667176,
+          0.30048487922484723,
+          0.2926479040422158,
+          0.25667849108007934,
+          0.30611685391093557,
+          0.2628110859464368,
+          0.307043075664864,
+          0.26180425944210445,
+          0.3358379158590178,
+          0.33923568976636326,
+          0.289635230516671,
+          0.30464484068669445,
+          0.33842001973452174,
+          0.28209744625306415,
+          0.29066751189248174,
+          0.33093055516141084,
+          0.2712431059635968
+        ]
+      }
+    }
+  },
+  "e2_pnp_audit": {
+    "recomputed_vs_stored_pnp_log_abs_max": {
+      "rho_x_mm": 1.0277830767790874e-05,
+      "rho_y_mm": 1.4015656915944419e-05,
+      "rho_z_mm": 9.018898765589256e-06,
+      "omega_x_rad": 0.0,
+      "omega_y_rad": 0.0,
+      "omega_z_rad": 0.0
+    },
+    "hierarchy": {
+      "ihawk1/0": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/5": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/10": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/15": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/20": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/25": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/30": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/35": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/40": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/45": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk1/50": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/0": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/5": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/10": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/15": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/20": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/25": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/30": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/35": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/40": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/45": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      },
+      "ihawk2/50": {
+        "groups": 25,
+        "runs": 5,
+        "poses_per_run": 5,
+        "within_vectors": 75,
+        "cross_pose_vectors": 25
+      }
+    }
+  },
+  "source_files": [
+    {
+      "path": "E0\\E0_A_camera_static\\raw\\E0A_formal_center_20260807_185706.csv",
+      "sha256": "bf86a0be380922d3339ef7a772f112351d9ccfb93f8e401a1ca8cdb627ea998f"
+    },
+    {
+      "path": "E0\\E0_A_camera_static\\raw\\E0A_formal_left_20260807_185747.csv",
+      "sha256": "0cafa855f88b5b6604ab58be840f1877e218d419dafa89606052d7f2effdfc58"
+    },
+    {
+      "path": "E0\\E0_A_camera_static\\raw\\E0A_formal_right_20260807_185833.csv",
+      "sha256": "562862b1f0da8f743d06ee80f7eb6f38a67c5b321b029fec686b84abf6efb950"
+    },
+    {
+      "path": "E0\\E0_A_camera_static\\raw\\E0A_formal_near_20260807_185924.csv",
+      "sha256": "e2299a66c08dd9f0bd625bc9ab191e66a157316bdd3d8a1392b33954bb60a537"
+    },
+    {
+      "path": "E0\\E0_A_camera_static\\raw\\E0A_formal_far_20260807_190004.csv",
+      "sha256": "1af9abd5d160af31ccb960b30c0c5319cc0256eaa00928c2c7e04e787554f009"
+    },
+    {
+      "path": "E4\\E4_charuco_calibration_v4\\20260811_191758\\E4_charuco_12spread_per_frame.csv",
+      "sha256": "1f96fdb4c8a5a41ca01e68ec67647d13474f1ccfc2de68637743eccccc3bfffb"
+    },
+    {
+      "path": "E4\\E4_model_freeze_v1\\20260811_192958\\E4_heldout_9points_per_frame.csv",
+      "sha256": "3242aeef67a0abd4081c4cc521bddc48c2992676ef7c6af45439de693e1690e9"
+    },
+    {
+      "path": "E2\\E2_rebuilt\\E2_REBUILD_MANIFEST.json",
+      "sha256": "daa68cd706e050d30433c6501e5a2b2328b8c7eddc5ab4ccebadcf4d2bbd8683"
+    },
+    {
+      "path": "E2\\E2_dual_camera_height_scan\\run_20260808_131913\\raw\\E2_dual_height_raw_20260808_131913.csv",
+      "sha256": "78d6574b834fff8822cc59e55e62cdc041b292255365d4d2d9fc57e413cabcdf"
+    },
+    {
+      "path": "E2\\E2_dual_camera_height_scan\\run_20260808_141232\\raw\\E2_dual_height_raw_20260808_141232.csv",
+      "sha256": "1e17dbca07486c044cb175f23058cdee77d9d8ff53c4cd5a975d1fb4eed91bd1"
+    },
+    {
+      "path": "E2\\E2_dual_camera_height_scan\\run_20260808_145501\\raw\\E2_dual_height_raw_20260808_145501.csv",
+      "sha256": "696ff47c63ea3d91a8ff4247b57bdf488eca5d679e19e716ecad5271f7aad305"
+    },
+    {
+      "path": "E2\\E2_dual_camera_height_scan\\run_20260808_151001\\raw\\E2_dual_height_raw_20260808_151001.csv",
+      "sha256": "ff76009c69cfea0e72f23d8a762019fb000161de7ae902522189908885d59c8e"
+    },
+    {
+      "path": "E2\\E2_dual_camera_height_scan\\run_20260808_162715\\raw\\E2_dual_height_raw_20260808_162715.csv",
+      "sha256": "82572f9eab053a1acc3cb2e8d8fb6afcb5b0784e8452cf31744493b2008f3f24"
+    }
+  ],
+  "outputs": [
+    "pixel_within.csv",
+    "pnp_within_se3.csv",
+    "pnp_within_residuals_se3.csv",
+    "run_bias_se3.csv",
+    "e2_hierarchical_components_se3.csv",
+    "e2_hierarchical_vectors_se3.csv",
+    "RESULTS_SUMMARY.md"
+  ]
+}

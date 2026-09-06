@@ -1,0 +1,71 @@
+{
+  "freeze_id": "E2-v0R0_raw_audit",
+  "status": "FROZEN_DO_NOT_OVERWRITE",
+  "created_at_utc": "2026-09-06T01:25:26.793507+00:00",
+  "source_results": "C:\\Users\\ASUS\\Desktop\\paper\\uncertainty\\empirical_se3_replay\\results",
+  "role": "raw audit and single-marker IPPE failure-mode baseline",
+  "formal_e1_v4_input": false,
+  "prohibition": "large total_sum is not an authorized E1-v4 input",
+  "files": [
+    {
+      "path": "results/e2_hierarchical_components_se3.csv",
+      "bytes": 84272,
+      "sha256": "a3bd24694c1f45768cdcc4c765e48c519affbb72c9a0a5ca7996edbfabc736d2"
+    },
+    {
+      "path": "results/e2_hierarchical_vectors_se3.csv",
+      "bytes": 518505,
+      "sha256": "8127cf0d6fc44f9542d7a13cacd21be004295d4f59d3a56d503e3b15834e1b6f"
+    },
+    {
+      "path": "results/manifest.json",
+      "bytes": 12904,
+      "sha256": "9fb164c91ad8220b2bdff9f13087b8d6bca4d361fcf9b76f51785b75cc1ea358"
+    },
+    {
+      "path": "results/pixel_within.csv",
+      "bytes": 876700,
+      "sha256": "23f88eace05c8eeb7c7e41968f1d4b2378f286fce120e1e41b6e3420d288c965"
+    },
+    {
+      "path": "results/pnp_within_residuals_se3.csv",
+      "bytes": 360234,
+      "sha256": "d84f4b7c5f616785d0f5b28d07608bda03226f4fada4f9e0824a00b7bcfde437"
+    },
+    {
+      "path": "results/pnp_within_se3.csv",
+      "bytes": 676738,
+      "sha256": "77612610e0cddb1f099558b195d29c82da13079a103ff0cb382f80d4b1e55f35"
+    },
+    {
+      "path": "results/RESULTS_SUMMARY.md",
+      "bytes": 4561,
+      "sha256": "8ab6bf0f128ba2c9fbca35ba757bed317071bb2d4117b02a5a735bbe60fdc3c8"
+    },
+    {
+      "path": "results/run_bias_se3.csv",
+      "bytes": 120910,
+      "sha256": "3a22921cd50944dab28251492c23e46c2a1fd73c7c807457275f2b9b2372b9dd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3435,
+      "sha256": "8053deb21fbf87862d4a5497b12165eee2b391f5d8d970bf8a88d515ad7fb870"
+    },
+    {
+      "path": "build_empirical_components.py",
+      "bytes": 29872,
+      "sha256": "c5fb2eb4a71d164b7ae6169bc9b408c1bbc92aa570f8eb3c74e2b01de4da58fe"
+    },
+    {
+      "path": "verify_empirical_components.py",
+      "bytes": 3345,
+      "sha256": "3d9e67b0389b8b11013609d39baa60f4d044f8f76ef2b5fea8ec8b38f5c80e8b"
+    },
+    {
+      "path": "FROZEN_README.md",
+      "bytes": 509,
+      "sha256": "fc6c0c84499190df9a95895fe1a9427a0bc528fef016d60d5fcea12c0005983c"
+    }
+  ]
+}

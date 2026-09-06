@@ -1,0 +1,66 @@
+row_block_i,row_block_j,covariance_block,nonzero_source
+"zR(0,1)","zR(0,1)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,1)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,1)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,1)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,1)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,1)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,1)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,1)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,2)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,2)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,2)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,3)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,3)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,3)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,4)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,4)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,4)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,5)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,5)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,5)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,6)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,6)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,6)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,7)","zR(0,7)",S_relative,zR marginal (target pose plus shared reference)
+"zR(0,7)","zR(0,8)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,1)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,2)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,3)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,4)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,5)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,6)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,7)",S_relative/2,zR-zR shared reference pose 0
+"zR(0,8)","zR(0,8)",S_relative,zR marginal (target pose plus shared reference)
+zR(any),zG(any),0,no shared primitive is represented by current code/noise model

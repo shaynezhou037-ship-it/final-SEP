@@ -1,0 +1,38 @@
+{
+  "artifact": "E1-v4R1_reconstructed",
+  "restoration_status": "FAIL",
+  "formal_e2_input_authorized": false,
+  "phase_map_authorized": false,
+  "perfect_zG_replay_authorized": false,
+  "e2_dependency_present": false,
+  "contract_sha256": "7F510224A57C2989BDF0C1521C0143EC1686046BC20F2427CDF06FE0CE027488",
+  "reconstruction_choices": [
+    "RECONSTRUCTION_CHOICE_seed_and_task_pose_list",
+    "RECONSTRUCTION_CHOICE_relative_pair_list",
+    "RECONSTRUCTION_CHOICE_zG_JACOBIAN",
+    "RECONSTRUCTION_CHOICE_global_nuisance_X_B_X_F",
+    "RECONSTRUCTION_CHOICE_indexing_correlated_covariance_pending",
+    "RECONSTRUCTION_CHOICE_dmin_equal_severity_unit_direction"
+  ],
+  "files_sha256": {
+    "cross_action_metrics.py": "dae4263d0960cf21c3d56e7d56307d6046b425f81c61542fdc992d192ecb5066",
+    "evidence_zG.py": "a126d5221c3f62c997fa7b78d1881ad611be78f6a15b3a1f5ce8ede00b41ea4d",
+    "evidence_zL.py": "b9bf7010b0952f1ae288316db9472175432047f23fab7bfdf0a3d4a6a778023e",
+    "evidence_zR.py": "02b1d5f2bbe7b8bafa6210298dd34873f2fa8b7d9239ad09c249eca990d9c587",
+    "evidence_zV.py": "9b0e5e08b54a6a6179dbcaf4d43bdabe790759694cd8e9a9573d5edc0d693f74",
+    "nuisance_projection.py": "64c28d3af9c42cd3b54db689486324491fa14bac7d4dbd87d7df37e766cc3af2",
+    "reconstruct_e1_v4r1.py": "654024d1b0574c6c9aa0f0e395cef9c330ce9a207d59b4fb92931baa269a0a7d",
+    "se3_utils.py": "f638fa907ab8fbedcc2a74fe398326ed89a64112a149902c3c0b075e4edd2714",
+    "severity_scaling.py": "513340bb2eaafbafc9de455961433c7a64035ba2f37a55f12597a01df7fa88f2",
+    "ur5_model.py": "1e7abb90424408398b13281899fcb1ba720575a1979a73165892b807fcf47a81",
+    "tests/__init__.py": "38d9e540796bc2240e49af38cf1c1ec24b01bec3840f72c712564ae10be2a3a9",
+    "tests/test_action_mapping.py": "380ab97124fd9f4604c161bf9de302de1b6ba1bc3cdc7037ceb3ab88d21c3eb8",
+    "tests/test_historical_regression.py": "85ab9e9bf67a3902c477eded534cf6c3a50d1345b4fcded8aff8f436e8a03b2b",
+    "tests/test_jacobians.py": "f5fd8bc7bc6c106e93d9ca027ecdec034e5a5e706174c9cef20c45be6644ab92",
+    "tests/test_se3_utils.py": "f38935efd0964c06a41e8c65ba02b78b1a55af4a830677d4f6c0e36625a96f30",
+    "tests/test_zR_cancellation.py": "623306eeadd036230c7157860de12c1f4a513f2ced7bba5f0b2d04f0e3f4fb4e",
+    "e1_v4r1_config.yaml": "34b2878bb61d6e566ff0f64ed44c355d44ef1e605ac762988cd7d0bbe3308570",
+    "E1_v4R1_CONTRACT.md": "58fcfadc23912253b7d959c73be23e5035802a4c287a6674591577d009e1c8ea",
+    "RESTORATION_STATUS.md": "f4c2c40baa2f821ba41071509f538cb3331ae273261072e181462386990a221b"
+  }
+}

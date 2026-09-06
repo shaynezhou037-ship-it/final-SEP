@@ -1,0 +1,5 @@
+comparison,residual_sigma,historical_fingerprint_sigma
+C_yaw_vs_q1,0.2823231243826977,0.95
+T_yaw_vs_q6,1.1526953438981697,4.18
+C_yaw_vs_R_block,0.2797646044552232,
+T_yaw_vs_R_block,1.1524466534625737,
